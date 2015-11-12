@@ -1,13 +1,17 @@
 #!/bin/bash
 
 dir=~/.dotfiles
-files=".bashrc .vim"
+files=".vim"
+powerline_dir=/usr/local/lib/python3.4/dist-packages/powerline
 
 if [ -e /usr/bin/i3 ]; then # check if i3 is installed
 	files="$files .i3"
 fi
-if [ -e /usr/bin/tmux ]; then # check if tmux is installed
-	files="$files .tmux.conf"
+
+# Check if tmux is installed as well as powerline
+# adds .bashrc because the only configuration in bashrc is for powerline
+if [ -e /usr/bin/tmux ] && [ -e $powerline_dir ]; then
+	files="$files .tmux.conf .bashrc"
 fi
 
 echo "Programs found: $files"
@@ -18,7 +22,7 @@ for file in $files; do
 	then
 		echo "$file already setup"
 	else
-		if [ -f ~/file ]; then
+		if [ -e ~/$file ]; then
 			echo "Removing original $file"
 			rm -r ~/$file
 		fi
@@ -28,3 +32,9 @@ for file in $files; do
 		ln -s $dir/$file ~/$file
 	fi
 done
+
+echo "Runing vim setup"
+sleep 2
+~/.vim/setup.sh
+
+exit 0

@@ -22,4 +22,6 @@ git clone git://github.com/jiangmiao/auto-pairs.git ~/.vim/bundle/auto-pairs
 # The NERD Tree
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 
-exit
+if [ -e  ]
+
+exit 0

@@ -2,6 +2,8 @@
 "   Most of these settings are set to work best with Elementary OS terminal
 "   default color theme
 
+hi cType ctermfg=106
+
 " sets the comment color to blue
 hi Comment term=bold ctermfg=4 guifg=#406090  
 
@@ -16,7 +18,7 @@ hi Statement cterm=none ctermfg=yellow
 hi MatchParen term=bold ctermfg=76 ctermbg=none
 
 " set colorcolumn color
-hi ColorColumn ctermbg=Green
+hi ColorColumn ctermbg=106
 
 " Vertual line hilight color
 hi Visual ctermfg=70 ctermbg=238 guifg=#52b000 guibg=#585858

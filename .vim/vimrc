@@ -11,6 +11,11 @@ set timeoutlen=1000 ttimeoutlen=0 "Esc delay time"
 
 " Unmap p in normal mode because of tmux p command
 map p <Nop>
+" Keymapping for window management
+map = <C-W>+
+map - <C-W>-
+map , :vertical resize +5<CR>
+map . :vertical resize -5<CR>
 
 " Syntastic recommended settings
 set statusline+=%#warningmsg#
@@ -26,7 +31,7 @@ if isdirectory("/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/")
 	set rtp+=/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/
 	set laststatus=2
 	set showtabline=1
-	set noshowmode
+       	set noshowmode
 	set t_Co=256
 endif
 

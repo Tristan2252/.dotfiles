@@ -162,12 +162,15 @@ client.focused              $id     $ac         $tx     $id
 # finds out, if available)
 bar {
         status_command i3status
+	position 	top
 }
 
 
 
-exec --no-startup-id xrandr --output Virtual-0 --mode 1920x1200
-exec --no-startup-id xrandr --output Virtual-0 --mode 1920x1080
+#exec --no-startup-id xrandr --output Virtual-0 --mode 1920x1200
+#exec --no-startup-id xrandr --output Virtual-0 --mode 1920x1080
+exec -no-startup-id xrandr --output DVI-D-0 --left-of DVI-I-1
+
 exec --no-startup-id feh --bg-scale ~/.wallpaper.jpg
 exec xcompmgr
 

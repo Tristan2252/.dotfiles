@@ -12,6 +12,7 @@ echo ""
 echo "Dont forget to source SUPERTAB with :so % command"
 echo ""
 sleep 2
+vim ~/.vim/bundle/supertab/supertab.vim
 
 # syntastic
 git clone https://github.com/scrooloose/syntastic.git ~/.vim/bundle/syntastic
@@ -21,7 +22,5 @@ git clone git://github.com/jiangmiao/auto-pairs.git ~/.vim/bundle/auto-pairs
 
 # The NERD Tree
 git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
-
-if [ -e  ]
 
 exit 0

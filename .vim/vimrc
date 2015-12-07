@@ -9,8 +9,11 @@ set colorcolumn=110
 colo pantheon_term
 set timeoutlen=1000 ttimeoutlen=0 "Esc delay time"
 
-" Unmap p in normal mode because of tmux p command
-map p <Nop>
+"Unmap p in normal mode because of tmux p command"
+map p <Nop> 
+" vertical split key map"
+nnoremap \ :vsp<CR>
+imap <C-\> <Esc>:vsp<CR>
 " Keymapping for window management
 map = <C-W>+
 map - <C-W>-

@@ -8,6 +8,11 @@ if [ -e /usr/bin/i3 ]; then # check if i3 is installed
 	files="$files .i3"
 fi
 
+# Github user
+if [ -e /usr/bin/git ]; then
+	files="$files .gitconfig"
+fi
+
 # Check if tmux is installed as well as powerline
 # adds .bashrc because the only configuration in bashrc is for powerline
 if [ -e /usr/bin/tmux ] && [ -e $powerline_dir ]; then
@@ -35,6 +40,11 @@ done
 
 echo "Runing vim setup"
 sleep 2
-~/.vim/setup.sh
+# check to see if vim is already setup
+if [ -e ~/.vim/bundle ]; then
+	echo "VIM already setup!"
+else
+	~/.vim/setup.sh
+fi
 
 exit 0

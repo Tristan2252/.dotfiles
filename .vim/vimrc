@@ -6,7 +6,7 @@ filetype plugin indent on
 set number
 set tabstop=8 "set for C programing"
 set colorcolumn=110
-colo pantheon_term
+colo marvin_martian
 set timeoutlen=1000 ttimeoutlen=0 "Esc delay time"
 set incsearch " Show search matches while typing"
 set wildmenu  "Tab complete vim command menu"

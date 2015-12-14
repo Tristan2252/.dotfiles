@@ -4,7 +4,8 @@
 
 hi cType ctermfg=34
 hi cStructure ctermfg=208
-hi cSpecial ctermfg=6
+hi cSpecial ctermfg=208
+hi cString ctermfg=34
 hi Type ctermfg=34
 
 hi WildMenu term=bold,standout ctermfg=106 ctermbg=0
@@ -19,7 +20,8 @@ hi LineNr term=underline ctermfg=3 guifg=Red3
 
 " set color of statements ex: while, if, return...
 hi Statement cterm=none ctermfg=208
-hi PreProc ctermfg=6
+hi PreProc ctermfg=196
+hi Number ctermfg=220
 
 " set Pair matching color
 " hi MatchParen ctermfg=226 ctermbg=none
@@ -35,9 +37,9 @@ hi Visual ctermfg=70 ctermbg=238 guifg=#52b000 guibg=#585858
 " line warning
 " line error
 hi Search term=reverse ctermfg=none ctermbg=237
-hi SyntasticError term=standout ctermfg=15 ctermbg=40 guifg=White guibg=Red 
-hi SyntasticWarning term=standout ctermfg=10 ctermbg=208 guifg=Blue guibg=Yellow
-hi Todo term=standout ctermfg=15 ctermbg=202 
+hi SyntasticError term=underline cterm=underline ctermfg=196 ctermbg=none
+hi SyntasticWarning term=underline cterm=underline ctermfg=220 ctermbg=none
+hi Todo term=standout,bold ctermfg=15 ctermbg=196
 
 " sets supertab to menu to dark color scheme
 hi Pmenu        cterm=none ctermfg=White     ctermbg=Black

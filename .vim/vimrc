@@ -4,18 +4,22 @@ filetype plugin indent on
 
 " Added settings
 set number
-set tabstop=8 "set for C programing"
-set colorcolumn=110
+set nowrap 				"Dont like wrapin in vim"
+set tabstop=8 				"Set for C programing"
+set colorcolumn=110 			"Colorcolumn length"
+set timeoutlen=1000 ttimeoutlen=0 	"Esc delay time"
+set incsearch 				"Show search matches while typing"
+set wildmenu  				"Tab complete vim command menu"
+set t_Co=256 				"Set to 16 to fix pantheon term colors in vim"
 colo marvin_martian
-set timeoutlen=1000 ttimeoutlen=0 "Esc delay time"
-set incsearch " Show search matches while typing"
-set wildmenu  "Tab complete vim command menu"
 
 "Unmap p in normal mode because of tmux p command"
 map p <Nop> 
+
 " vertical split key map"
 nnoremap \ :vsp<CR>
 imap <C-\> <Esc>:vsp<CR>
+
 " Keymapping for window management
 map = <C-W>+
 map - <C-W>-
@@ -37,7 +41,6 @@ if isdirectory("/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/")
 	set laststatus=2
 	set showtabline=1
        	set noshowmode
-	set t_Co=256
 endif
 
 " >>>> SOURCES <<<<<

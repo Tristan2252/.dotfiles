@@ -4,7 +4,7 @@ plugins="syntastic auto-pairs nerdtree supertab"
 
 # installation dir's
 syntastic=~/.vim/bundle/syntastic
-auto_pairs=~/.vim/bundle/auto_pairs
+auto_pairs=~/.vim/bundle/auto-pairs
 nerdtree=~/.vim/bundle/nerdtree
 supertab=~/.vim/bundle/supertab
 
@@ -52,9 +52,9 @@ for i in $plugins; do
 				echo "Source SUPERTAB with :so % command"
 				echo ""
 				sleep 2
-				vim $supertab/supertab.vim;;
+				vim $supertab/plugin/supertab.vim;;
 			auto-pairs)
-				git clone git://github.com/jiangmiao/auto-pairs.git $auto_pairs	;;
+				git clone git://github.com/jiangmiao/auto-pairs.git $auto_pairs;;
 			nerdtree)
 				git clone https://github.com/scrooloose/nerdtree.git $nerdtree;;
 			syntastic)

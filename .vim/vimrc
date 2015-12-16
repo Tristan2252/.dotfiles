@@ -14,6 +14,8 @@ set t_Co=256 				"Set to 16 to fix pantheon term colors in vim"
 colo marvin_martian
 
 "Unmap p in normal mode because of tmux p command"
+map D "_d
+map <leader>p "_dP
 map p <Nop> 
 
 " vertical split key map"

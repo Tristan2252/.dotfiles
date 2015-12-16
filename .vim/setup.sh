@@ -41,7 +41,7 @@ fi
 
 # install all plugins
 for i in $plugins; do
-	if [ -e ~/.vim/bundle/$i ]; then
+	if [ "$(ls -A ~/.vim/bundle/$i/)" ]; then
 		echo "$i is already installed"	
 		sleep 1
 	else

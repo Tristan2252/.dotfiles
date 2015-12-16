@@ -22,6 +22,7 @@ hi LineNr term=underline ctermfg=3 guifg=Red3
 hi Statement cterm=none ctermfg=208
 hi PreProc ctermfg=196
 hi Number ctermfg=220
+hi String ctermfg=34
 
 " set Pair matching color
 " hi MatchParen ctermfg=226 ctermbg=none

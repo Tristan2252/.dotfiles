@@ -14,9 +14,15 @@ set t_Co=256 				"Set to 16 to fix pantheon term colors in vim"
 colo marvin_martian
 
 "Unmap p in normal mode because of tmux p command"
-map D "_d
-map <leader>p "_dP
 map p <Nop> 
+
+"Delete line mapings
+" v goes into visual mode
+" $ goes to end of line
+" '_d cuts secection into black hole register
+" 0 adds empty line
+nnoremap <C-d> v$"_d
+nnoremap <C-e> v$"_d<Esc>O<Esc>
 
 " vertical split key map"
 nnoremap \ :vsp<CR>

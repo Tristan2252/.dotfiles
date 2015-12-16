@@ -21,8 +21,8 @@ map p <Nop>
 " $ goes to end of line
 " '_d cuts secection into black hole register
 " 0 adds empty line
-nnoremap <C-d> v$"_d
-nnoremap <C-e> v$"_d<Esc>O<Esc>
+nnoremap D v$"_d
+nnoremap d v$"_d<Esc>O<Esc>
 
 " vertical split key map"
 nnoremap \ :vsp<CR>

@@ -1,10 +1,12 @@
 #!/bin/bash
 # bash powerline service settings
 
-powerline-daemon -q 
-POWERLINE_BASH_CONTINUATION=1     
-POWERLINE_BASH_SELECT=1   
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh  
+if [ -e /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh  ]; then
+	powerline-daemon -q 
+	POWERLINE_BASH_CONTINUATION=1     
+	POWERLINE_BASH_SELECT=1   
+	. /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh  
+fi
 
 # enable ls and terminal colors
 

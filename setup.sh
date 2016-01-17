@@ -22,9 +22,10 @@ function linux_setup (){
 function mac_setup (){
 	configs=$1
 	if [ -e /usr/local/Cellar/tmux/2.1 ] && [ -e /usr/local/lib/python2.7/site-packages ]; then
-		configs="$configs .tmux.conf .bash_profile"
+		configs="$configs .tmux.conf"
 	fi
-	echo $configs	
+
+	echo "$configs .bash_profile" # allways add bash profile for ls color support on mac
 }
 
 # Github user

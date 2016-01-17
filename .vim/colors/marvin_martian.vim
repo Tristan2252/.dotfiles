@@ -2,15 +2,30 @@
 "   Most of these settings are set to work best with Elementary OS terminal
 "   default color theme
 
+"##### Markdown #####
+hi markdownH1 ctermfg=34 cterm=underline,bold
+hi markdownH2 ctermfg=34 cterm=underline,bold
+hi markdownH3 ctermfg=34 cterm=underline
+hi markdownH4 ctermfg=34
+hi markdownH5 ctermfg=34
+hi markdownH6 ctermfg=34
+hi markdownHeadingDelimiter ctermfg=106
+hi markdownItalic ctermfg=4
+hi markdownCodeDelimiter ctermfg=208
+hi markdownCode ctermfg=208 ctermbg=0
+hi markdownListMarker ctermfg=196
+hi markdownOrderedListMarker ctermfg=196
+
+" ##### C language #####
 hi cType ctermfg=34
 hi cStructure ctermfg=208
 hi cSpecial ctermfg=208
 hi cString ctermfg=34
 hi Type ctermfg=34
 
+"##### General #####
 hi WildMenu term=bold,standout ctermfg=106 ctermbg=0
 hi StatusLine term=bold,reverse ctermfg=0 gui=bold,reverse
-
 
 " sets the comment color to blue
 hi Comment term=bold ctermfg=4 guifg=#406090  

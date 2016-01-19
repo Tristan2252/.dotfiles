@@ -24,6 +24,7 @@ hi cString ctermfg=34
 hi Type ctermfg=34
 
 "##### General #####
+hi SpellBad cterm=underline ctermfg=none ctermbg=none
 hi WildMenu term=bold,standout ctermfg=106 ctermbg=0
 hi StatusLine term=bold,reverse ctermfg=0 gui=bold,reverse
 

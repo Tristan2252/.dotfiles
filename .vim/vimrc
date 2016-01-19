@@ -4,18 +4,20 @@ filetype plugin indent on
 
 " Added settings
 set number
-set nowrap 				"Dont like wrapin in vim"
-set colorcolumn=110 			"Colorcolumn length"
+set nowrap          				"Dont like wrapin in vim"
+set colorcolumn=110     			"Colorcolumn length"
 set timeoutlen=1000 ttimeoutlen=0 	"Esc delay time"
-set incsearch 				"Show search matches while typing"
-set wildmenu  				"Tab complete vim command menu"
-set t_Co=256 				"Set to 16 to fix pantheon term colors in vim"
+set incsearch 		        		"Show search matches while typing"
+set wildmenu  			        	"Tab complete vim command menu"
+set t_Co=256 		        		"Set to 16 to fix pantheon term colors in vim"
 set backspace=indent,eol,start 		"Set backspace on everything in insert mode, for OS X"
 colo marvin_martian
 
 " Tab setting for diferent syntax
 autocmd FileType vim,markdown,python,sh set tabstop=4
 autocmd FileType c set tabstop=8
+
+autocmd FileType markdown set spell spelllang=en_us
 
 "Unmap p in normal mode because of tmux p command"
 map p <Nop> 

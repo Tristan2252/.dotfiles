@@ -4,32 +4,46 @@ filetype plugin indent on
 
 " Added settings
 set number
-set nowrap          				"Dont like wrapin in vim"
-set colorcolumn=110     			"Colorcolumn length"
-set timeoutlen=1000 ttimeoutlen=0 	"Esc delay time"
-set incsearch 		        		"Show search matches while typing"
-set wildmenu  			        	"Tab complete vim command menu"
-set t_Co=256 		        		"Set to 16 to fix pantheon term colors in vim"
-set backspace=indent,eol,start 		"Set backspace on everything in insert mode, for OS X"
-colo marvin_martian
+set expandtab                       "always add spaces as tabs
+set nowrap                          "Dont like wrapin in vim"
+set colorcolumn=110                 "Colorcolumn length"
+set timeoutlen=1000 ttimeoutlen=0   "Esc delay time"
+set incsearch                       "Show search matches while typing"
+set wildmenu                        "Tab complete vim command menu"
+set t_Co=256                        "Set to 16 to fix pantheon term colors in vim"
+set backspace=indent,eol,start      "Set backspace on everything in insert mode, for OS X"
+set softtabstop=0
+set list                            "list special char's
+set listchars=tab:>\                "show tabs as ">"
+colorscheme marvin_martian
 
 " Tab setting for diferent syntax
-autocmd FileType vim,markdown,python,sh set tabstop=4
-autocmd FileType c set tabstop=8
+autocmd FileType vim,markdown,python,sh call TabOther()
+autocmd FileType markdown call MDsettings()
+autocmd FileType c call TabC()
 
-autocmd FileType markdown set spell spelllang=en_us
+" Settings for markdown
+function MDsettings()
+    set list
+    set listchars=tab:▸\ ,eol:~
+    set spell spelllang=en_us
+endfunction
 
-"Unmap p in normal mode because of tmux p command"
-map p <Nop> 
+" Finction for setting tabs for filetypes other than c
+function TabOther()
+    set tabstop=4
+    set shiftwidth=4
+endfunction
+
+" Finction for setting tabs for c filetype
+function TabC()
+    set tabstop=8
+    set shiftwidth=8
+endfunction
 
 "Delete line mapings
-" v goes into visual mode
-" $ goes to end of line
-" '_d cuts secection into black hole register
-" 0 adds empty line
 nnoremap D v$"_d
 nnoremap d v$"_d<Esc>O<Esc>
-
 " vertical split key map"
 nnoremap \ :vsp<CR>
 imap <C-\> <Esc>:vsp<CR>
@@ -39,6 +53,8 @@ map = <C-W>+
 map - <C-W>-
 map , :vertical resize +5<CR>
 map . :vertical resize -5<CR>
+"Unmap p in normal mode because of tmux p command"
+map p <Nop> 
 
 " Syntastic recommended settings
 set statusline+=%#warningmsg#
@@ -50,22 +66,28 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-
 if isdirectory("/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/")
-	set rtp+=/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/
-	set laststatus=2
-	set showtabline=1
-       	set noshowmode
+    set rtp+=/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/
+    set laststatus=2
+    set showtabline=1
+    set noshowmode
 endif
 
 " Mac directory is a little different -__-
 if isdirectory("/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/")
-	set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/
-	set laststatus=2
-	set showtabline=1
-       	set noshowmode
+    set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/
+    set laststatus=2
+    set showtabline=1
+    set noshowmode
 endif
 
+" >>> Keymap commands <<<
+"
+" v goes into visual mode
+" $ goes to end of line
+" '_d cuts secection into black hole register
+" 0 adds empty line
+"
 " >>>> SOURCES <<<<<
 "
 " Vim documentation: options:

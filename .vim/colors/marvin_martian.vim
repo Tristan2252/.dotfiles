@@ -3,18 +3,24 @@
 "   default color theme
 
 "##### Markdown #####
-hi markdownH1 ctermfg=34 cterm=underline,bold
-hi markdownH2 ctermfg=34 cterm=underline,bold
-hi markdownH3 ctermfg=34 cterm=underline
-hi markdownH4 ctermfg=34
-hi markdownH5 ctermfg=34
-hi markdownH6 ctermfg=34
-hi markdownHeadingDelimiter ctermfg=106
-hi markdownItalic ctermfg=4
-hi markdownCodeDelimiter ctermfg=208
-hi markdownCode ctermfg=208 ctermbg=0
-hi markdownListMarker ctermfg=196
-hi markdownOrderedListMarker ctermfg=196
+autocmd FileType markdown call MDhilight()
+function MDhilight()
+	hi markdownH1 ctermfg=34 cterm=underline,bold
+	hi markdownH2 ctermfg=34 cterm=underline,bold
+	hi markdownH3 ctermfg=34 cterm=underline
+	hi markdownH4 ctermfg=34
+	hi markdownH5 ctermfg=34
+	hi markdownH6 ctermfg=34
+	hi markdownHeadingDelimiter ctermfg=106
+	hi markdownItalic ctermfg=4
+	hi markdownCodeDelimiter ctermfg=208
+	hi markdownCode ctermfg=208 ctermbg=0
+	hi markdownListMarker ctermfg=196
+	hi markdownOrderedListMarker ctermfg=196
+	" Spell Warnings dont look good in markdown
+	hi SpellLocal cterm=underline ctermfg=none ctermbg=none
+	hi SpellCap cterm=underline ctermfg=none ctermbg=none
+endfunction
 
 " ##### C language #####
 hi cType ctermfg=34
@@ -25,8 +31,13 @@ hi Type ctermfg=34
 
 "##### General #####
 hi SpellBad cterm=underline ctermfg=none ctermbg=none
+hi SpellLocal cterm=underline ctermfg=4 ctermbg=none
+hi SpellCap cterm=underline ctermfg=4 ctermbg=none
+
 hi WildMenu term=bold,standout ctermfg=106 ctermbg=0
 hi StatusLine term=bold,reverse ctermfg=0 gui=bold,reverse
+hi NonText ctermfg=239
+hi SpecialKey ctermfg=239
 
 " sets the comment color to blue
 hi Comment term=bold ctermfg=4 guifg=#406090  

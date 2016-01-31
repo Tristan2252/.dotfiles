@@ -29,7 +29,7 @@ nnoremap D v$"_d
 nnoremap d v$"_d<Esc>O<Esc>
 
 " vertical split key map"
-nnoremap \ :vsp<CR>
+nnoremap \ :vsp<CR>:wincmd l<CR>
 imap <C-\> <Esc>:vsp<CR>
 
 " Keymapping for window management

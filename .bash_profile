@@ -12,3 +12,7 @@ fi
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
+
+alias grep='grep --color=auto'
+alias cse='cd /Users/tristan/Documents/CSE/122/Notes'
+alias cse-l='cd /Users/tristan/Documents/CSE/122/Labs'

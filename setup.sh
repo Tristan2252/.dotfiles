@@ -5,36 +5,36 @@ files=".vim"
 powerline_dir=/usr/local/lib/python3.4/dist-packages/powerline
 
 linux_setup (){
-	configs=$1
-	if [ -e /usr/bin/i3 ]; then # check if i3 is installed
-		configs="$configs .i3"
-	fi
+    configs=$1
+    if [ -e /usr/bin/i3 ]; then # check if i3 is installed
+        configs="$configs .i3"
+    fi
 
     # Check if tmux is installed as well as powerline
-	# adds .bashrc because the only configuration in bashrc is for powerline
-	if [ -e /usr/bin/tmux ] && [ -e $powerline_dir ]; then
-		configs="$configs .tmux.conf .bashrc"
-	fi
+    # adds .bashrc because the only configuration in bashrc is for powerline
+    if [ -e /usr/bin/tmux ] && [ -e $powerline_dir ]; then
+        configs="$configs .tmux.conf .bashrc"
+    fi
 
     files="$configs"
 }
 
 mac_setup (){
-	configs=$1
-	if [ -e /usr/local/Cellar/tmux/2.1 ] && [ -e /usr/local/lib/python2.7/site-packages ]; then
-		configs="$configs .tmux.conf"
-	fi
+    configs=$1
+    if [ -e /usr/local/Cellar/tmux/2.1 ] && [ -e /usr/local/lib/python2.7/site-packages ]; then
+        configs="$configs .tmux.conf"
+    fi
 
     files="$configs .bash_profile" # allways add bash profile for ls color support on mac
 }
 
 if [ $(uname -s) == "Darwin" ]; then
-	mac_setup $files
+    mac_setup $files
 fi
 
 if [  $(uname -s) == "Linux" ]; then
-	linux_setup $files
-fi	
+    linux_setup $files
+fi  
 
 # Github user
 if [ -e /usr/bin/git ]; then
@@ -45,28 +45,28 @@ echo "Programs found: $files" # echo last return
 sleep 1
 
 for file in $files; do 
-	if [ -h ~/$file ] #if the file is a simlink
-	then
-		echo "$file already setup"
-	else
-		if [ -e ~/$file ]; then
-			echo "Removing original $file"
-			rm -r ~/$file
-		fi
+    if [ -h ~/$file ] #if the file is a simlink
+    then
+        echo "$file already setup"
+    else
+        if [ -e ~/$file ]; then
+            echo "Removing original $file"
+            rm -r ~/$file
+        fi
 
-		echo "Creating simlink for $file"
-		sleep 1
-		ln -s $dir/$file ~/$file
-	fi
+        echo "Creating simlink for $file"
+        sleep 1
+        ln -s $dir/$file ~/$file
+    fi
 done
 
 echo "Runing vim setup"
 sleep 2
 # check to see if vim is already setup
 if [ "$(ls -A ~/.vim/bundle/)" ]; then
-	echo "VIM already setup!"
+    echo "VIM already setup!"
 else
-	~/.vim/setup.sh
+    ~/.vim/setup.sh
 fi
 
 exit 0

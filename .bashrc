@@ -122,3 +122,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+alias cse='cd /Users/tristan/Documents/CSE/122/Notes'
+alias cse-l='cd /Users/tristan/Documents/CSE/122/Labs'

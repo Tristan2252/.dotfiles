@@ -17,6 +17,7 @@ function MDhilight()
 	hi markdownCode ctermfg=208 ctermbg=0
 	hi markdownListMarker ctermfg=196
 	hi markdownOrderedListMarker ctermfg=196
+    hi markdownBold ctermfg=220
 	" Spell Warnings dont look good in markdown
 	hi SpellLocal cterm=underline ctermfg=none ctermbg=none
 	hi SpellCap cterm=underline ctermfg=none ctermbg=none

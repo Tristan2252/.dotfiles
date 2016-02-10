@@ -19,11 +19,11 @@ colorscheme marvin_martian
 
 " Tab setting for diferent syntax
 autocmd FileType vim,markdown,python,sh call TabOther()
-autocmd FileType markdown call MDsettings()
+autocmd FileType markdown,text call TextSettings()
 autocmd FileType c call TabC()
 
 " Settings for markdown
-function MDsettings()
+function TextSettings()
     set list
     set listchars=tab:▸\ ,eol:~
     set spell spelllang=en_us

@@ -18,7 +18,7 @@ set listchars=tab:>\                "show tabs as ">"
 colorscheme marvin_martian
 
 " Tab setting for diferent syntax
-autocmd FileType vim,markdown,python,sh call TabOther()
+autocmd FileType tex,latex,vim,markdown,python,sh call TabOther()
 autocmd FileType markdown call MDsettings()
 autocmd FileType c call TabC()
 

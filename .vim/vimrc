@@ -18,12 +18,17 @@ set listchars=tab:>\                "show tabs as ">"
 colorscheme marvin_martian
 
 " Tab setting for diferent syntax
+<<<<<<< HEAD
 autocmd FileType tex,latex,vim,markdown,python,sh call TabOther()
 autocmd FileType markdown call MDsettings()
+=======
+autocmd FileType vim,markdown,python,sh call TabOther()
+autocmd FileType markdown,text call TextSettings()
+>>>>>>> 4ae95f2b92db4f17fd3ece70b8d7e3f9b24a63d5
 autocmd FileType c call TabC()
 
 " Settings for markdown
-function MDsettings()
+function TextSettings()
     set list
     set listchars=tab:▸\ ,eol:~
     set spell spelllang=en_us

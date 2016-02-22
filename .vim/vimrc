@@ -19,9 +19,7 @@ colorscheme marvin_martian
 
 " Tab setting for diferent syntax
 autocmd FileType tex,latex,vim,markdown,python,sh call TabOther()
-autocmd FileType markdown call MDsettings()
-autocmd FileType vim,markdown,python,sh call TabOther()
-autocmd FileType markdown,text call TextSettings()
+autocmd FileType tex,latex,markdown,text call TextSettings()
 autocmd FileType c call TabC()
 
 " Settings for markdown

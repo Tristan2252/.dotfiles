@@ -43,7 +43,7 @@ function TabC()
 endfunction
 
 " ctl-R to render latex file
-map <C-R> :! pdflatex %<CR>
+map <C-R> :! pdflatex -interaction=batchmode %<CR>
 
 "Delete line mapings
 nnoremap D v$"_d

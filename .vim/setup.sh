@@ -1,13 +1,9 @@
 #!/bin/bash
 
-plugins="syntastic auto-pairs nerdtree supertab latex-plugins"
+plugins="syntastic auto-pairs nerdtree supertab ultisnips vim-snippets"
 
 # installation dir's
 PLUGIN_DIR=~/.vim/bundle
-syntastic=~/.vim/bundle/syntastic
-auto_pairs=~/.vim/bundle/auto-pairs
-nerdtree=~/.vim/bundle/nerdtree
-supertab=~/.vim/bundle/supertab
 
 op_cmd=$1 # optional arg 1
 dir=(pwd) # get current dir to cd back to after update
@@ -47,23 +43,22 @@ for i in $plugins; do
         sleep 1
     else
         case $i in
-            supertab)
-                git clone https://github.com/ervandew/supertab.git $supertab
+             supertab)
+                git clone https://github.com/ervandew/supertab.git $PLUGIN_DIR/supertab
                 echo ""
                 echo "Source SUPERTAB with :so % command"
                 echo ""
                 sleep 2
-                vim $supertab/plugin/supertab.vim;;
-            auto-pairs)
-                git clone git://github.com/jiangmiao/auto-pairs.git $auto_pairs;;
-            nerdtree)
-                git clone https://github.com/scrooloose/nerdtree.git $nerdtree;;
+                vim $PLUGIN_DIR/supertab/plugin/supertab.vim;;
+           auto-pairs)
+                git clone git://github.com/jiangmiao/auto-pairs.git $PLUGIN_DIR/auto-pairs;;
+             nerdtree)
+                git clone https://github.com/scrooloose/nerdtree.git $PLUGIN_DIR/nerdtree;;
             syntastic)
-                git clone https://github.com/scrooloose/syntastic.git $syntastic;;
-            latex-plugins)
-                git clone https://github.com/tomtom/tlib_vim.git $PLUGIN_DIR/tlib_vim
-                git clone https://github.com/MarcWeber/vim-addon-mw-utils.git $PLUGIN_DIR/vim-addon-mw-utils
-                git clone https://github.com/garbas/vim-snipmate.git $PLUGIN_DIR/vim-snipmate
+                git clone https://github.com/scrooloose/syntastic.git $PLUGIN_DIR/syntastic;;
+            ultisnips)
+                git clone https://github.com/sirver/ultisnips $PLUGIN_DIR/ultisnips;;
+         vim-snippets)
                 git clone https://github.com/honza/vim-snippets.git $PLUGIN_DIR/vim-snippets;;
         esac
     fi

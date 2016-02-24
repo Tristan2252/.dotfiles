@@ -71,6 +71,11 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': ['tex','latex']  }
 
+" UltiSnips settings
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 if isdirectory("/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/")
     set rtp+=/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/
     set laststatus=2

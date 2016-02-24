@@ -62,11 +62,6 @@ done
 
 echo "Runing vim setup"
 sleep 2
-# check to see if vim is already setup
-if [ "$(ls -A ~/.vim/bundle/)" ]; then
-    echo "VIM already setup!"
-else
-    ~/.vim/setup.sh
-fi
+~/.vim/setup.sh
 
 exit 0

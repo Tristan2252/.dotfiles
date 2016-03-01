@@ -1,6 +1,8 @@
 snippet basic "Description" b
 \documentcleass{article}
 
+\usepackage{listings}
+
 \title{$1}
 \author{}
 
@@ -9,6 +11,12 @@ snippet basic "Description" b
 	
 \end{document}
 
+endsnippet
+
+snippet code "Description" b
+\begin{lstlisting}
+	$1
+\end{lstlisting}
 endsnippet
 
 snippet \documentc "Document class tag" b

@@ -15,6 +15,7 @@ set backspace=indent,eol,start      "Set backspace on everything in insert mode,
 set softtabstop=0
 set list                            "list special char's
 set listchars=tab:>\                "show tabs as ">"
+set ttyfast                         "faster scrolling
 colorscheme marvin_martian
 
 " Tab setting for diferent syntax

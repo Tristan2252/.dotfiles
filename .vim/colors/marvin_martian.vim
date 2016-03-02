@@ -3,8 +3,9 @@
 "   default color theme
 
 "##### Markdown #####
-autocmd FileType markdown call MDhilight()
-function MDhilight()
+autocmd FileType markdown call MDhighlight()
+autocmd FileType tex,latex call Texhighlight()
+function MDhighlight()
 	hi markdownH1 ctermfg=34 cterm=underline,bold
 	hi markdownH2 ctermfg=34 cterm=underline,bold
 	hi markdownH3 ctermfg=34 cterm=underline
@@ -21,6 +22,15 @@ function MDhilight()
 	" Spell Warnings dont look good in markdown
 	hi SpellLocal cterm=underline ctermfg=none ctermbg=none
 	hi SpellCap cterm=underline ctermfg=none ctermbg=none
+endfunction
+
+function Texhighlight()
+    hi Special ctermfg=34
+    hi texDelimiter ctermfg=220
+    hi texBeginEnd ctermfg=34
+    hi texBeginEndName ctermfg=208
+    hi texMath ctermfg=none
+    hi texSpecialChar ctermfg=239
 endfunction
 
 " ##### C language #####

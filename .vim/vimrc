@@ -43,7 +43,7 @@ function TabC()
     set shiftwidth=8
 endfunction
 
-" ctl-R to render latex file
+" ctl-R to render latex file, the % is the current file name
 map <C-R> :! pdflatex -interaction=batchmode %<CR>
 
 "Delete line mapings

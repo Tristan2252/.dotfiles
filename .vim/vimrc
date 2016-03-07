@@ -2,9 +2,8 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-" Added settings
+" Gen settings
 set number
-set expandtab                       "always add spaces as tabs
 set nowrap                          "Dont like wrapin in vim"
 set colorcolumn=110                 "Colorcolumn length"
 set timeoutlen=1000 ttimeoutlen=0   "Esc delay time"
@@ -12,39 +11,57 @@ set incsearch                       "Show search matches while typing"
 set wildmenu                        "Tab complete vim command menu"
 set t_Co=256                        "Set to 16 to fix pantheon term colors in vim"
 set backspace=indent,eol,start      "Set backspace on everything in insert mode, for OS X"
-set softtabstop=0
-set list                            "list special char's
-set listchars=tab:>\                "show tabs as ">"
 set ttyfast                         "faster scrolling
+set softtabstop=0
 colorscheme marvin_martian
 
-" Tab setting for diferent syntax
-autocmd FileType tex,latex,vim,markdown,python,sh call TabOther()
-autocmd FileType tex,latex,markdown,text call TextSettings()
-autocmd FileType c call TabC()
-
-" Settings for markdown
-let g:tex_flavor='latex'
-function TextSettings()
-    set list
-    set listchars=tab:▸\ ,eol:~
+" Latex Settings for vim
+fun LatexSettings()
+    let g:tex_flavor='latex'         "Always set to latex file type
+    NoMatchParen                     "Disable matching paren to iliminate lag
+    set list                         "Show non text char's
+    set listchars=tab:>\             "show tabs as '>'
+    set expandtab                    "always add spaces as tabs
+    set tabstop=4
+    set shiftwidth=4
     set spell spelllang=en_us
-endfunction
+    " ctl-R to render latex file, the % is the current file name
+    map <C-R> :! pdflatex -interaction=batchmode %; lacheck %<CR>
+endf
 
-" Finction for setting tabs for filetypes other than c
-function TabOther()
+" function for Plain Text such as .txt and or markdown
+function PlainTextSettings()
+    set spell spelllang=en_us        "If Plain Text spellling should be checked
+    set expandtab                    "always add spaces as tabs
+    set list                         "Show non text char's
+    set listchars=tab:▸\ ,eol:~
     set tabstop=4
     set shiftwidth=4
 endfunction
 
-" Finction for setting tabs for c filetype
-function TabC()
+" function for languages the use 4 space tabs
+function PlainTextTab4()
+    set expandtab                    "always add spaces as tabs
+    set list                         "Show non text char's
+    set listchars=tab:▸\ ,eol:~
+    set tabstop=4
+    set shiftwidth=4
+endfunction
+
+" function for languages the use 8 space tabs
+function PlainTextTab8()
+    set expandtab                    "always add spaces as tabs
+    set list                         "Show non text char's
+    set listchars=tab:▸\ ,eol:~
     set tabstop=8
     set shiftwidth=8
 endfunction
 
-" ctl-R to render latex file, the % is the current file name
-map <C-R> :! pdflatex -interaction=batchmode %<CR>
+" Call Functions based of file type
+autocmd FileType markdown,text call PlainTextSettings()
+autocmd FileType tex,latex call LatexSettings()
+autocmd FileType vim,python,sh call PlainTextTab4()
+autocmd FileType c call PlainTextTab8()
 
 "Delete line mapings
 nnoremap D v$"_d

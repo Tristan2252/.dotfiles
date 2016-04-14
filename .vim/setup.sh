@@ -39,4 +39,8 @@ fi
 
 git submodule init
 git submodule update
+
+
+# curl -o conque.vmb https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/conque/conque_2.3.vmb
+
 exit 0

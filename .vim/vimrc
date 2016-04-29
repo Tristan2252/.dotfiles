@@ -71,7 +71,9 @@ autocmd FileType c call PlainTextTab8()
 " Delete line mapings
 nnoremap D v$"_d
 " Enter bash command, call bash, then redraw after exit
-nnoremap <C-c> :vsp <bar> wincmd l <bar> ConqueTerm bash <CR>
+nnoremap <C-C> :vsp <bar> wincmd l <bar> ConqueTerm bash <CR>
+nnoremap <C-c> :! bash <CR>
+imap <C-c> <esc> :! bash <CR> i
 " vertical split key map"
 nnoremap \ :vsp<CR>:wincmd l<CR>
 imap <C-\> <Esc>:vsp<CR>
@@ -84,7 +86,6 @@ map . :vertical resize -5<CR>
 "Unmap p in normal mode because of tmux p command"
 map p <Nop> 
 
-" Syntastic recommended settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*

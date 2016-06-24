@@ -4,10 +4,20 @@
 
 export TERM='screen-256color'
 
-powerline-daemon -q 
-POWERLINE_BASH_CONTINUATION=1     
-POWERLINE_BASH_SELECT=1   
-. /usr/local/lib/python3.4/dist-packages/powerline/bindings/bash/powerline.sh  
+#### Test if powerline exists
+if [ -e /usr/local/lib/python3.4/dist-packages/powerline ]; then
+    powerline-daemon -q 
+    POWERLINE_BASH_CONTINUATION=1     
+    POWERLINE_BASH_SELECT=1   
+    . /usr/local/lib/python3.4/dist-packages/powerline/bindings/bash/powerline.sh  
+fi
+
+if [ -e /usr/local/lib/python2.7/dist-packages/powerline ]; then
+    powerline-daemon -q 
+    POWERLINE_BASH_CONTINUATION=1     
+    POWERLINE_BASH_SELECT=1   
+    . /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh  
+fi
 
 # If not running interactively, don't do anything
 case $- in

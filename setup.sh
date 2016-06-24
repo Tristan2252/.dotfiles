@@ -1,33 +1,112 @@
 #!/bin/bash
 
-dir=~/.dotfiles
-files=".vim"
-powerline_dir=/usr/local/lib/python3.4/dist-packages/powerline
-
-linux_setup (){
-    configs=$1
-    if [ -e /usr/bin/i3 ]; then # check if i3 is installed
-        configs="$configs .i3"
+setup ()
+{
+    if [ ! -L ~/$config ]; then 
+        rm -r ~/$config; ln -s ~/.dotfiles/$config ~/$config
     fi
-
-    # Check if tmux is installed as well as powerline
-    # adds .bashrc because the only configuration in bashrc is for powerline
-    if [ -e /usr/bin/tmux ] && [ -e $powerline_dir ]; then
-        configs="$configs .tmux.conf .bashrc"
-    fi
-
-    files="$configs"
 }
 
-mac_setup (){
-    configs=$1
-    if [ -e /usr/local/Cellar/tmux/2.1 ] && [ -e /usr/local/lib/python2.7/site-packages ]; then
-        configs="$configs .tmux.conf"
+linux_setup(){
+    
+    # i3 dotfile 
+    if [ -e /usr/bin/i3 ]; then
+        config=".i3"
+        setup
+        printf "i3 setup..\n"
+    fi
+    
+    # tmux config 
+    if [ -e /usr/bin/tmux ]; then
+        config=".tmux.config"
+        setup
+        printf "tmux setup..\n"
     fi
 
-    files="$configs .bash_profile" # allways add bash profile for ls color support on mac
+    # Vim config
+    if [ -e /usr/bin/vim ]; then
+        config=".vim"
+        setup
+        printf "Initializing vim..\n"
+
+        # Initialize vim by pulling plugins from git
+        ~/.vim/setup.sh
+        printf "vim setup..\n"
+    fi
+
+    # git user settings
+    if [ -e /usr/bin/git ]; then
+        config=".gitconfig"
+        setup
+        printf "git setup..\n"
+    fi
+
+    # powerline config file setup
+    if [ -e /usr/local/lib/python3.4/dist-packages/powerline ]; then
+        printf "setting up powerline..\n"
+        powerline_config
+        printf "powerline setup..\n"
+    fi
+
+    if [ -e /usr/local/lib/python2.7/dist-packages/powerline ]; then
+        printf "setting up powerline..\n"
+        powerline_config
+        printf "powerline setup..\n"
+    fi
+
+    config=".bashrc"
+    setup
+    printf "bash setup..\n"
 }
 
+mac_setup(){
+    
+    # tmux config 
+    if [ -e /usr/local/bin/tmux ]; then
+        config=".tmux.conf"
+        setup
+        printf "tmux setup..\n"
+    fi
+
+    # Vim config
+    if [ -e /usr/local/bin/vim ]; then
+        config=".vim"
+        setup
+        printf "Initializing vim..\n"
+
+        # Initialize vim by pulling plugins from git
+        ~/.vim/setup.sh
+        printf "vim setup..\n"
+    fi
+
+    # git user settings
+    if [ -e /usr/local/bin/git ]; then
+        config=".gitconfig"
+        setup
+        printf "git setup..\n"
+    fi
+
+    # on mac the only setting in bashrc is powerline
+    if [ -e /usr/local/lib/python2.7/site-packages/powerline ]; then
+        config=".bashrc.mac"
+        rm -r ~/.bashrc; ln -s ~/.dotfiles/$config ~/.bashrc
+        printf "bash setup..\n"
+        printf "setting up powerline..\n"
+        powerline_config
+        printf "powerline setup..\n"
+    fi
+}
+
+powerline_config ()
+{
+    if [ -e ~/.config/powerline ]; then
+        rm -r ~/.config/powerline
+    fi
+
+    ln -s ~/.dotfiles/powerline ~/.config
+}
+
+# test os running 
 if [ $(uname -s) == "Darwin" ]; then
     mac_setup $files
 fi
@@ -36,32 +115,3 @@ if [  $(uname -s) == "Linux" ]; then
     linux_setup $files
 fi  
 
-# Github user
-if [ -e /usr/bin/git ]; then
-    files="$files .gitconfig"
-fi
-
-echo "Programs found: $files" # echo last return
-sleep 1
-
-for file in $files; do 
-    if [ -h ~/$file ] #if the file is a simlink
-    then
-        echo "$file already setup"
-    else
-        if [ -e ~/$file ]; then
-            echo "Removing original $file"
-            rm -r ~/$file
-        fi
-
-        echo "Creating simlink for $file"
-        sleep 1
-        ln -s $dir/$file ~/$file
-    fi
-done
-
-echo "Runing vim setup"
-sleep 2
-~/.vim/setup.sh
-
-exit 0

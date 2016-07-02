@@ -71,7 +71,6 @@ autocmd FileType c call PlainTextTab8()
 " Delete line mapings
 nnoremap D V$"_d
 " Enter bash command, call bash, then redraw after exit
-nnoremap <C-C> :vsp <bar> wincmd l <bar> ConqueTerm bash <CR>
 nnoremap <C-c> :! bash <CR>
 imap <C-c> <esc> :! bash <CR> i
 " vertical split key map"

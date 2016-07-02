@@ -1,0 +1,77 @@
+[INFO: 07-02 07:34:52, openstack-install:227] Starting OpenStack Installer v0.99.28
+[INFO: 07-02 07:34:52, openstack-install:228] Start command: ['/usr/bin/openstack-install']
+[INFO: 07-02 07:34:52, openstack-install:239] Creating juju directories: /home/server2/.cloud-install/juju
+[INFO: 07-02 07:34:55, openstack-install:295] Running Liberty release
+[INFO: 07-02 07:35:13, installbase.py:132] Performing an Autopilot install
+[INFO: 07-02 07:35:13, utils.py:780] pollinate: sudo su - -c 'pollinate -q -r --curl-opts "-k --user-agent uoi/c843f94f-e062-42d1-88f7-47c6617d3635/IL"'
+[DEBUG: 07-02 07:35:47, landscape.py:75] Existing MAAS defined, doing a LDS installation with existing MAAS.
+[DEBUG: 07-02 07:35:50, utils.py:627] ssh keys exist for this user, they will be used instead.
+[DEBUG: 07-02 07:35:50, multi.py:139] Bootstrapping Juju: JUJU_HOME=/home/server2/.cloud-install/juju juju  bootstrap 
+[DEBUG: 07-02 07:44:23, multi.py:177] Finished MAAS step, now deploying Landscape.
+[INFO: 07-02 07:55:23, utils.py:780] pollinate: sudo su - -c 'pollinate -q -r --curl-opts "-k --user-agent uoi/c843f94f-e062-42d1-88f7-47c6617d3635/ET"'
+[ERROR: 07-02 07:55:24, multi.py:384] Problem deploying Landscape: {'output': '', 'err': '2016-07-02 07:44:35 [DEBUG] deployer.cli: Using runtime GoEnvironment on maas\n2016-07-02 07:44:35 [INFO] deployer.cli: Starting deployment of landscape-dense-maas\n2016-07-02 07:44:35 [DEBUG] deployer.import: Getting charms...\n2016-07-02 07:44:35 [DEBUG] deployer.charm: Cache dir /home/server2/.cloud-install/juju/.deployer-store-cache/cs_trusty_haproxy-16\n2016-07-02 07:44:35 [DEBUG] deployer.charm: Retrieving store charm cs:trusty/haproxy-16\n2016-07-02 07:44:36 [DEBUG] deployer.charm: Cache dir /home/server2/.cloud-install/juju/.deployer-store-cache/cs_trusty_landscape-server\n2016-07-02 07:44:37 [DEBUG] deployer.charm: Retrieving store charm cs:trusty/landscape-server-14\n2016-07-02 07:44:38 [DEBUG] deployer.charm: Cache dir /home/server2/.cloud-install/juju/.deployer-store-cache/cs_trusty_postgresql-40\n2016-07-02 07:44:38 [DEBUG] deployer.charm: Retrieving store charm cs:trusty/postgresql-40\n2016-07-02 07:44:39 [DEBUG] deployer.charm: Cache dir /home/server2/.cloud-install/juju/.deployer-store-cache/cs_trusty_rabbitmq-server-43\n2016-07-02 07:44:39 [DEBUG] deployer.charm: Retrieving store charm cs:trusty/rabbitmq-server-43\n2016-07-02 07:44:40 [DEBUG] deployer.deploy: Resolving configuration\n2016-07-02 07:44:40 [DEBUG] deployer.env: Connecting to environment...\n2016-07-02 07:44:41 [DEBUG] deployer.env: Connected to environment\n2016-07-02 07:44:41 [INFO] deployer.import: Deploying services...\n2016-07-02 07:44:41 [INFO] deployer.import:  Deploying service haproxy using cs:trusty/haproxy-16\n2016-07-02 07:44:41 [DEBUG] deployer.import:  Refetching status for placement deploys\n2016-07-02 07:44:55 [DEBUG] deployer.import:  Setting annotations\n2016-07-02 07:44:56 [INFO] deployer.import:  Deploying service landscape-server using cs:trusty/landscape-server\n2016-07-02 07:45:09 [DEBUG] deployer.import:  Setting annotations\n2016-07-02 07:45:10 [INFO] deployer.import:  Deploying service postgresql using cs:trusty/postgresql-40\n2016-07-02 07:45:22 [DEBUG] deployer.import:  Setting annotations\n2016-07-02 07:45:23 [INFO] deployer.import:  Deploying service rabbitmq-server using cs:trusty/rabbitmq-server-43\n2016-07-02 07:45:32 [DEBUG] deployer.import:  Setting annotations\n2016-07-02 07:45:38 [DEBUG] deployer.import: Adding units...\n2016-07-02 07:45:38 [DEBUG] deployer.import:  Service \'haproxy\' does not need any more units added.\n2016-07-02 07:45:38 [DEBUG] deployer.import:  Service \'landscape-server\' does not need any more units added.\n2016-07-02 07:45:38 [DEBUG] deployer.import:  Service \'postgresql\' does not need any more units added.\n2016-07-02 07:45:38 [DEBUG] deployer.import:  Service \'rabbitmq-server\' does not need any more units added.\n2016-07-02 07:45:38 [DEBUG] deployer.import: Waiting for units before adding relations\n2016-07-02 07:48:08 [DEBUG] deployer.env:  Delta machine: 0/lxc/0 change:pending\n2016-07-02 07:48:28 [DEBUG] deployer.env:  Delta machine: 0/lxc/1 change:pending\n2016-07-02 07:48:28 [DEBUG] deployer.env:  Delta machine: 0/lxc/0 change:started\n2016-07-02 07:48:28 [DEBUG] deployer.env:  Delta unit: haproxy/0 change:pending\n2016-07-02 07:48:33 [DEBUG] deployer.env:  Delta unit: haproxy/0 change:pending\n2016-07-02 07:48:38 [DEBUG] deployer.env:  Delta service: haproxy change:{u\'Err\': None, u\'Since\': u\'2016-07-02T13:48:33.639912391Z\', u\'Current\': u\'maintenance\', u\'Version\': u\'\', u\'Message\': u\'installing charm software\', u\'Data\': {}}\n2016-07-02 07:48:38 [DEBUG] deployer.env:  Delta unit: haproxy/0 change:pending\n2016-07-02 07:48:38 [DEBUG] deployer.env:  Delta unit: haproxy/0 change:pending\n2016-07-02 07:48:53 [DEBUG] deployer.env:  Delta machine: 0/lxc/1 change:pending\n2016-07-02 07:48:58 [DEBUG] deployer.env:  Delta machine: 0/lxc/1 change:pending\n2016-07-02 07:48:58 [DEBUG] deployer.env:  Delta machine: 0/lxc/1 change:started\n2016-07-02 07:48:58 [DEBUG] deployer.env:  Delta machine: 0/lxc/2 change:pending\n2016-07-02 07:48:58 [DEBUG] deployer.env:  Delta unit: landscape-server/0 change:pending\n2016-07-02 07:49:03 [DEBUG] deployer.env:  Delta unit: landscape-server/0 change:pending\n2016-07-02 07:49:08 [DEBUG] deployer.env:  Delta service: landscape-server change:{u\'Err\': None, u\'Since\': u\'2016-07-02T13:49:04.127767167Z\', u\'Current\': u\'maintenance\', u\'Version\': u\'\', u\'Message\': u\'installing charm software\', u\'Data\': {}}\n2016-07-02 07:49:08 [DEBUG] deployer.env:  Delta unit: landscape-server/0 change:pending\n2016-07-02 07:49:13 [DEBUG] deployer.env:  Delta unit: landscape-server/0 change:pending\n2016-07-02 07:49:18 [DEBUG] deployer.env:  Delta machine: 0/lxc/3 change:pending\n2016-07-02 07:49:33 [DEBUG] deployer.env:  Delta machine: 0/lxc/2 change:pending\n2016-07-02 07:49:38 [DEBUG] deployer.env:  Delta machine: 0/lxc/2 change:started\n2016-07-02 07:49:38 [DEBUG] deployer.env:  Delta machine: 0/lxc/3 change:pending\n2016-07-02 07:49:38 [DEBUG] deployer.env:  Delta unit: postgresql/0 change:pending\n2016-07-02 07:49:38 [DEBUG] deployer.env:  Delta machine: 0/lxc/3 change:started\n2016-07-02 07:49:38 [DEBUG] deployer.env:  Delta service: postgresql change:{u\'Err\': None, u\'Since\': u\'2016-07-02T13:49:37.569458112Z\', u\'Current\': u\'maintenance\', u\'Version\': u\'\', u\'Message\': u\'installing charm software\', u\'Data\': {}}\n2016-07-02 07:49:38 [DEBUG] deployer.env:  Delta unit: postgresql/0 change:pending\n2016-07-02 07:49:38 [DEBUG] deployer.env:  Delta unit: rabbitmq-server/0 change:pending\n2016-07-02 07:49:43 [DEBUG] deployer.env:  Delta service: rabbitmq-server change:{u\'Err\': None, u\'Since\': u\'2016-07-02T13:49:39.187605569Z\', u\'Current\': u\'maintenance\', u\'Version\': u\'\', u\'Message\': u\'installing charm software\', u\'Data\': {}}\n2016-07-02 07:49:43 [DEBUG] deployer.env:  Delta unit: rabbitmq-server/0 change:pending\n2016-07-02 07:49:43 [DEBUG] deployer.env:  Delta unit: rabbitmq-server/0 change:pending\n2016-07-02 07:50:08 [DEBUG] deployer.env:  Delta service: postgresql change:{u\'Err\': None, u\'Since\': u\'2016-07-02T13:50:08.147727319Z\', u\'Current\': u\'maintenance\', u\'Version\': u\'\', u\'Message\': u\'Configuring software sources\', u\'Data\': {}}\n2016-07-02 07:50:08 [DEBUG] deployer.env:  Delta unit: postgresql/0 change:started\n2016-07-02 07:50:48 [DEBUG] deployer.env:  Delta service: rabbitmq-server change:{u\'Err\': None, u\'Since\': u\'2016-07-02T13:50:46.690216206Z\', u\'Current\': u\'waiting\', u\'Version\': u\'\', u\'Message\': u\'RabbitMQ is not yet installed\', u\'Data\': {}}\n2016-07-02 07:50:48 [DEBUG] deployer.env:  Delta unit: rabbitmq-server/0 change:started\n2016-07-02 07:50:48 [DEBUG] deployer.env:  Delta unit: rabbitmq-server/0 change:started\n2016-07-02 07:55:23 [DEBUG] deployer.env:  Delta service: haproxy change:{u\'Err\': None, u\'Since\': u\'2016-07-02T13:55:22.944861652Z\', u\'Current\': u\'error\', u\'Version\': u\'\', u\'Message\': u\'hook failed: "install"\', u\'Data\': {u\'hook\': u\'install\'}}\n2016-07-02 07:55:23 [DEBUG] deployer.env:  Delta unit: haproxy/0 change:error\n2016-07-02 07:55:23 [ERROR] deployer.env: The following units had errors:\n   unit: haproxy/0: machine: 0/lxc/0 agent-state: error details: hook failed: "install"\n2016-07-02 07:55:23 [INFO] deployer.cli: Deployment stopped. run time: 648.23\n', 'status': 1}
+[ERROR: 07-02 07:55:24, gui.py:269] A fatal error has occurred: Error deploying Landscape.
+
+[ERROR: 07-02 07:55:24, gui.py:270] Error deploying Landscape.
+Traceback (most recent call last):
+  File "/usr/lib/python3.4/concurrent/futures/thread.py", line 54, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/usr/share/openstack/cloudinstall/controllers/install/multi.py", line 181, in do_install
+    self.loop).run()
+  File "/usr/share/openstack/cloudinstall/controllers/install/multi.py", line 319, in run
+    self.deploy_landscape()
+  File "/usr/share/openstack/cloudinstall/controllers/install/multi.py", line 344, in deploy_landscape
+    self.run_deployer()
+  File "/usr/share/openstack/cloudinstall/controllers/install/multi.py", line 385, in run_deployer
+    raise Exception("Error deploying Landscape.")
+Exception: Error deploying Landscape.
+[DEBUG: 07-02 07:55:24, error.py:35] showing error view for: Error deploying Landscape.
+[ERROR: 07-02 07:56:10, ev.py:130] Exception in ev.run():
+Traceback (most recent call last):
+  File "/usr/share/openstack/cloudinstall/ev.py", line 128, in run
+    self.loop.run()
+  File "/usr/lib/python3/dist-packages/urwid/main_loop.py", line 278, in run
+    self._run()
+  File "/usr/lib/python3/dist-packages/urwid/main_loop.py", line 376, in _run
+    self.event_loop.run()
+  File "/usr/lib/python3/dist-packages/urwid/main_loop.py", line 1326, in run
+    self._loop.run_forever()
+  File "/usr/lib/python3.4/asyncio/base_events.py", line 276, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.4/asyncio/base_events.py", line 1172, in _run_once
+    handle._run()
+  File "/usr/lib/python3.4/asyncio/events.py", line 120, in _run
+    self._callback(*self._args)
+  File "/usr/lib/python3/dist-packages/urwid/raw_display.py", line 393, in <lambda>
+    event_loop, callback, self.get_available_raw_input())
+  File "/usr/lib/python3/dist-packages/urwid/raw_display.py", line 493, in parse_input
+    callback(processed, processed_codes)
+  File "/usr/lib/python3/dist-packages/urwid/main_loop.py", line 403, in _update
+    self.process_input(keys)
+  File "/usr/lib/python3/dist-packages/urwid/main_loop.py", line 503, in process_input
+    k = self._topmost_widget.keypress(self.screen_size, k)
+  File "/usr/share/openstack/cloudinstall/gui.py", line 136, in keypress
+    return super().keypress(size, key)
+  File "/usr/lib/python3/dist-packages/urwid/container.py", line 1128, in keypress
+    return self.body.keypress( (maxcol, remaining), key )
+  File "/usr/lib/python3/dist-packages/urwid/decoration.py", line 836, in keypress
+    return self._original_widget.keypress((maxcol,), key)
+  File "/usr/lib/python3/dist-packages/urwid/container.py", line 1587, in keypress
+    key = self.focus.keypress(tsize, key)
+  File "/usr/lib/python3/dist-packages/urwid/decoration.py", line 621, in keypress
+    return self._original_widget.keypress(maxvals, key)
+  File "/usr/lib/python3/dist-packages/urwid/container.py", line 1587, in keypress
+    key = self.focus.keypress(tsize, key)
+  File "/usr/lib/python3/dist-packages/urwid/wimp.py", line 535, in keypress
+    self._emit('click')
+  File "/usr/lib/python3/dist-packages/urwid/widget.py", line 463, in _emit
+    signals.emit_signal(self, name, self, *args)
+  File "/usr/lib/python3/dist-packages/urwid/signals.py", line 264, in emit
+    result |= self._call_callback(callback, user_arg, user_args, args)
+  File "/usr/lib/python3/dist-packages/urwid/signals.py", line 294, in _call_callback
+    return bool(callback(*args_to_pass))
+  File "/usr/share/openstack/cloudinstall/ui/views/error.py", line 66, in cancel
+    raise SystemExit("Install exited because of error.")
+SystemExit: Install exited because of error.
+[DEBUG: 07-02 07:56:10, utils.py:59] Juju Version: 1.25.5-trusty-amd64
+[INFO: 07-02 07:56:10, utils.py:61] Cleanup, saving latest config object.

@@ -37,9 +37,10 @@ else
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 fi
 
+cd ~/.vim/
 git submodule init
 git submodule update
-
+cd - > /dev/null # dont output cd stdout
 
 # curl -o conque.vmb https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/conque/conque_2.3.vmb
 

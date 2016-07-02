@@ -1,9 +1,14 @@
 #!/bin/bash
 
 setup ()
-{
-    if [ ! -L ~/$config ]; then 
-        rm -r ~/$config; ln -s ~/.dotfiles/$config ~/$config
+{   if [ -e ~/$config ]; then # if file exists and is not a link
+        if [ ! -L ~/$config ]; then 
+            rm -r ~/$config
+            ln -s ~/.dotfiles/$config ~/$config
+        fi
+
+    elif [ ! -e ~/$config ]; then
+        ln -s ~/.dotfiles/$config ~/$config
     fi
 }
 
@@ -88,8 +93,9 @@ mac_setup(){
 
     # on mac the only setting in bashrc is powerline
     if [ -e /usr/local/lib/python2.7/site-packages/powerline ]; then
-        config=".bashrc.mac"
-        rm -r ~/.bashrc; ln -s ~/.dotfiles/$config ~/.bashrc
+        config=".bash_profile"
+        setup 
+        rm -r ~/.bashrc; ln -s ~/.dotfiles/.bashrc.mac ~/.bashrc
         printf "bash setup..\n"
         printf "setting up powerline..\n"
         powerline_config

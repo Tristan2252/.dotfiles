@@ -135,3 +135,4 @@ fi
 
 alias cse='cd /Users/tristan/Documents/CSE/122/Notes'
 alias cse-l='cd /Users/tristan/Documents/CSE/122/Labs'
+alias lc='ls --color=none'

@@ -25,8 +25,11 @@ fun LatexSettings()
     set shiftwidth=4
     set softtabstop=4
     set spell spelllang=en_us
+    " after write, run pdflatex command in background to compile tex file then
+    " redraw screen if needed
+    autocmd BufWritePost * :silent exec "!pdflatex -interaction=batchmode % > /dev/null" | redraw
     " ctl-R to render latex file, the % is the current file name
-    map <C-R> :! pdflatex -interaction=batchmode %; lacheck %<CR>
+    map <C-R> :silent exec "! pdflatex -interaction=batchmode %; lacheck %<CR>"
 endf
 
 " function for Plain Text such as .txt and or markdown

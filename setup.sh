@@ -23,7 +23,7 @@ linux_setup(){
     
     # tmux config 
     if [ -e /usr/bin/tmux ]; then
-        config=".tmux.config"
+        config=".tmux.conf"
         setup
         printf "tmux setup..\n"
     fi

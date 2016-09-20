@@ -2,6 +2,7 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+
 " Gen settings
 set number
 set nowrap                          "Dont like wrapin in vim"

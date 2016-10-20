@@ -85,8 +85,8 @@ imap <C-\> <Esc>:vsp<CR>
 " Keymapping for window management
 map = <C-W>+
 map - <C-W>-
-map , :vertical resize +5<CR>
-map . :vertical resize -5<CR>
+" map , :vertical resize +5<CR>
+" map . :vertical resize -5<CR>
 "Unmap p in normal mode because of tmux p command"
 map p <Nop> 
 

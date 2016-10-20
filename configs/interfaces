@@ -1,0 +1,17 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+#auto enp0s3
+#iface enp0s3 inet dhcp
+
+# auto wlp3s0
+iface wlp3s0 inet dhcp
+	pre-up wpa_supplicant -B -i wlp3s0 -c /etc/wpa_networks.conf
+	pre-down killall -9 wpa_supplicant dhclient

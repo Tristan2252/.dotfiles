@@ -11,6 +11,7 @@
 #
 # By default this script does nothing.
 
-.echo 0 | tee /sys/module/hid_apple/parameters/iso_layout
+# fix mac keybord mapping
+echo 0 | tee /sys/module/hid_apple/parameters/iso_layout
 
 exit 0

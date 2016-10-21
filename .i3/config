@@ -165,6 +165,15 @@ bar {
 	position 	top
 }
 
+# Sound control key binds
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 2 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 2 # decrease screen brightness
+
 # launch feh as wallpaper
 exec feh --bg-scale .wallpaper.jpg
 
@@ -197,5 +206,5 @@ exec synclient ClickFinger2=3
 exec synclient ClickFinger3=3
 exec synclient ClickTime=25
 exec synclient BottomEdge=25
-exec synclient VertScrollDelta=-247
-exec synclient HorizScrollDelta=-247
+exec synclient VertScrollDelta=-111
+exec synclient HorizScrollDelta=-111

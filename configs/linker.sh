@@ -1,6 +1,8 @@
 #! /bin/bash
 CONFIG_DIR=$(pwd)
 
+
+# symlink for normal configs
 link() {
     if [ ! -h $2 ]; then 
         ln -s --interactive $CONFIG_DIR/$1 $2
@@ -9,6 +11,7 @@ link() {
     fi
 }
 
+# symlink for sudo configs
 sudo_link() {
 
     if [ ! -h $2 ]; then 
@@ -34,15 +37,19 @@ FILE=lid.sh
 LOCATION=/etc/acpi/lid.sh
 sudo_link $FILE $LOCATION
 
-FILE=wpa_networks.conf
-LOCATION=/etc/wpa_networks.conf
-sudo_link $FILE $LOCATION
-
 FILE=interfaces
 LOCATION=/etc/network/interfaces
 sudo_link $FILE $LOCATION
 
 FILE=rc.local
 LOCATION=/etc/rc.local
+sudo_link $FILE $LOCATION
+
+FILE=lock.service
+LOCATION=/etc/systemd/system/lock.service
+sudo cp $FILE $LOCATION                     # systemd doesn't like symlinks
+
+FILE=alsaapp.sh
+LOCATION=/usr/local/bin/alsaapp
 sudo_link $FILE $LOCATION
 

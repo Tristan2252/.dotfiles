@@ -22,6 +22,10 @@ FILE=compton.conf
 LOCATION=$HOME/.config/compton.conf
 link $FILE $LOCATION
 
+FILE=.asoundrc
+LOCATION=$HOME/.asoundrc
+link $FILE $LOCATION
+
 FILE=lm_lid 
 LOCATION=/etc/acpi/events/lm_lid
 sudo_link $FILE $LOCATION
@@ -36,5 +40,9 @@ sudo_link $FILE $LOCATION
 
 FILE=interfaces
 LOCATION=/etc/network/interfaces
+sudo_link $FILE $LOCATION
+
+FILE=rc.local
+LOCATION=/etc/rc.local
 sudo_link $FILE $LOCATION
 

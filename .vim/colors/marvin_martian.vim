@@ -47,6 +47,7 @@ hi SpellCap cterm=underline ctermfg=4 ctermbg=none
 
 hi WildMenu term=bold,standout ctermfg=106 ctermbg=0
 hi StatusLine term=bold,reverse ctermfg=0 gui=bold,reverse
+hi CursorLine term=none cterm=none ctermbg=8 guibg=Grey90
 hi NonText ctermfg=239
 hi SpecialKey ctermfg=239
 

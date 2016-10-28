@@ -14,7 +14,10 @@ set wildmenu                        "Tab complete vim command menu"
 set t_Co=256                        "Set to 16 to fix pantheon term colors in vim"
 set backspace=indent,eol,start      "Set backspace on everything in insert mode, for OS X"
 set ttyfast                         "faster scrolling
+set cursorline                      "highlight cursor line"
 colorscheme marvin_martian
+highlight Cursor guifg=#FFFFFF guibg=#FFFFFF
+highlight iCursor guifg=#FFFFFF guibg=#FFFFFF
 
 " Latex Settings for vim
 fun LatexSettings()
@@ -107,6 +110,13 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 if isdirectory("/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/")
     set rtp+=/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/
+    set laststatus=2
+    set showtabline=1
+    set noshowmode
+endif
+
+if isdirectory("/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/")
+    set rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
     set laststatus=2
     set showtabline=1
     set noshowmode

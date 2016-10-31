@@ -68,7 +68,7 @@ hi String ctermfg=34
 hi MatchParen term=bold ctermfg=76 ctermbg=none
 
 " set colorcolumn color
-hi ColorColumn ctermbg=11
+hi ColorColumn ctermbg=8
 
 " Vertual line hilight color
 hi Visual ctermfg=70 ctermbg=238 guifg=#52b000 guibg=#585858

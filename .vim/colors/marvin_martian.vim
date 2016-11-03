@@ -44,12 +44,16 @@ hi Type ctermfg=34
 hi SpellBad cterm=underline ctermfg=none ctermbg=none
 hi SpellLocal cterm=underline ctermfg=4 ctermbg=none
 hi SpellCap cterm=underline ctermfg=4 ctermbg=none
-
-hi WildMenu term=bold,standout ctermfg=106 ctermbg=0
-hi StatusLine term=bold,reverse ctermfg=0 gui=bold,reverse
-hi CursorLine term=none cterm=none ctermbg=8 guibg=Grey90
 hi NonText ctermfg=239
 hi SpecialKey ctermfg=239
+
+"##### CursorLine #####
+hi CursorLine term=none cterm=none ctermbg=236 guibg=Grey90
+hi CursorLineNr term=bold,standout ctermfg=226 gui=bold guifg=Brown
+
+"##### Menu #####
+hi WildMenu term=bold,standout ctermfg=208 ctermbg=8
+hi StatusLine term=bold ctermfg=8 ctermbg=250 gui=bold
 
 " sets the comment color to blue
 hi Comment term=bold ctermfg=4 guifg=#406090  

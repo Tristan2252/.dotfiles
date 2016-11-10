@@ -59,6 +59,11 @@ linux_setup(){
         printf "powerline setup..\n"
     fi
 
+    if [ -e /usr/bin/gdb ]; then 
+        ln -s ~/.dotfiles/gdbinit/gdbinit ~/.gdbinit
+        printf "gdb setup..\n"
+    fi
+
     config=".bashrc"
     setup
     printf "bash setup..\n"

@@ -14,4 +14,4 @@ iface lo inet loopback
 auto wlp3s0
 iface wlp3s0 inet manual
 	pre-up wpa_supplicant -B -i wlp3s0 -c /etc/wpa_networks.conf && dhclient wlp3s0
-	pre-down killall -9 wpa_supplicant dhclient
+	post-down killall -9 wpa_supplicant dhclient

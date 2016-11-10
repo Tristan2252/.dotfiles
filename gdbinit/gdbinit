@@ -1,0 +1,108 @@
+define _ba
+break * $arg0
+end
+document _ba
+break on an address
+usage: _ba address
+end
+
+define _frame
+info frame
+info args
+info locals
+end
+document _frame
+print frame info
+end
+
+define _as
+disas $arg0
+end
+document _as
+shorthand for disas; see help disassemble
+end
+
+define _ex
+printf "eax: 0x%.8x\n", $eax
+printf "ecx: 0x%.8x\n", $ecx
+printf "edx: 0x%.8x\n", $edx
+printf "ebx: 0x%.8x\n", $ebx
+end
+document _ex
+display the 32-bit 'x' registers eax, ecx, edx, and ebx
+end
+
+define _rs
+printf "rbp: 0x%.8x\n", $rbp
+printf "rsp: 0x%.8x\n", $rsp
+printf "Stack\n"
+x/4z $rsp
+end
+document _rs
+print stack registers and 4 values of stack
+end
+
+define _rs8
+printf "rbp: 0x%.8x\n", $rbp
+printf "rsp: 0x%.8x\n", $rsp
+printf "Stack\n"
+x/8z $rsp
+end
+document _rs8
+print stack registers and 8 values of stack
+end
+
+define _rx
+printf "rax: 0x%.16x\n", $rax
+printf "rcx: 0x%.16x\n", $rcx
+printf "rdx: 0x%.16x\n", $rdx
+printf "rbx: 0x%.16x\n", $rbx
+end
+document _rx
+display the 64-bit 'x' registers rax, rcx, rdx, and rbx
+end
+
+#print out eflags register in a sane way
+define _flags
+printf "eflags: 0x%.8x\n", $eflags
+if ($eflags & 1)  
+        printf "CF: 1\n"
+else
+        printf "CF: 0\n"
+end
+if (($eflags >> 0xB) & 1) 
+        printf "OF: 1\n"
+else
+        printf "OF: 0\n"
+end
+if (($eflags >> 0x2) & 1) 
+        printf "PF: 1\n"
+else
+        printf "PF: 0\n"
+end
+if (($eflags >> 0x7) & 1) 
+        printf "SF: 1\n"
+else
+        printf "SF: 0\n"
+end
+if (($eflags >> 6) & 1) 
+        printf "ZF: 1\n"
+else 
+        printf "ZF: 0\n"
+end
+end
+document _flags
+print relavent eflags: CF - carry flag, OF - overflow flag, PF - parity flag, SF - sign flag, ZF - zero flag
+end
+
+define _reg 
+printf "rax: 0x%.8x\trcx: 0x%.8x\n", $rax, $rcx
+printf "rdx: 0x%.8x\trbx: 0x%.8x\n", $rdx, $rbx
+printf "rsi: 0x%.8x\trdi: 0x%.8x\n", $rsi, $rdi
+_rs
+printf "\n"
+x/i $rip
+end
+document _reg
+print registed and stack for 32-bit 
+end

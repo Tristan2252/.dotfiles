@@ -48,7 +48,7 @@ hi NonText ctermfg=239
 hi SpecialKey ctermfg=239
 
 "##### CursorLine #####
-hi CursorLine term=none cterm=none ctermbg=236 guibg=Grey90
+hi CursorLine term=none cterm=none ctermbg=240 guibg=Grey90
 hi CursorLineNr term=bold,standout ctermfg=226 gui=bold guifg=Brown
 
 "##### Menu #####
@@ -59,7 +59,7 @@ hi StatusLine term=bold ctermfg=8 ctermbg=250 gui=bold
 hi Comment term=bold ctermfg=4 guifg=#406090  
 
 " set color of line numbers
-hi LineNr term=underline ctermfg=3 guifg=Red3
+hi LineNr term=underline ctermfg=3 ctermbg=236 guifg=Red3
 
 " set color of statements ex: while, if, return...
 hi Statement cterm=none ctermfg=208

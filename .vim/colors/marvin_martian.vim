@@ -30,7 +30,8 @@ function Texhighlight()
     hi texBeginEnd ctermfg=34
     hi texBeginEndName ctermfg=208
     hi texMath ctermfg=none
-    hi texSpecialChar ctermfg=239
+    hi texSpecialChar ctermfg=33
+    "ctermfg=239
 endfunction
 
 " ##### C language #####

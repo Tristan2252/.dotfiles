@@ -15,6 +15,7 @@ set t_Co=256                        "Set to 16 to fix pantheon term colors in vi
 set backspace=indent,eol,start      "Set backspace on everything in insert mode, for OS X"
 set ttyfast                         "faster scrolling
 set cursorline                      "highlight cursor line"
+set noerrorbells                    "Disable that horrible bell!"
 colorscheme marvin_martian
 highlight Cursor guifg=#FFFFFF guibg=#FFFFFF
 highlight iCursor guifg=#FFFFFF guibg=#FFFFFF

@@ -49,7 +49,7 @@ hi NonText ctermfg=239
 hi SpecialKey ctermfg=239
 
 "##### CursorLine #####
-hi CursorLine term=none cterm=none ctermbg=240 guibg=Grey90
+hi CursorLine term=none cterm=none ctermbg=234 guibg=Grey90
 hi CursorLineNr term=bold,standout ctermfg=226 gui=bold guifg=Brown
 
 "##### Menu #####

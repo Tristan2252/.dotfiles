@@ -17,3 +17,8 @@ alias grep='grep --color=auto'
 alias cse='cd /Users/tristan/Documents/CSE/122/Notes'
 alias cse-l='cd /Users/tristan/Documents/CSE/122/Labs'
 alias pdflatex='/Library/TeX/texbin/pdflatex'
+
+
+# sync pics from school to dir
+alias rawsync='rsync -arvzhe ssh . tvigil00@login.nmt.edu:~/RAW/ '
+alias jpgsync='rsync -arvzhe ssh tvigil00@login.nmt.edu:~/JPG/ .'

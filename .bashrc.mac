@@ -8,3 +8,6 @@ if [ -e /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline
 	. /usr/local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh  
 fi
 
+
+alias jpgsync='rsync -arvzhe ssh tvigil00@login.nmt.edu:~/JPG/ .'
+

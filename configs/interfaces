@@ -11,7 +11,7 @@ iface lo inet loopback
 #auto enp0s3
 #iface enp0s3 inet dhcp
 
-auto wlp3s0
+allow-hotplug wlp3s0
 iface wlp3s0 inet manual
 	pre-up wpa_supplicant -B -i wlp3s0 -c /etc/wpa_networks.conf && dhclient wlp3s0
 	post-down killall -9 wpa_supplicant dhclient

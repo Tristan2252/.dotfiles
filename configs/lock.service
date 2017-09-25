@@ -1,3 +1,5 @@
+### run systemctl daemon-reload to reload any changes made to file
+
 [Unit]
 Description=Lock the screen automatically after a timeout
 After=suspend.target

@@ -195,7 +195,8 @@ bindsym $mod+Control+Right workspace next
 bindsym $mod+c exec xclip -out -selection primary | xclip -in -selection clipboard
 
 # launch feh as wallpaper
-exec /home/tristan/.dotfiles/scripts/wallpic.sh && feh --bg-scale .wallpaper.jpg
+#exec /home/tristan/.dotfiles/scripts/wallpic.sh && feh --bg-scale .wallpaper.jpg
+exec feh --bg-scale Pictures/Wallpapers/Jan2017+Porfolio+-+114.jpg
 
 # start compton
 exec compton

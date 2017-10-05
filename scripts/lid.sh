@@ -17,6 +17,7 @@ if [ $SUSPEND_STATE -eq 0 ]; then
     # if network is up, put down 
     if [ $NET_STATE = "up"  ]; then
         ifdown $INTERFACE
+        ifdown school # if school is up take it down to avoid bugs
     fi
 
     systemctl suspend

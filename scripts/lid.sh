@@ -18,14 +18,17 @@ if [ $SUSPEND_STATE -eq 0 ]; then
     if [ $NET_STATE = "up"  ]; then
         ifdown $INTERFACE
         ifdown school # if school is up take it down to avoid bugs
+        rfkill block wifi # block wifi
     fi
 
     systemctl suspend
-    exit 0
 fi
 
 if [ $NET_STATE = "down"  ]; then
-    sleep 2 && ifup $INTERFACE
+    sleep 2
+    rfkill unblock wifi
+    ifup $INTERFACE
+
 fi
 
 exit 0

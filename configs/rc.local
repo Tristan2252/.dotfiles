@@ -15,6 +15,6 @@
 echo 0 | tee /sys/module/hid_apple/parameters/iso_layout
 
 # start powersaving deamon
-tlp start
+#tlp start
 
 exit 0

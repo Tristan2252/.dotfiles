@@ -188,12 +188,14 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -2%
 bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 1 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 1 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec sudo /home/tristan/.dotfiles/scripts/brightness.sh +
+bindsym XF86MonBrightnessDown exec sudo /home/tristan/.dotfiles/scripts/brightness.sh -
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 1 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 1 # decrease screen brightness
 
 # Keyboard backlight 
-bindsym XF86KbdBrightnessUp exec sudo backlight +
-bindsym XF86KbdBrightnessDown exec sudo backlight -
+bindsym XF86KbdBrightnessUp exec sudo /home/tristan/.dotfiles/scripts/backlight.sh +
+bindsym XF86KbdBrightnessDown exec sudo /home/tristan/.dotfiles/scripts/backlight.sh -
 
 # lock keybind
 bindsym $mod+l exec sudo systemctl start lock.service 
@@ -219,7 +221,7 @@ exec feh --bg-scale .wallpaper.jpg
 exec compton
 
 # set max and min sizes for floating windows
-floating_minimum_size 1200 x 1500
+#floating_minimum_size 1200 x 1500
 floating_maximum_size 1200 x 1500
 
 

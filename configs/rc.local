@@ -17,4 +17,9 @@ echo 0 | tee /sys/module/hid_apple/parameters/iso_layout
 # start powersaving deamon
 #tlp start
 
+# set to allow for proper suspend
+echo LID0 > /proc/acpi/wakeup
+echo XHC1 > /proc/acpi/wakeup
+
+
 exit 0

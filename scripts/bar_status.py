@@ -7,15 +7,19 @@ BAT_COLOR="b3b2b2"
 def make_json(string, bgcolor, fgcolor):
     # this is a mess but cant use json.dump because of unicode chars -__- 
     return """ { "full_text": "<span background='#""" + bgcolor + \
-           """' foreground='#""" + fgcolor + """' size='10800'> """ + string + \
+           """' foreground='#""" + fgcolor + """' size='10800' font='FontAwesome 10'> """ + string + \
            """ </span>", "markup": "pango", "separator": false, "separator_block_width": -8}"""
 
+#def separator(color):
+#    return """{ "full_text": "<span foreground='#""" + color + """' size='11000' font='FontAwesome 10'></span>",""" + \
+#           """ "markup": "pango", "separator":false, "separator_block_width": -6 }"""
+
 def separator(color):
-    return """{ "full_text": "<span foreground='#""" + color + """' size='11000'></span>",""" + \
-           """ "markup": "pango", "separator":false, "separator_block_width": -6 }"""
+    return """{ "full_text": "<span foreground='#""" + color + """' size='10800'></span>",""" + \
+           """ "markup": "pango", "separator":false, "separator_block_width": 0 }"""
 
 def dividor(color):
-    return """{ "full_text": "<span background='#""" + color + """' size='9800'></span>", """ + \
+    return """{ "full_text": "<span background='#""" + color + """' size='9000'></span>", """ + \
            """ "markup": "pango", "color": "#002b36","separator": false,"separator_block_width": 0}"""
 
 def status_net():

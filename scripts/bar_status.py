@@ -103,6 +103,7 @@ def main():
             "{},\n".format(status_net()) + 
             "{},\n".format(status_date()) + 
             "{},\n".format(status_time()) + 
+            "{},\n".format(separator("002b36")) + 
             "{}\n".format(status_bat()) + 
             "],\n")
 

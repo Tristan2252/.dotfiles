@@ -21,5 +21,9 @@ echo 0 | tee /sys/module/hid_apple/parameters/iso_layout
 echo LID0 > /proc/acpi/wakeup
 echo XHC1 > /proc/acpi/wakeup
 
+# setup iptables rules if they exist
+if [ -e /etc/iptables.up.rules ]; then 
+    iptables-restore < /etc/iptables.up.rules
+fi
 
 exit 0

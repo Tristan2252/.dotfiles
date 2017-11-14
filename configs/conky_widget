@@ -1,0 +1,106 @@
+# Conky settings #
+#background yes
+background no
+update_interval 0.4
+double_buffer yes
+no_buffers yes
+#imlib_cache_size 10
+
+# Window specifications #
+gap_x 0
+gap_y -40
+#gap_y 350
+minimum_size 2560 10
+maximum_width 2560
+alignment bottom_left
+own_window yes
+##This line keeps conky from getting controlled by the wm:
+own_window_type override
+own_window_transparent no
+own_window_argb_visual yes
+own_window_argb_value 255
+own_window_colour 262626
+#own_window_hints undecorated,sticky,skip_taskbar,skip_pager,below
+border_inner_margin 0
+border_outer_margin 0
+
+# Graphics settings #
+draw_shades no
+default_shade_color AAAAAA
+draw_outline no
+default_outline_color AAAAAA
+draw_borders no
+draw_graph_borders no
+show_graph_scale no
+show_graph_range no
+
+# Text settings #
+use_xft yes
+xftalpha 0
+xftfont Source Code Pro for Powerline :size=15
+#xftfont FontAwesome:size=15
+text_buffer_size 256
+override_utf8_locale yes
+
+# Useful shortenings #
+short_units yes
+pad_percents  2
+top_name_width 30
+
+# Color scheme #
+default_color 99CC33
+color1 99CC33
+color2 5f85d3
+color3 FFFFFF
+color4 FFFFFF
+color5 DCDCDC
+color6 FFFFFF
+color7 FFFFFF
+color8 FFFFFF
+
+TEXT
+${voffset 20}
+${goto 40}${cpugraph 26,190 FFFFFF FFFFFF -l} ${memgraph 26,190 FFFFFF FFFFFF -l} ${diskiograph 26,190 FFFFFF FFFFFF -l} \
+\
+${color1}${alignc -30}\
+${font Source Code Pro for Powerline :size=36} \
+${font Droid Sans :size=36}${time %A %B %e} \
+${font Source Code Pro for Powerline :size=36}  
+\
+${voffset -20}\
+${goto 40}${font FontAwesome : size=15}  \
+${font Droid Sans : size=15}\
+CPU: ${cpu}% \
+\
+${goto 238}${font FontAwesome : size=15}  \
+${font Droid Sans : size=15}\
+RAM: ${memperc}% \
+\
+${goto 438}${font FontAwesome : size=15}  \
+${font Droid Sans : size=15}\
+Disk: ${diskio} \
+\
+${goto 1220}\
+${if_match "${wireless_essid wlp3s0}" == "off/any" }\
+${nodename}\
+${else}\
+Weather: ${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $12 }'| head -1}°${font}${color} \
+${endif}\
+\
+${voffset -100} \
+\
+${goto 2000}${color1}Proc${color}${alignr 30}${color1}Cpu %${color}
+${voffset 10}\
+${goto 2000}${color2}${top_mem name 1}${color}${alignr 30}${top cpu 1} %
+${goto 2000}${color2}${top_mem name 2}${color}${alignr 30}${top cpu 2} %
+${goto 2000}${color2}${top_mem name 3}${color}${alignr 30}${top cpu 3} %
+${goto 2000}${color2}${top_mem name 4}${color}${alignr 30}${top cpu 4} %
+
+#${goto 36}${font Droid Sans :size=36}${color1} ${voffset -20}\
+#${if_match "${wireless_essid wlp3s0}" == "off/any" }\
+#${nodename}\
+#${else}\
+#Weather: ${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $12 }'| head -1}°${font}${color} \
+#${endif}
+#${goto 2000}${color2}${top_mem name 5}${color}${alignr 39}${top cpu 5} %
+

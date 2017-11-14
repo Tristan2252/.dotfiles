@@ -10,7 +10,7 @@
 CUR_VAL=$(cat /sys/class/backlight/intel_backlight/brightness)
 
 if [ $1 = "+" ]; then
-    SET_VAL=$(($CUR_VAL + 80))
+    SET_VAL=$(($CUR_VAL + 50))
 
     if [ $SET_VAL -le 1388 ]; then 
         for i in $(seq $CUR_VAL 8 $SET_VAL); do
@@ -22,7 +22,7 @@ if [ $1 = "+" ]; then
         done 
     fi
 elif [ $1 = "-" ]; then 
-    SET_VAL=$(($CUR_VAL - 80))
+    SET_VAL=$(($CUR_VAL - 50))
     
     # do nothing if value is below 0
     if [ $SET_VAL -lt 0 ]; then 

@@ -88,7 +88,7 @@ ${goto 40}\
 ${voffset 2}${font FontAwesome:size=19}${voffset -2}\
 ${font :size=20} Weather 
 ${font :size=70}\
-${goto 40}${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $10 }'| head -1}${color3}°${font}${color} \
+${goto 40}${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $12 }'| head -1}${color3}°${font}${color} \
 ${font }\
 \
 ${endif}

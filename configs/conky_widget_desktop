@@ -10,8 +10,8 @@ no_buffers yes
 gap_x 0
 gap_y 0
 #gap_y 350
-minimum_size 300 700
-maximum_width 300
+minimum_size 500 700
+maximum_width 500
 alignment top_left
 own_window yes
 ##This line keeps conky from getting controlled by the wm:
@@ -49,7 +49,7 @@ top_name_width 30
 
 # Color scheme #
 default_color FFFFFF
-color1 FFFFFF
+color1 002b36
 color2 FFFFFF
 color3 FFFFFF
 color4 FFFFFF
@@ -63,7 +63,7 @@ ${voffset 20}
 \
 ${goto 40}${cpugraph 26,190 FFFFFF FFFFFF -l}
 ${voffset 20}${goto 40}${font FontAwesome : size=15}  \
-${font Droid Sans : size=15} \
+${font Droid Sans : size=15}\
 CPU: ${cpu}% 
 \
 ${goto 40}${memgraph 26,190 FFFFFF FFFFFF -l} 
@@ -88,16 +88,16 @@ ${goto 40}\
 ${voffset 2}${font FontAwesome:size=19}${voffset -2}\
 ${font :size=20} Weather 
 ${font :size=70}\
-${goto 40}${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $12 }'| head -1}${color3}°${font}${color} \
+${goto 40}${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $10 }'| head -1}${color2}°${font}${color} \
 ${font }\
 \
 ${endif}
 
 
-${color1}\
+${color}\
 ${goto 40}${font Droid Sans :size=36}\
 ${time %A}
-${goto 40}${font }${voffset -20}${color3}\
+${goto 40}${font :bold}${voffset -20}${color}\
 ${time %B %e}\
 ${voffset 20}
 #\

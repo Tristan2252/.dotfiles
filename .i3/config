@@ -157,6 +157,8 @@ set $tx     #c1c1c1
 set $solar_green #859900
 set $solar_blue #002b36
 set $transparent #000000
+set $gray #262626
+set $white #b3b2b2
 
 # set some nice colors      border  background  text    indicator
 client.focused              $id     $ac         $tx     $id
@@ -173,10 +175,10 @@ bar {
 	#verbose yes 
 
 	colors {
-		background $solar_blue
+		background $gray
 		statusline $transparent
 
-		focused_workspace  $solar_green   $solar_green   $transparent
+		focused_workspace  $white   $white   $transparent
     
 	}
 
@@ -219,6 +221,9 @@ exec feh --bg-scale .wallpaper.jpg
 
 # start compton
 exec compton
+
+# start desktop widget
+exec conky -c .dotfiles/configs/conky_widget_desktop 
 
 # set max and min sizes for floating windows
 #floating_minimum_size 1200 x 1500

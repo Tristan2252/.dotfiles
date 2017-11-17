@@ -47,18 +47,6 @@
 		"cwd:current_folder":        "information:regular",
 		"cwd:divider":               { "fg": "gray7", "bg": "gray4", "attrs": [] },
 		"virtualenv":                { "fg": "white", "bg": "darkcyan", "attrs": [] },
-
-		"active_window_status": {"fg": "ice_white",   "bg": "gray0",    "attrs": []},
-		"window_status":        {"fg": "gray70",     "bg": "ice_gray",    "attrs": []},
-		"activity_status":      {"fg": "ice_white",     "bg": "gray0",    "attrs": []},
-		"bell_status":          {"fg": "red",        "bg": "gray0",    "attrs": []},
-		"window":               {"fg": "gray6",      "bg": "gray0",    "attrs": []},
-		"window:divider":       {"fg": "gray4",      "bg": "gray0",    "attrs": []},
-		"window:current":       {"fg": "ice_gray", "bg": "ice_white", "attrs": []},
-		"window_name":          {"fg": "ice_gray",      "bg": "ice_white", "attrs": ["bold"]},
-		"session":              {"fg": "black",      "bg": "gray90",   "attrs": ["bold"]},
-		"session:prefix":       {"fg": "gray90",     "bg": "ice_white", "attrs": ["bold"]},
-
 		"attached_clients":          { "fg": "gray8", "bg": "gray0", "attrs": [] }
 	}
 }

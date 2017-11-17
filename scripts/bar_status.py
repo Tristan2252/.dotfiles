@@ -30,7 +30,7 @@ def status_cpu():
 
 def status_ram():
     output = os.popen("conky -i 1").read().rstrip()
-    string = "RAM:  " + output.split(", ")[2] + "    "
+    string = " RAM:  " + output.split(", ")[2] + "    "
     return dividor("b58900") + "," + make_json(string, "b58900", "002b36")
 
 def status_disk():

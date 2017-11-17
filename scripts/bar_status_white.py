@@ -27,17 +27,17 @@ def status_net():
 
 def status_cpu():
     output = os.popen("conky -i 1").read().rstrip()
-    string = "CPU:    " + output.split(", ")[1] + "    "
+    string = " CPU:    " + output.split(", ")[1] + "    "
     return separator(SYSTEM_COLOR) + "," + make_json(string, SYSTEM_COLOR, "000000")
 
 def status_ram():
     output = os.popen("conky -i 1").read().rstrip()
-    string = "RAM:  " + output.split(", ")[2] + "    "
+    string = " RAM:  " + output.split(", ")[2] + "    "
     return dividor(SYSTEM_COLOR, "000000") + "," + make_json(string, SYSTEM_COLOR, "000000")
 
 def status_disk():
     output = os.popen("conky -i 1").read().rstrip()
-    string = "HDD: " + output.split(", ")[3] + "    "
+    string = " HDD: " + output.split(", ")[3] + "    "
     return dividor(SYSTEM_COLOR, "000000") + "," + make_json(string, SYSTEM_COLOR, "000000")
 
 def status_sound():

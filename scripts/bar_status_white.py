@@ -2,16 +2,13 @@
 
 import os, sys, time
 
-BAT_COLOR="b3b2b2"
-SYSTEM_COLOR="b3b2b2"
-
 def make_json(string, bgcolor, fgcolor):
     # this is a mess but cant use json.dump because of unicode chars -__- 
     return """ { "full_text": "<span background='#""" + bgcolor + \
            """' foreground='#""" + fgcolor + """' size='10800' font='FontAwesome 10'> """ + string + \
            """ </span>", "markup": "pango", "separator": false, "separator_block_width": -8}"""
 
-def separator(color):
+def separator(color, dummy_param=""):
     return """{ "full_text": "<span foreground='#""" + color + """' size='10800'></span>",""" + \
            """ "markup": "pango", "separator":false, "separator_block_width": 0 }"""
 
@@ -20,25 +17,25 @@ def dividor(bgcolor, fgcolor):
             """'size='9000'></span>", """ + \
            """ "markup": "pango", "color": "#002b36","separator": false,"separator_block_width": 0}"""
 
-def status_net():
+def status_net(cpalette, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
     string = "  WAN:    " + output.split(", ")[0] + "    "
-    return dividor("262626", "c6c5c5") + "," + make_json(string, "262626", "c6c5c5")
+    return delim(cpalette[1], cpalette[0]) + "," + make_json(string, cpalette[1], cpalette[0])
 
-def status_cpu():
+def status_cpu(cpalette, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
     string = " CPU:    " + output.split(", ")[1] + "    "
-    return separator(SYSTEM_COLOR) + "," + make_json(string, SYSTEM_COLOR, "000000")
+    return delim(cpalette[0], cpalette[1]) + "," + make_json(string, cpalette[0], cpalette[1])
 
-def status_ram():
+def status_ram(cpalette, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
     string = " RAM:  " + output.split(", ")[2] + "    "
-    return dividor(SYSTEM_COLOR, "000000") + "," + make_json(string, SYSTEM_COLOR, "000000")
+    return delim(cpalette[0], cpalette[1]) + "," + make_json(string, cpalette[0], cpalette[1])
 
-def status_disk():
+def status_disk(cpalette, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
     string = " HDD: " + output.split(", ")[3] + "    "
-    return dividor(SYSTEM_COLOR, "000000") + "," + make_json(string, SYSTEM_COLOR, "000000")
+    return delim(cpalette[0], cpalette[1]) + "," + make_json(string, cpalette[0], cpalette[1])
 
 def status_sound():
     output = os.popen("pactl list sinks | grep Mute | tail -1").read().rstrip()
@@ -53,20 +50,20 @@ def status_sound():
     return string
 
 
-def status_date():
+def status_date(cpalette, delim):
     day = os.popen("date +'%a'").read().rstrip()
     date_num = os.popen("date +'%m/%d/%Y'").read().rstrip()
     
     string = "     " + day + " " + date_num + "    "
-    return dividor("262626", "c6c5c5") + "," + make_json(string, "262626", "c6c5c5")
+    return delim(cpalette[1], cpalette[0]) + "," + make_json(string, cpalette[1], cpalette[0])
 
-def status_time():
+def status_time(cpalette, delim):
     time = os.popen("date +'%I:%M:%S'").read().rstrip()
     
     string  = "    " + time + "    "
-    return dividor("262626", "c6c5c5") + "," + make_json(string, "262626", "c6c5c5")
+    return delim(cpalette[1], cpalette[0]) + "," + make_json(string, cpalette[1], cpalette[0])
 
-def status_bat():
+def status_bat(cpalette, delim):
     
     output = os.popen("acpi").read().rstrip()
     percent =  output.split(", ")[1]
@@ -75,7 +72,7 @@ def status_bat():
         
     if state == "Charging,":
         string = "BAT:   {}".format(percent)
-        return separator("b3b2b2") + "," + make_json(string + status_sound(), "b3b2b2", "002b36")
+        return delim(cpalette[0], cpalette[1]) + "," + make_json(string + status_sound(), cpalette[0], cpalette[1])
 
     if level <= 100 and level >= 80:
         string = "BAT:   {}".format(percent)
@@ -88,26 +85,29 @@ def status_bat():
     else: 
         BAT_COLOR = "cb4b16"
         string = "BAT:   {}".format(percent)
-        return separator("cb4b16") + "," + make_json(string + status_sound(), "cb4b16", "002b36")
+        return delim("d75f00") + "," + make_json(string + status_sound(), "d75f00", "002b36")
 
-    return separator("b3b2b2") + "," + make_json(string + status_sound(), "b3b2b2", "002b36")
-
-
+    return delim(cpalette[0], cpalette[1]) + "," + make_json(string + status_sound(), cpalette[0], cpalette[1])
 
 
 def main():
-    
+
+    light_gray = "b3b2b2"
+    dark_gray = "262626"
+
+    color_palette = [light_gray, dark_gray]
+    output = os.popen("conky -i 1").read().rstrip()
+
     # needs to be one single write to stdout because of i3status but 
     sys.stdout.write("[\n" + 
-            "{},\n".format(status_date()) + 
-            "{},\n".format(status_time()) + 
-            "{},\n".format(status_net()) + 
-            "{},\n".format(separator("002b36")) + 
-            "{},\n".format(status_cpu()) + 
-            "{},\n".format(status_ram()) + 
-            "{},\n".format(status_disk()) + 
-            "{},\n".format(separator("002b36")) + 
-            "{}\n".format(status_bat()) + 
+            status_date(color_palette, dividor) + "," +
+            status_time(color_palette, dividor) + "," +
+            status_net(color_palette, dividor, output) + "," +
+            status_cpu(color_palette, separator, output) + "," +
+            status_ram(color_palette, dividor, output) + "," +
+            status_disk(color_palette, dividor, output) + "," +
+            separator(color_palette[1]) + "," +
+            status_bat(color_palette, separator) + 
             "],\n")
 
 if __name__ == "__main__":

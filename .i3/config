@@ -169,7 +169,7 @@ client.focused              $id     $ac         $tx     $id
 bar {
         #i3bar_command i3bar
         font pango:Source Code Pro for Powerline 10
-	status_command exec /home/tristan/.dotfiles/scripts/bar_status_run
+	status_command exec ~/.dotfiles/scripts/bar_status_run
 	position 	top
 	separator_symbol "|"
 	#verbose yes 

@@ -1,0 +1,19 @@
+---
+# file: pgk_install.yml
+# install all pkgs
+
+- name: Add Pantheon Terminal Repo
+  apt_repository:
+          repo: 'ppa:elementary-os/daily'
+          update_cache: yes
+
+- name: Install Basic Software
+  apt:
+          name: '{{ item }}'
+  with_items: "{{ apps }}"
+
+- name: Install Pip Items
+  pip: executable=/usr/bin/pip3 name=powerline-status
+
+
+

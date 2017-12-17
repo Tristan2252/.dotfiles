@@ -1,0 +1,15 @@
+---
+# file: font.yml
+# installs fonts
+
+- name: Clone Fonts From Git
+  git:
+    repo: 'https://github.com/powerline/fonts.git'
+    dest: "{{ ansible_env.HOME }}/fonts"
+
+- name: Run fonts Installer
+  command: "{{ ansible_env.HOME }}/fonts/install.sh"
+
+- name: Remove fonts Installer
+  file: path={{ ansible_env.HOME }}/fonts state=absent
+

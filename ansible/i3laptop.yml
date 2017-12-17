@@ -1,0 +1,28 @@
+---
+# run.yml
+# run roles
+
+- hosts: local
+  connection: local
+  vars:
+          apps:
+              - ssh
+              - git
+              - vim
+              - smbclient
+              - wpasupplicant
+              - xinit
+              - i3 
+              - tmux
+              - compton
+              - conky
+              - thunar
+              - build-essential
+              - python3-pip
+              - feh
+              - acpi
+              - pulseaudio-utils
+              - fonts-font-awesome
+  roles:
+          - i3laptop
+

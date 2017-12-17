@@ -1,0 +1,5 @@
+---
+# file: main.yml
+
+- include: sym_link.yml
+- include: font.yml

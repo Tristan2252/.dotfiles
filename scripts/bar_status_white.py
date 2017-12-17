@@ -38,9 +38,11 @@ def status_disk(cpalette, delim, stat):
     return delim(cpalette[0], cpalette[1]) + "," + make_json(string, cpalette[0], cpalette[1])
 
 def status_sound():
-    output = os.popen("pactl list sinks | grep Mute | tail -1").read().rstrip()
-
-    output = output.split(": ")[1]
+    try :
+        output = os.popen("pactl list sinks | grep Mute | tail -1").read().rstrip()
+        output = output.split(": ")[1]
+    except IndexError:
+        output = "yes"
     
     if output == "no":
         string = "   "
@@ -66,9 +68,14 @@ def status_time(cpalette, delim):
 def status_bat(cpalette, delim):
     
     output = os.popen("acpi").read().rstrip()
-    percent =  output.split(", ")[1]
-    state = output.split(" ")[2]
-    level = int(percent[0:len(percent) -1])
+    try :
+        percent =  output.split(", ")[1]
+        state = output.split(" ")[2]
+        level = int(percent[0:len(percent) -1])
+    except IndexError:
+        percent =  ""
+        state = ""
+        level = 100
         
     if state == "Charging,":
         string = "BAT:   {}".format(percent)

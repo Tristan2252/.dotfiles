@@ -1,0 +1,21 @@
+---
+# basic.yml
+# run roles
+
+
+- hosts: local
+  connection: local
+  vars:
+          conf_files:
+              - .config/compton.conf
+              - .tmux.conf
+              - .bashrc 
+              - .gitconfig
+              - .conkyrc 
+          conf_folders:
+              - .config/powerline
+              - .i3
+              - .vim
+  roles:
+          - basic
+

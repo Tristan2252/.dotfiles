@@ -1,0 +1,6 @@
+--- 
+# file: main.yml
+# link all other files in dir
+
+- include: update.yml
+- include: pkg_install.yml

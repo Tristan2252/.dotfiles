@@ -5,11 +5,10 @@
 - name: Clone Fonts From Git
   git:
     repo: 'https://github.com/powerline/fonts.git'
-    dest: "{{ ansible_env.HOME }}/fonts"
+    dest: "/tmp/fonts"
+  register: install
 
 - name: Run fonts Installer
-  command: "{{ ansible_env.HOME }}/fonts/install.sh"
-
-- name: Remove fonts Installer
-  file: path={{ ansible_env.HOME }}/fonts state=absent
+  command: "/tmp/fonts/install.sh"
+  when: install.changed  # skip install if already done
 

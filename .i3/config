@@ -222,6 +222,9 @@ exec feh --bg-scale .wallpaper.jpg
 # start compton
 exec compton
 
+# start gnome settings to allow for themeing of gnome apps
+exec gnome-settings-daemon
+
 # start desktop widget
 exec conky -c .dotfiles/configs/conky_widget_desktop 
 

@@ -12,6 +12,7 @@
               - .bashrc 
               - .gitconfig
               - .conkyrc 
+              - .gtkrc-2.0
           conf_folders:
               - .config/powerline
               - .i3

@@ -24,11 +24,11 @@
               - pulseaudio-utils
               - fonts-font-awesome
               - pantheon-terminal
-              - gnome-tweak-tool
               - dconf-editor
               - numix-gtk-theme
               - tree
               - chromium-browser
+              - papirus-icon-theme
   roles:
           - i3laptop
 

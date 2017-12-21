@@ -29,6 +29,19 @@
               - tree
               - chromium-browser
               - papirus-icon-theme
+              - imagemagick
+                # needed for i3lock build
+              - pkg-config
+              - libcairo2-dev
+              - libxcb-dpms0-dev
+              - libxcb-xinerama0-dev
+              - libxcb-image0-dev
+              - libxcb-xkb-dev
+              - libxkbcommon-dev
+              - libxkbcommon-x11-dev
+              - libxcb-util-dev
+              - libpam0g-dev
+              - libev-dev
   roles:
           - i3laptop
 

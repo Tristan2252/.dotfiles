@@ -1,10 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/tristan/dotfiles/.i3/lemonbar'
-let g:netrw_dirhist_2='/home/tristan/.dotfiles/ansible'
-let g:netrw_dirhist_3='/home/tristan/.dotfiles/ansible/roles'
-let g:netrw_dirhist_4='/home/tristan/.dotfiles/ansible/roles/basic'
-let g:netrw_dirhist_5='/home/tristan/.dotfiles/ansible/roles/basic/tasks'
-let g:netrw_dirhist_6='/home/tristan'
-let g:netrw_dirhist_7='/home/tristan/.dotfiles'
-let g:netrw_dirhist_8='/home/tristan/.dotfiles/scripts'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/home/tristan/.dotfiles/ansible/roles/basic'
+let g:netrw_dirhist_2='/home/tristan/.dotfiles/ansible/roles/basic/tasks'

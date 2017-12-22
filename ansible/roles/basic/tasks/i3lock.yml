@@ -15,6 +15,7 @@
     - make
     - make install
   become: true
+  ignore_errors: true
 
 - name: Create Lock Service
   copy: src={{ ansible_env.HOME }}/.dotfiles/configs/lock.service dest=/etc/systemd/system/lock.service 

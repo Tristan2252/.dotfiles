@@ -21,6 +21,7 @@
               - python3-pip
               - feh
               - acpi
+              - pulseaudio
               - pulseaudio-utils
               - fonts-font-awesome
               - pantheon-terminal
@@ -30,6 +31,20 @@
               - chromium-browser
               - papirus-icon-theme
               - imagemagick
+              - htop
+              - evince
+                # printer and hp drivers
+              - cups
+              - printer-driver-hpcups
+                # latex pkgs
+              - texlive
+              - texlive-bibtex-extra
+              - texlive-extra-utils
+              - texlive-latex-base
+              - texlive-latex-extra
+              - texlive-latex-recommended
+              - texlive-lang-english
+              - latexmk
                 # needed for i3lock build
               - pkg-config
               - libcairo2-dev
@@ -43,5 +58,5 @@
               - libpam0g-dev
               - libev-dev
   roles:
-          - i3laptop
+          - applications
 

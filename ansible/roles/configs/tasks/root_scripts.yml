@@ -1,0 +1,8 @@
+---
+# file: root_scripts.yml
+# set root pers for files that shoudnt be changed
+
+- name: Set root Script Ownership
+  file: path={{ ansible_env.HOME }}/.dotfiles/scripts/{{ item }} owner=root group=root
+  with_items: "{{ scripts }}"
+

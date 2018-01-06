@@ -200,7 +200,7 @@ bindsym XF86KbdBrightnessUp exec sudo /home/tristan/.dotfiles/scripts/backlight.
 bindsym XF86KbdBrightnessDown exec sudo /home/tristan/.dotfiles/scripts/backlight.sh -
 
 # lock keybind
-bindsym $mod+l exec sudo systemctl start lock.service 
+bindsym $mod+l exec sudo systemctl start lock
 
 # keybind for changing workspase name
 bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '

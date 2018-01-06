@@ -18,6 +18,11 @@
               - .config/powerline
               - .i3
               - .vim
+          scripts:
+              - backlight.sh
+              - brightness.sh
+          printers:
+                  # see hp drivers here: https://github.com/twaugh/hplip/tree/master/ppd/hpcups
+              - { name: 'HpNetPrinter', location: 'socket://192.168.1.123:9100', driver: 'hp-deskjet_2540_series.ppd.gz' }
   roles:
-          - basic
-
+          - configs

@@ -6,4 +6,5 @@
 - include: i3lock.yml
 - include: vim_plugins.yml
 - include: root_scripts.yml
+- include: rc_local.yml
 - include: cups_conf.yml

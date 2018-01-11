@@ -8,3 +8,4 @@
 - include: root_scripts.yml
 - include: rc_local.yml
 - include: cups_conf.yml
+- include: terminal_config.yml

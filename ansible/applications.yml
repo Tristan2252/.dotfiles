@@ -33,6 +33,8 @@
               - imagemagick
               - htop
               - evince
+                # sysadmin stuff
+              - pass
                 # printer and hp drivers
               - cups
               - printer-driver-hpcups

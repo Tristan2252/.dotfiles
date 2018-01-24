@@ -33,6 +33,7 @@
               - imagemagick
               - htop
               - evince
+              - sshuttle
                 # sysadmin stuff
               - pass
                 # printer and hp drivers

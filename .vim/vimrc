@@ -21,6 +21,11 @@ highlight Cursor guifg=#FFFFFF guibg=#FFFFFF
 highlight iCursor guifg=#FFFFFF guibg=#FFFFFF
 
 " Latex Settings for vim
+if has("autocmd")
+    augroup templates
+    autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+    augroup END
+endif
 fun LatexSettings()
     let g:tex_flavor='latex'         "Always set to latex file type
     NoMatchParen                     "Disable matching paren to iliminate lag
@@ -36,6 +41,7 @@ fun LatexSettings()
     autocmd BufWritePost * :silent exec "!pdflatex -interaction=batchmode % > /dev/null" | redraw
     " ctl-R to render latex file, the % is the current file name
     map <C-R> :! pdflatex -interaction=batchmode %; lacheck %<CR>
+
 endf
 
 " function for Plain Text such as .txt and or markdown
@@ -70,6 +76,7 @@ function PlainTextTab8()
     set shiftwidth=8
     set softtabstop=8
 endfunction
+
 
 " Call Functions based of file type
 autocmd FileType markdown,text call PlainTextSettings()

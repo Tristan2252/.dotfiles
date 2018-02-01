@@ -222,15 +222,14 @@ exec feh --bg-scale .wallpaper.jpg
 # start compton
 exec compton
 
-# start gnome settings to allow for themeing of gnome apps
-exec gnome-settings-daemon
-
 # start desktop widget
 exec conky -c .dotfiles/configs/conky_widget_desktop 
 
 # set max and min sizes for floating windows
 #floating_minimum_size 1200 x 1500
 floating_maximum_size 1200 x 1500
+
+for_window [class="TeamViewer"] floating enable
 
 
 #this prevent the focus to follow mouse movements

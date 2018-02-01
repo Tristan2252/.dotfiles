@@ -34,6 +34,8 @@
               - htop
               - evince
               - sshuttle
+              - gparted
+              - intel-microcode
                 # sysadmin stuff
               - pass
                 # printer and hp drivers

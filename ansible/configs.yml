@@ -25,7 +25,8 @@
            ## Printers to be added ##
           printers:
                   # see hp drivers here: https://github.com/twaugh/hplip/tree/master/ppd/hpcups
-              - { name: 'HpNetPrinter', location: 'socket://192.168.1.123:9100', driver: 'hp-deskjet_2540_series.ppd.gz' }
+              - { name: 'HpNetPrinter', location: 'socket://192.168.1.123:9100', driver: 'drv:///hpcups.drv/hp-deskjet_2540_series.ppd' }
+              - { name: 'Office', location: 'dnssd://Dell%20Laser%20Printer%201700n._printer._tcp.local/', driver: 'drv:///sample.drv/generic.ppd' }
 
            ## Pantheon Terminal Settings ##
           terminal_settings:

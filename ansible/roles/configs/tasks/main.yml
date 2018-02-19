@@ -9,3 +9,4 @@
 - include: rc_local.yml
 - include: cups_conf.yml
 - include: terminal_config.yml
+- include: network_timeout.yml

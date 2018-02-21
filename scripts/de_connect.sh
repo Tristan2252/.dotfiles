@@ -1,9 +1,9 @@
-#! /bin/bash
-
+#!/bin/sh
+CONTAINER=CSE-326
 STATE=$(lxc info CSE-326 | grep -o Running)
 
 if [ "$STATE" = "Running" ]; then 
-    ssh ubuntu@10.0.4.157 -X
+    lxc exec CSE-326 -- sudo --login --user ubuntu -i env DISPLAY=$DISPLAY bash
     exit 0
 fi
 
@@ -12,6 +12,7 @@ lxc start CSE-326
 echo "Connecting..."
 sleep 2
 
-ssh ubuntu@10.0.4.157 -XC
+lxc exec CSE-326 -- sudo --login --user ubuntu -i env DISPLAY=$DISPLAY bash
+
 
 exit 0

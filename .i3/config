@@ -185,6 +185,8 @@ bar {
 
 }
 
+bindsym XF86LaunchB exec /home/tristan/.dotfiles/scripts/external_dsp
+
 # Sound control key binds
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 1 +2% 
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 1 -2%
@@ -208,10 +210,12 @@ bindsym $mod+n exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # alt-tab for workspaces
 bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab workspace next
 
 # Move left and right workspaces
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
+exec libinput-gestures-setup start # start gestures deamon
 
 # ctl+c for i3
 bindsym $mod+c exec xclip -out -selection primary | xclip -in -selection clipboard
@@ -259,6 +263,6 @@ exec synclient ClickFinger3=3
 exec synclient ClickTime=25
 exec synclient BottomEdge=25
 exec synclient VertScrollDelta=-111
-exec synclient HorizScrollDelta=111
+exec synclient HorizScrollDelta=11
 # disable tap to click
 exec synclient MaxTapTime=0

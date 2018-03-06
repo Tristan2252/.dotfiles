@@ -8,11 +8,11 @@ no_buffers yes
 
 # Window specifications #
 gap_x 0
-gap_y 0
+gap_y 50
 #gap_y 350
 minimum_size 500 700
-maximum_width 500
-alignment top_left
+maximum_width 300
+alignment top_right
 own_window yes
 ##This line keeps conky from getting controlled by the wm:
 own_window_type override

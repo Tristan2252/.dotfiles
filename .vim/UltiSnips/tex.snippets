@@ -1,31 +1,24 @@
-snippet basicdoc "Description" b
-\documentclass{article}
+snippet notetex "Description" b
+\documentclass[twocolumn]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}                                                                                          
+\usepackage{amsfonts}                                                                                         
+\usepackage{enumitem}                                                                                         
+\usepackage{pgfplots} % plot graphs
 
-\usepackage{listings}
-
-\title{$1}
-\author{}
+%Margin - 1 inch on all sides
+\usepackage[letterpaper]{geometry}
+\geometry{top=1.0in, bottom=1.0in, left=0.2in, right=1.0in}
 
 \begin{document}
-\maketitle
-    
+\section{$1}
 \end{document}
-endsnippet
-
-snippet number "Description" b
-\begin{enumerate}
-	\item $1
-\end{enumerate}
 endsnippet
 
 snippet code "Description" b
 \begin{lstlisting}
 	$1
 \end{lstlisting}
-endsnippet
-
-snippet \documentc "Document class tag" b
-\documentcleass{$1}
 endsnippet
 
 snippet \textb "Bold text tag" 

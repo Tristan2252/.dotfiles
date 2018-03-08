@@ -1,0 +1,115 @@
+# Conky settings #
+#background yes
+background no
+update_interval 0.4
+double_buffer yes
+no_buffers yes
+#imlib_cache_size 10
+
+# Window specifications #
+gap_x 0
+gap_y 0
+#gap_y 350
+minimum_size 2560 100
+maximum_width 2560
+alignment bottom_left
+own_window yes
+##This line keeps conky from getting controlled by the wm:
+own_window_type override
+own_window_transparent no
+own_window_argb_visual yes
+own_window_argb_value 255
+own_window_colour 262626
+#own_window_hints undecorated,sticky,skip_taskbar,skip_pager,below
+border_inner_margin 0
+border_outer_margin 0
+
+# Graphics settings #
+draw_shades no
+default_shade_color AAAAAA
+draw_outline no
+default_outline_color AAAAAA
+draw_borders no
+draw_graph_borders no
+show_graph_scale no
+show_graph_range no
+
+# Text settings #
+use_xft yes
+xftalpha 0
+xftfont Source Code Pro for Powerline :size=15
+#xftfont FontAwesome:size=15
+text_buffer_size 256
+override_utf8_locale yes
+
+# Useful shortenings #
+short_units yes
+pad_percents  2
+top_name_width 30
+
+# Color scheme #
+default_color 99CC33
+color1 99CC33
+color2 5f85d3
+color3 FFFFFF
+color4 FFFFFF
+color5 DCDCDC
+color6 FFFFFF
+color7 FFFFFF
+color8 FFFFFF
+
+TEXT
+${goto 80}${cpugraph 26,190 FFFFFF FFFFFF -l} ${memgraph 26,190 FFFFFF FFFFFF -l} ${diskiograph 26,190 FFFFFF FFFFFF -l}  \
+${voffset 50}\
+${goto 80}${font FontAwesome : size=15}  \
+${font Droid Sans : size=15}\
+CPU: ${cpu}% \
+\
+${goto 280}${font FontAwesome : size=15}  \
+${font Droid Sans : size=15}\
+RAM: ${memperc}% \
+\
+${goto 480}${font FontAwesome : size=15}  \
+${font Droid Sans : size=15}\
+Disk: ${diskio} \
+${voffset -50}\
+\
+${goto 900}${font Droid Sans :size=36}${time %A %B %e} \
+${if_match "${wireless_essid wlp3s0}" == "off/any" }\
+\
+${goto 900}${font}${color1}${voffset 30}Hostname: \
+${color3}${nodename}${voffset -30}\
+${else}\
+\
+${goto 900}${color3}${voffset 30}${font}Weather \
+${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $12 }'| head -1}°${font}${color} \
+${voffset -30}${endif}\
+\
+${voffset -30}${goto 1700}${color1}Proc${color}${voffset 30}\
+${voffset -10}${goto 1700}${color3}${top_mem name 1}${voffset 10}\
+${voffset 10}${goto 1700}${color3}${top_mem name 2}${voffset -10}\
+${voffset 30}${goto 1700}${color3}${top_mem name 3}${voffset -30}\
+\
+${voffset -20}${goto 2200}${color1}${font FontAwesome:size=20} ${voffset -3}\
+${font :size=20}Battery  
+${color3}\
+${if_match ${battery_percent} <= 100 } ${if_match ${battery_percent} >= 80} \
+${goto 2200}${font FontAwesome:size=50}  \
+${endif}${endif}\
+\
+${if_match ${battery_percent} < 80 } ${if_match ${battery_percent} >= 60}\
+${goto 2200}${font FontAwesome:size=50} \
+${endif}${endif}\
+\
+${if_match ${battery_percent} < 60 } ${if_match ${battery_percent} >= 40}\
+${goto 2200}${font FontAwesome:size=50} \
+${endif}${endif}\
+\
+${if_match ${battery_percent} < 40 } ${if_match ${battery_percent} >= 20}\
+${goto 2200}${font FontAwesome:size=50} \
+${endif}${endif}\
+\
+${if_match ${battery_percent} < 20 } ${if_match ${battery_percent} >= 0}\
+${goto 2200}${font FontAwesome:size=50} \
+${endif}${endif}\
+

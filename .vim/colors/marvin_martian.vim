@@ -45,8 +45,9 @@ hi Type ctermfg=34
 hi SpellBad cterm=underline ctermfg=none ctermbg=none
 hi SpellLocal cterm=underline ctermfg=4 ctermbg=none
 hi SpellCap cterm=underline ctermfg=4 ctermbg=none
-hi NonText ctermfg=239
+hi NonText ctermfg=239 
 hi SpecialKey ctermfg=239
+" hi Normal ctermbg=236
 "hi Comment ctermfg=81 guifg=#80a0ff
 
 "##### CursorLine #####
@@ -74,7 +75,7 @@ hi String ctermfg=34
 hi MatchParen term=bold ctermfg=76 ctermbg=none
 
 " set colorcolumn color
-hi ColorColumn ctermbg=8
+hi ColorColumn ctermbg=236
 
 " Vertual line hilight color
 hi Visual ctermfg=70 ctermbg=238 guifg=#52b000 guibg=#585858

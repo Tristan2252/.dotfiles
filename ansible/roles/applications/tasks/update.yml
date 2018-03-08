@@ -1,0 +1,13 @@
+---
+# file: update.yml
+# run basic update and upgrade
+
+
+- name: Running Basic Apt Update
+  apt:
+          update_cache=yes
+
+- name: Running Basic Apt Upgrade
+  apt:
+          upgrade=dist
+

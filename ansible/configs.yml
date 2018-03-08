@@ -1,0 +1,39 @@
+---
+# basic.yml
+# run roles
+
+
+- hosts: local
+  connection: local
+  vars:
+          conf_files:
+              - .config/compton.conf
+              - .tmux.conf
+              - .bashrc 
+              - .gitconfig
+              - .conkyrc 
+              - .gtkrc-2.0
+          conf_folders:
+              - .config/gtk-3.0
+              - .config/powerline
+              - .i3
+              - .vim
+          scripts:
+              - backlight.sh
+              - brightness.sh
+
+           ## Printers to be added ##
+          printers:
+                  # see hp drivers here: https://github.com/twaugh/hplip/tree/master/ppd/hpcups
+              - { name: 'HpNetPrinter', location: 'socket://192.168.1.123:9100', driver: 'drv:///hpcups.drv/hp-deskjet_2540_series.ppd' }
+              - { name: 'Office', location: 'dnssd://Dell%20Laser%20Printer%201700n._printer._tcp.local/', driver: 'drv:///sample.drv/generic.ppd' }
+
+           ## Pantheon Terminal Settings ##
+          terminal_settings:
+              - { name: 'background', value: "'rgba(0, 0, 0, 0.65)'" }
+              - { name: 'foreground', value: "'#E9ECED'" }
+              - { name: 'font', value: "'Source Code Pro for Powerline 10'" }
+              - { name: 'tab-bar-behavior', value: "'Never Show Tabs'" }
+              - { name: 'prefer-dark-style', value: "true" }
+  roles:
+          - configs

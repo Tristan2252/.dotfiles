@@ -1,0 +1,7 @@
+---
+
+- name: Configure Network Timeout
+  copy: src={{ ansible_env.HOME }}/.dotfiles/configs/reduce-timeout.conf  dest=/etc/systemd/system/network-online.target.wants/reduce-timeout.conf force=yes
+  become: true
+
+

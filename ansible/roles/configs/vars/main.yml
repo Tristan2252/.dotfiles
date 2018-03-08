@@ -1,0 +1,7 @@
+--- 
+
+gestures_dependencies: 
+        - git
+        - xdotool 
+        - wmctrl
+        - libinput-tools

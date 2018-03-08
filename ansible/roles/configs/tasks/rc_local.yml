@@ -1,0 +1,8 @@
+---
+# rc_local.yml
+# copy over rc.local file
+
+- name: Create rc.local
+  copy: src={{ ansible_env.HOME }}/.dotfiles/configs/rc.local dest=/etc/rc.local force=yes
+  become: true
+

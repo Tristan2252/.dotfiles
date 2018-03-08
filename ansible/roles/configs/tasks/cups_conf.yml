@@ -1,0 +1,9 @@
+---
+# file cups_conf.yml
+# configure cups with hp printer
+
+- name: Setup Printers
+  #command: "lpadmin -p {{ item.name }} -E -v {{ item.location }} -P {{ item.driver }}"
+  command: "lpadmin -p {{ item.name }} -E -v {{ item.location }} -m {{ item.driver }}"
+  with_items: "{{ printers }}"
+  become: true

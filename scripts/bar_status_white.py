@@ -92,6 +92,11 @@ def status_bat(cpalette, delim):
     else: 
         BAT_COLOR = "cb4b16"
         string = "BAT:   {}".format(percent)
+        
+        ###### figure out how to send notify only once, do not uncomment #####
+        #if(percent < 5): 
+        #    os.popen("notify-send 'Low Battery' --icon=notification-gpm-battery-empty")
+
         return delim("d75f00") + "," + make_json(string + status_sound(), "d75f00", "002b36")
 
     return delim(cpalette[0], cpalette[1]) + "," + make_json(string + status_sound(), cpalette[0], cpalette[1])

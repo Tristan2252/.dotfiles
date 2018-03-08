@@ -7,11 +7,11 @@ no_buffers yes
 #imlib_cache_size 10
 
 # Window specifications #
-gap_x 0
+gap_x 50
 gap_y 50
 #gap_y 350
-minimum_size 500 700
-maximum_width 300
+minimum_size 500 900
+maximum_width 250
 alignment top_right
 own_window yes
 ##This line keeps conky from getting controlled by the wm:
@@ -96,7 +96,7 @@ ${endif}
 
 ${color}\
 ${goto 40}${font Droid Sans :size=36}\
-${time %A}
+${time %a}
 ${goto 40}${font :bold}${voffset -20}${color}\
 ${time %B %e}\
 ${voffset 20}

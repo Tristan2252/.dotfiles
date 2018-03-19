@@ -22,7 +22,7 @@ A repo to store all my dotfiles along with other scripts for configuration and s
 
 ### Installing
 To install `.dotfiles` 
-    * `cd` into the ansible directory
-    * install ansible using `sudo apt install ansible`
-    * after ansible is installed to run complete install run `./run.sh`
-        - to only install components use ansible tags with the comand `ansible-playbook -i hosts <playbook>.yml --tags 'tag1,tag1'`
+* `cd` into the ansible directory
+* install ansible using `sudo apt install ansible`
+* after ansible is installed to run complete install run `./run.sh`
+   - to only install components use ansible tags with the comand `ansible-playbook -i hosts <playbook>.yml --tags 'tag1,tag1'`

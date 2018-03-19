@@ -26,4 +26,7 @@ if [ -e /etc/iptables.up.rules ]; then
     iptables-restore < /etc/iptables.up.rules
 fi
 
+# disable bluetooth
+rfkill block bluetooth
+
 exit 0

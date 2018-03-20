@@ -4,6 +4,9 @@
 
 export TERM='screen-256color'
 
+# enable vim man pages
+export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+
 #### Test if powerline exists
 if [ -e /usr/local/lib/python3.4/dist-packages/powerline ]; then
     powerline-daemon -q 

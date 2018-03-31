@@ -1,0 +1,15 @@
+### run systemctl daemon-reload to reload any changes made to file
+
+[Unit]
+Description=Lock the screen automatically after a timeout
+After=suspend.target
+
+[Service]
+Type=forking
+User=tristan
+Environment=DISPLAY=:0
+ExecStart=/home/tristan/.dotfiles/scripts/lockstat.sh
+ExecStop=/home/tristan/.dotfiles/scripts/lockpic.sh
+
+[Install]
+WantedBy=suspend.target

@@ -20,7 +20,7 @@ def dividor(bgcolor, fgcolor):
 def status_net(cpalette, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
     string = "  WAN:    " + output.split(", ")[0] + "    "
-    return delim(cpalette[1], cpalette[0]) + "," + make_json(string, cpalette[1], cpalette[0])
+    return delim(cpalette[1], cpalette[2]) + "," + make_json(string, cpalette[1], cpalette[2])
 
 def status_cpu(cpalette, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
@@ -57,13 +57,13 @@ def status_date(cpalette, delim):
     date_num = os.popen("date +'%m/%d/%Y'").read().rstrip()
     
     string = "     " + day + " " + date_num + "    "
-    return delim(cpalette[1], cpalette[0]) + "," + make_json(string, cpalette[1], cpalette[0])
+    return delim(cpalette[1], cpalette[2]) + "," + make_json(string, cpalette[1], cpalette[2])
 
 def status_time(cpalette, delim):
     time = os.popen("date +'%I:%M:%S'").read().rstrip()
     
     string  = "    " + time + "    "
-    return delim(cpalette[1], cpalette[0]) + "," + make_json(string, cpalette[1], cpalette[0])
+    return delim(cpalette[1], cpalette[2]) + "," + make_json(string, cpalette[1], cpalette[2])
 
 def status_bat(cpalette, delim):
     
@@ -106,8 +106,9 @@ def main():
 
     light_gray = "b3b2b2"
     dark_gray = "262626"
+    light_orange = "cc8157"
 
-    color_palette = [light_gray, dark_gray]
+    color_palette = [light_gray, dark_gray, light_orange]
     output = os.popen("conky -i 1").read().rstrip()
 
     # needs to be one single write to stdout because of i3status but 

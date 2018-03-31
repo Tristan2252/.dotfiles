@@ -1,0 +1,35 @@
+---
+
+- name: Install Packages Pip
+  apt:
+          name: "python3-pip"
+  become: True
+
+- name: Install Powerline
+  pip: executable=/usr/bin/pip3 name=powerline-status
+
+- set_fact:
+        package: "powerline"
+        config: ".config/powerline"
+ 
+- name: Checking Existing {{ config }}
+  stat: path={{ ansible_env.HOME }}/{{ config }}
+  register: file
+
+- name: Remove Old {{ config }}
+  file: path={{ file.stat.path }} state=absent force=yes
+  when: file.stat.exists == True
+
+- name: Linking {{ package }}
+  command: "/bin/ln -fs {{ playbook_dir }}/roles/setup/files/{{ config }} {{ ansible_env.HOME }}/{{ config }}"
+
+- name: Clone Powerline Fonts From Git
+  git:
+    repo: 'https://github.com/powerline/fonts.git'
+    dest: "/tmp/fonts"
+  register: install
+
+- name: Run Powerline Fonts Installer
+  command: "/tmp/fonts/install.sh"
+  when: install.changed  # skip install if already done
+

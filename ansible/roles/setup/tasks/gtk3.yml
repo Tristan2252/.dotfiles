@@ -1,0 +1,23 @@
+---
+
+- set_fact:
+        package: "gtk2"
+        config: ".config/gtk-3.0"
+
+#- name: Install Packages {{ package }}
+#apt:
+#        name: "{{ package }}"
+#become: True
+
+- name: Checking Existing {{ config }}
+  stat: path={{ ansible_env.HOME }}/{{ config }}
+  register: file
+
+- name: Remove Old {{ config }}
+  file: path={{ file.stat.path }} state=absent force=yes
+  when: file.stat.exists == True
+
+- name: Linking {{ package }}
+  command: "/bin/ln -fs {{ playbook_dir }}/roles/setup/files/{{ config }} {{ ansible_env.HOME }}/{{ config }}"
+
+

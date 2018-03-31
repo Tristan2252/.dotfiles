@@ -1,7 +1,0 @@
----
-# file: terminal_config.yml
-# set basic terminal settings using gesttings
-
-- name: Config Terminal
-  command: "gsettings set io.elementary.terminal.settings {{ item.name }} {{ item.value }}"
-  with_items: " {{ terminal_settings }}"

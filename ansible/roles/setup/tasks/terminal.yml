@@ -1,0 +1,41 @@
+---
+
+- name: Install Packages Pantheon-Terminal
+  apt:
+          name: "{{ item }}"
+  with_items:
+    - cmake
+    - intltool
+    - libgranite-dev
+    - libvte-2.91-dev
+    - valac
+  become: True
+
+- name: Checking Install Pantheon-Terminal
+  stat: path=/usr/local/bin/pantheon-terminal
+  register: file
+
+- name: Clone Pantheon-Terminal
+  git:
+    repo: 'https://github.com/Tristan2252/terminal.git'
+    dest: "/tmp/terminal"
+    version: 0.4.3-no-title-bar
+  when: file.stat.exists == False
+
+
+- name: Install Pantheon-Terminal
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/terminal"
+  with_items:
+    - cmake .
+    - make
+    - make install
+  become: true
+  ignore_errors: true
+  when: file.stat.exists == False
+
+- name: Config Terminal
+  command: "gsettings set org.pantheon.terminal.settings {{ item.name }} {{ item.value }}"
+  with_items: " {{ terminal_settings }}"
+

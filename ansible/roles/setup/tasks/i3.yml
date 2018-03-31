@@ -1,0 +1,72 @@
+---
+
+- set_fact:
+        package: "i3"
+        config: ".i3"
+
+- name: Install Dependencies {{ package }}
+  apt:
+          name: "{{ item }}"
+  with_items:
+    - xinit
+    - i3
+    # i3lock dependencies
+    - build-essential
+    - pkg-config
+    - libcairo2-dev
+    - libxcb-dpms0-dev
+    - libxcb-xinerama0-dev
+    - libxcb-image0-dev
+    - libxcb-xkb-dev
+    - libxkbcommon-dev
+    - libxkbcommon-x11-dev
+    - libxcb-util-dev
+    - libpam0g-dev
+    - libev-dev
+  become: True
+
+- name: Install Packages {{ package }}
+  apt:
+          name: "{{ item }}"
+  with_items: "{{ desktop }}"
+  become: True
+
+- name: Checking Existing {{ config }}
+  stat: path={{ ansible_env.HOME }}/{{ config }}
+  register: file
+
+- name: Remove Old {{ config }}
+  file: path={{ file.stat.path }} state=absent force=yes
+  when: file.stat.exists == True
+
+- name: Linking {{ package }}
+  command: "/bin/ln -fs {{ playbook_dir }}/roles/setup/files/{{ config }} {{ ansible_env.HOME }}/{{ config }}"
+
+- name: Clone i3lock From Git
+  git:
+    repo: 'https://github.com/Lixxia/i3lock'
+    dest: "/tmp/i3lock"
+
+- name: Build i3lock and Install
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/i3lock"
+  with_items:
+    - make
+    - make install
+  become: true
+  ignore_errors: true
+
+- name: Create Lock Service
+  copy: src={{ playbook_dir }}/roles/setup/files/configs/lock.service dest=/etc/systemd/system/lock.service 
+  become: true
+  register: service
+
+- name: Reload SystemD
+  command: "{{ item }}"
+  with_items:
+          - systemctl daemon-reload
+          - systemctl enable lock.service
+  become: true
+  when: service.changed
+

@@ -1,0 +1,9 @@
+---
+# file: root_scripts.yml
+# set root pers for files that shoudnt be changed
+
+- name: Set root Script Ownership
+  file: path={{ playbook_dir }}/roles/setup/files/scripts/{{ item }} owner=root group=root
+  with_items: "{{ root_scripts }}"
+  become: true
+

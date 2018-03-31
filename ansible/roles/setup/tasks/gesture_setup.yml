@@ -1,0 +1,46 @@
+---
+
+- set_fact:
+        package: "libinput-tools"
+        config: "libinput-gestures.conf"
+        dependencies:
+                - git
+                - xdotool 
+                - wmctrl
+                - libinput-tools
+
+- name: Gesture Install Dependencies
+  apt:
+          name: '{{ item }}'
+  with_items: "{{ dependencies }}"
+  become: true
+
+- name: Gesture Get Username
+  command: "whoami"
+  register: user
+
+- name: Gesture Set User Permission
+  user:
+        name: "{{ user.stdout }}"
+        groups: input
+        append: yes
+  become: true
+
+- name: Gesture Clone Libinput
+  git:
+    repo: 'https://github.com/bulletmark/libinput-gestures.git'
+    dest: "/tmp/libinput-gestures"
+  register: install
+
+- name: Gesture Install
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/libinput-gestures"
+  with_items:
+    - make install
+  become: true
+  ignore_errors: true
+
+- name: Gesture Configure
+  copy: src={{ playbook_dir }}/roles/setup/files/configs/libinput-gestures.conf dest=/etc/libinput-gestures.conf force=yes
+  become: true

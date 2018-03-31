@@ -1,5 +1,14 @@
 #! /bin/bash
 
+if [ "$1" = '-h' ]; then
+    echo "$ ./run [INSTALL TAG]"
+    echo ""
+    echo "Install Tags: "
+    echo ""
+    cat roles/setup/tasks/main.yml | grep -o -e " [a-z,1-9,_]*\.yml" -e ".*tags.*"
+    exit 0
+fi
+
 if [ -e /usr/bin/ansible-playbook ]; then
 
     sudo -v

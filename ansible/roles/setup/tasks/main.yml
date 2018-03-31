@@ -2,55 +2,55 @@
 # file: main.yml
 
 - include: update.yml
-  tags: [update]
+  tags: [ update ]
 
 - include: common.yml
-  tags: [common]
+  tags: [ common ]
 
 - include: cups.yml
-  tags: [cups]
+  tags: [ cups ]
 
 - include: terminal.yml
-  tags: [terminal]
+  tags: [ terminal ]
 
 - include: latex.yml
-  tags: [latex]
+  tags: [ latex ]
 
 - include: gesture_setup.yml
-  tags: [gestures]
+  tags: [ gestures ]
 
 - include: powerline.yml
-  tags: [powerline,links]
+  tags: [ powerline, links ]
 
 - include: vim.yml
-  tags: [vim,links,latex]
+  tags: [ vim, links, latex ]
 
 - include: tmux.yml
-  tags: [tmux,links]
+  tags: [ tmux, links ]
 
 - include: git.yml
-  tags: [git,links]
+  tags: [ git, links ] 
 
 - include: bash.yml
-  tags: [bash,links]
+  tags: [ bash, links ]
 
 - include: i3.yml
-  tags: [i3,links,desktop]
+  tags: [ i3, links, desktop ]
 
 - include: conky.yml
-  tags: [conky,links,desktop]
+  tags: [ conky, links, desktop ]
 
 - include: gtk2.yml
-  tags: [gtk2,links,desktop]
+  tags: [ gtk2, links, desktop ]
 
 - include: gtk3.yml
-  tags: [gtk3,links,desktop]
+  tags: [ gtk3, links, desktop ]
 
 - include: compton.yml
-  tags: [compton,links,desktop]
+  tags: [ compton, links, desktop ]
 
 - include: rc_local.yml
-  tags: [rc]
+  tags: [ rc ]
 
 - include: root_scripts.yml
   tags: [scripts]

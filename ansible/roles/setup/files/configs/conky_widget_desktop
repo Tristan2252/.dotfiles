@@ -94,12 +94,13 @@ ${font }\
 ${endif}
 
 
-${color}\
-${goto 40}${font Droid Sans :size=36}\
-${time %a}
-${goto 40}${font :bold}${voffset -20}${color}\
-${time %B %e}\
-${voffset 20}
+#${color}\
+#${goto 40}${font Droid Sans :size=36}\
+#${time %a}
+#${goto 40}${font :bold}${voffset -20}${color}\
+#${time %B %e}\
+#${voffset 20}
+#
 #\
 #${goto 40}${font Droid Sans:bold:size=20}${color1}Proc${color}${font Droid Sans:size=15}
 #${goto 50}${color3}${top_mem name 1}

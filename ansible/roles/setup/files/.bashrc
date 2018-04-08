@@ -145,3 +145,6 @@ alias cse-l='cd /Users/tristan/Documents/CSE/122/Labs'
 alias lc='ls --color=none'
 alias feh='feh --scale '
 
+###### VIM MAN PAGES #####
+export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+

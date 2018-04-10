@@ -173,7 +173,7 @@ bar {
         font pango:Source Code Pro for Powerline 10
 	status_command exec ~/.dotfiles/scripts/bar_status_run
 	position 	top
-	separator_symbol "|"
+	#separator_symbol "|"
 	#verbose yes 
 
 	colors {
@@ -235,6 +235,7 @@ exec conky -c .dotfiles/configs/conky_widget_desktop
 #floating_minimum_size 1200 x 1500
 floating_maximum_size 1200 x 1500
 
+for_window [class=feh] floating enable
 for_window [class="TeamViewer"] floating enable
 
 

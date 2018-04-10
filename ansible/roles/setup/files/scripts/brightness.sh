@@ -14,10 +14,10 @@ if [ $1 = "+" ]; then
     if [ $SET_VAL -le $MAX ]; then
 
         VALUE=$(echo "scale = 2; (($CUR_VAL / $MAX) * 100)" | bc)
-        notify-send "Volume" --icon=notification-gpm-brightness-lcd -h int:value:$VALUE -h string:synchronous:volume
+        $HOME/.dotfiles/scripts/dunstify -r 20 "    Brightness: $VALUE%"
 
         for i in $(seq $CUR_VAL 2 $SET_VAL); do
-            echo $i | sudo tee /sys/class/backlight/intel_backlight/brightness
+            echo $i | sudo tee /sys/class/backlight/intel_backlight/brightness # be sure to add command to sudo file
         done 
     fi
 elif [ $1 = "-" ]; then 
@@ -29,7 +29,7 @@ elif [ $1 = "-" ]; then
     fi
 
     VALUE=$(echo "scale = 2; (($CUR_VAL / $MAX) * 100)" | bc)
-    notify-send "Volume" --icon=notification-gpm-brightness-lcd -h int:value:$VALUE -h string:synchronous:volume
+    $HOME/.dotfiles/scripts/dunstify -r 20 "   Brightness: $VALUE%"
 
     for i in $(seq $CUR_VAL -2 $SET_VAL); do
         # check if value is within range of brightness levels

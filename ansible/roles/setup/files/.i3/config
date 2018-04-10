@@ -194,14 +194,14 @@ bindsym XF86AudioLowerVolume exec /home/tristan/.dotfiles/scripts/volume.sh -
 bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec sudo /home/tristan/.dotfiles/scripts/brightness.sh +
-bindsym XF86MonBrightnessDown exec sudo /home/tristan/.dotfiles/scripts/brightness.sh -
+bindsym XF86MonBrightnessUp exec /home/tristan/.dotfiles/scripts/brightness.sh +
+bindsym XF86MonBrightnessDown exec /home/tristan/.dotfiles/scripts/brightness.sh -
 #bindsym XF86MonBrightnessUp exec xbacklight -inc 1 # increase screen brightness
 #bindsym XF86MonBrightnessDown exec xbacklight -dec 1 # decrease screen brightness
 
 # Keyboard backlight 
-bindsym XF86KbdBrightnessUp exec sudo /home/tristan/.dotfiles/scripts/backlight.sh +
-bindsym XF86KbdBrightnessDown exec sudo /home/tristan/.dotfiles/scripts/backlight.sh -
+bindsym XF86KbdBrightnessUp exec /home/tristan/.dotfiles/scripts/backlight.sh +
+bindsym XF86KbdBrightnessDown exec /home/tristan/.dotfiles/scripts/backlight.sh -
 
 # lock keybind
 bindsym $mod+l exec sudo systemctl start lock
@@ -227,6 +227,9 @@ exec feh --bg-scale .wallpaper.jpg
 
 # start compton
 exec compton
+
+# notification service
+exec dunst
 
 # start desktop widget
 exec conky -c .dotfiles/configs/conky_widget_desktop 

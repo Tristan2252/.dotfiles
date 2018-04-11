@@ -88,5 +88,10 @@
               - { repo: 'https://github.com/sirver/ultisnips', dest: "ultisnips" }
               - { repo: 'https://github.com/honza/vim-snippets.git', dest: "vim-snippets" }
 
+        sudoers:
+              - 'tristan ALL=(ALL) NOPASSWD: /bin/systemctl start lock'
+              - 'tristan ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/brightness'
+              - 'tristan ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/class/leds/smc\:\:kbd_backlight/brightness'
+
   roles:
           - setup

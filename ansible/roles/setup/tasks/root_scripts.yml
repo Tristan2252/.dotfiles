@@ -1,9 +1,10 @@
 ---
-# file: root_scripts.yml
-# set root pers for files that shoudnt be changed
 
-- name: Set root Script Ownership
-  file: path={{ playbook_dir }}/roles/setup/files/scripts/{{ item }} owner=root group=root
-  with_items: "{{ root_scripts }}"
+- name: Setup root Script Permissions
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    insertafter: EOF
+    line: '{{ item }}'
+  with_items: "{{ sudoers }}"
   become: true
-

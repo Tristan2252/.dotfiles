@@ -37,6 +37,9 @@
 - include: i3.yml
   tags: [ i3, links, desktop ]
 
+- include: notify.yml
+  tags: [ notify, links, desktop ]
+
 - include: conky.yml
   tags: [ conky, links, desktop ]
 

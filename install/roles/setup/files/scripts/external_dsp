@@ -6,7 +6,7 @@ xrandr --output HDMI2 --off --output eDP1 --auto
 if [ "$(xrandr | grep HDMI2 | awk '{ print $2$3 }')" = "connected(normal" ]; then
     xrandr --output HDMI2 --right-of eDP1 --auto --output eDP1 --auto
     sleep 2
-    feh --bg-scale /home/tristan/.wallpaper.jpg
+    #feh --bg-scale /home/tristan/.wallpaper.jpg
 else 
     xrandr --output HDMI2 --off --output eDP1 --auto 
 fi

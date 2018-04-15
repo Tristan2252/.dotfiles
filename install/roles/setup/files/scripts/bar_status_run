@@ -13,6 +13,6 @@ echo '[],'
 #exec conky -c ~/conkyrc
 
 while :; do 
-    ~/.dotfiles/scripts/bar_status_white.py
+    ~/.dotfiles/scripts/bar_status.py
     sleep 1
 done 

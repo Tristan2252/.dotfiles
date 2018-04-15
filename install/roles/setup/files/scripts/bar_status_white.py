@@ -108,7 +108,7 @@ def main():
     dark_gray = "262626"
     light_orange = "cc8157"
 
-    color_palette = [light_gray, dark_gray, light_orange]
+    color_palette = ["c9c9c9", "071618", "c9c9c9"]
     output = os.popen("conky -i 1").read().rstrip()
 
     # needs to be one single write to stdout because of i3status but 

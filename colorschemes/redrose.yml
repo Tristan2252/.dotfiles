@@ -12,10 +12,11 @@
         white_red: 'b64f61'
 
         i3_bar_bg: "{{ black_green }}"
+        i3_bar_fg: "{{ light_gray }}"
         i3_active_bg: "{{ black_green }}"
         i3_active_fg: "{{ black_green }}"
         i3_inactive_bg: "{{ black }}"
-        i3_inactive_fg: "{{ white }}"
+        i3_inactive_fg: "{{ light_gray }}"
 
         status_bg: "{{ black_green }}"
         status_fg: "{{ light_gray }}"
@@ -27,6 +28,7 @@
         ls_folder: "{{ white_red }}"
 
         gtk_window: "{{ black_green }}"
+        gtk_menu_text: "{{ light_gray }}"
 
         terminal: '#073642:#dc322f:#859900:#b58900:#268bd2:#ec0048:#2aa198:#94a3a5:#586e75:#cb4b16:#859900:#b58900:#{{ ls_folder }}:#d33682:#2aa198:#6c71c4'
 
@@ -43,6 +45,7 @@
                 - { name: "inactive_bg", color: "{{ i3_inactive_bg }}"}
                 - { name: "inactive_fg", color: "{{ i3_inactive_fg }}"}
                 - { name: "bar_bg", color: "{{ i3_bar_bg }}"}
+                - { name: "bar_fg", color: "{{ i3_bar_fg }}"}
 
         - name: Setup Status Bar Color
           lineinfile:
@@ -63,14 +66,17 @@
           with_items: 
                 - { name: "background", color: "{{ dunst_bg }}"}
                 - { name: "foreground", color: "{{ dunst_fg }}"}
-        
-        - name: Setup Gtk Window Color
-          replace:
+
+        - name: Setup Gtk Color
+          blockinfile:
             dest: "{{ ansible_env.HOME }}/.config/gtk-3.0/gtk.css"
-            regexp: '{{ item.name }}: #.*'
-            replace: '{{ item.name }}: #{{ item.color }};'
-          with_items: 
-                - { name: "background-color", color: "{{ gtk_window }}"}
+            marker: "/* {mark} {{ item.name }} */"
+            block: | 
+                    {{ item.name }} { {{ item.attribute }}: #{{ item.color }}; }
+          with_items:
+                - { name: "GtkAccelLabel", attribute: "color",  color: "{{ gtk_menu_text }}" }
+                - { name: "GtkMenuBar", attribute: "background-color", color: "{{ gtk_window }}"}
+
 
         - name: Config Terminal
           command: "gsettings set org.pantheon.terminal.settings palette {{ terminal }}"

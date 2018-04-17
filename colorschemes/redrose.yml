@@ -5,19 +5,29 @@
 - hosts: local
   connection: local
   vars:
-        i3_bar_bg: '151414' 
-        i3_active_bg: "{{ i3_bar_bg }}"
-        i3_active_fg: "{{ i3_bar_bg }}"
-        i3_inactive_bg: '000000'
-        i3_inactive_fg: 'ffffff' 
+        white: 'ffffff'
+        black: '000000'
+        light_gray: 'c9c9c9'
+        black_green: '151414'
+        white_red: 'b64f61'
 
-        status_bg: "{{ i3_bar_bg }}"
-        status_fg: "c9c9c9"
-        status_secondary_fg: "ffffff"
+        i3_bar_bg: "{{ black_green }}"
+        i3_active_bg: "{{ black_green }}"
+        i3_active_fg: "{{ black_green }}"
+        i3_inactive_bg: "{{ black }}"
+        i3_inactive_fg: "{{ white }}"
 
-        dunst_bg: '151414'
-        dunst_fg: '920720'
-        ls_folder: "b64f61"
+        status_bg: "{{ black_green }}"
+        status_fg: "{{ light_gray }}"
+        status_secondary_fg: "{{ white }}"
+
+        dunst_bg: "{{ light_gray }}"
+        dunst_fg: "{{ black_green }}"
+
+        ls_folder: "{{ white_red }}"
+
+        gtk_window: "{{ black_green }}"
+
         terminal: '#073642:#dc322f:#859900:#b58900:#268bd2:#ec0048:#2aa198:#94a3a5:#586e75:#cb4b16:#859900:#b58900:#{{ ls_folder }}:#d33682:#2aa198:#6c71c4'
 
   tasks:
@@ -53,6 +63,14 @@
           with_items: 
                 - { name: "background", color: "{{ dunst_bg }}"}
                 - { name: "foreground", color: "{{ dunst_fg }}"}
+        
+        - name: Setup Gtk Window Color
+          replace:
+            dest: "{{ ansible_env.HOME }}/.config/gtk-3.0/gtk.css"
+            regexp: '{{ item.name }}: #.*'
+            replace: '{{ item.name }}: #{{ item.color }};'
+          with_items: 
+                - { name: "background-color", color: "{{ gtk_window }}"}
 
         - name: Config Terminal
           command: "gsettings set org.pantheon.terminal.settings palette {{ terminal }}"

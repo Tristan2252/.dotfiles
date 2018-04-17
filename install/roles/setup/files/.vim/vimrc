@@ -85,11 +85,6 @@ autocmd FileType tex,latex call LatexSettings()
 autocmd FileType vim,python,sh call PlainTextTab4()
 autocmd FileType c call PlainTextTab8()
 
-" Delete line mapings
-nnoremap D V$"_d
-" Enter bash command, call bash, then redraw after exit
-nnoremap <C-c> :! bash <CR>
-imap <C-c> <esc> :! bash <CR> i
 " vertical split key map"
 nnoremap \ :vsp<CR>:wincmd l<CR>
 imap <C-\> <Esc>:vsp<CR>
@@ -97,8 +92,6 @@ imap <C-\> <Esc>:vsp<CR>
 " Keymapping for window management
 map = <C-W>+
 map - <C-W>-
-" map , :vertical resize +5<CR>
-" map . :vertical resize -5<CR>
 "Unmap p in normal mode because of tmux p command"
 map p <Nop> 
 
@@ -112,7 +105,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'passive_filetypes': ['tex','latex']  }
 
-" UltiSnips settings
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -131,7 +123,6 @@ if isdirectory("/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/")
     set noshowmode
 endif
 
-" Mac directory is a little different -__-
 if isdirectory("/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/")
     set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/
     set laststatus=2

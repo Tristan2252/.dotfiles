@@ -10,8 +10,6 @@ echo '['
 echo '[],'
 
 # Now send blocks with information forever:
-#exec conky -c ~/conkyrc
-
 while :; do 
     ~/.dotfiles/scripts/bar_status.py
     sleep 1

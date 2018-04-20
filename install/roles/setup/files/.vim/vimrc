@@ -17,7 +17,8 @@ set backspace=indent,eol,start      "Set backspace on everything in insert mode,
 set ttyfast                         "faster scrolling
 set cursorline                      "highlight cursor line"
 set noerrorbells                    "Disable that horrible bell!"
-colorscheme marvin_martian
+
+colorscheme monokai
 highlight Cursor guifg=#FFFFFF guibg=#FFFFFF
 highlight iCursor guifg=#FFFFFF guibg=#FFFFFF
 

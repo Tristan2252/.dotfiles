@@ -169,7 +169,7 @@ hi! link WarningMsg SublimeRed
 
 " Generic Syntax Highlighting (see reference: 'NAMING CONVENTIONS' at http://vimdoc.sourceforge.net/htmldoc/syntax.html#group-name)
 
-hi! link Comment      SublimeWarmGrey
+hi! link Comment      SublimeGrey
 hi! link Constant     SublimePurple
 hi! link String       SublimeYellow
 hi! link Character    SublimeYellow
@@ -196,10 +196,10 @@ hi! link Include        SublimeWhite
 hi! link Define         SublimePink
 hi! link Macro          SublimeGreen
 hi! link PreCondit      SublimeWhite
-hi! link Special        SublimePurple
+hi! link Special        SublimeAqua
 hi! link SpecialChar    SublimePink
 hi! link Tag            SublimeGreen
-hi! link Delimiter      SublimePink
+hi! link Delimiter      SublimeAqua
 hi! link SpecialComment SublimeAqua
 " call s:h('Debug'          {})
 call s:h('Underlined',    { 'format': 'underline' })
@@ -541,12 +541,16 @@ hi! link sqlKeyword   Keyword
 hi! link sqlStatement Keyword
 
 " Latex
-hi! link Special             SpecialKey
 hi! link texDelimiter        SublimeDarkGrey
-hi! link texBeginEnd         SublimeGreen
+hi! link texBeginEnd         SublimePurple
 hi! link texBeginEndName     SublimeOrange
-hi! link texMath             SublimePurple
+hi! link texMath             SublimeWhite
+hi! link texMathOper         SublimeGreen
 hi! link texSpecialChar      SublimePurple
+hi! link texStatement        SublimeGreen
+hi! link texDocType          SublimePurple
+hi! link texCmdArgs          SublimeOrange
+hi! link texInputCurlies     SublimeEscapedSequence
 
 
 " Syntastic
@@ -628,3 +632,5 @@ hi! link zshTypes    Keyword
 " * Semicolons in `if` blocks are `Keyword`ed in Sublime but not distinct in
 "     Vim
 " * Commands aren't distinct from builtins and keywords in Vim
+"
+hi SpellBad cterm=underline ctermfg=none ctermbg=none

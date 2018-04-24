@@ -19,6 +19,8 @@ set cursorline                      "highlight cursor line"
 set noerrorbells                    "Disable that horrible bell!"
 
 colorscheme monokai
+" disable background
+hi Normal guibg=NONE ctermbg=NONE
 highlight Cursor guifg=#FFFFFF guibg=#FFFFFF
 highlight iCursor guifg=#FFFFFF guibg=#FFFFFF
 

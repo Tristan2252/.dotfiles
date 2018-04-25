@@ -541,16 +541,17 @@ hi! link sqlKeyword   Keyword
 hi! link sqlStatement Keyword
 
 " Latex
-hi! link texDelimiter        SublimeDarkGrey
 hi! link texBeginEnd         SublimeRed
 hi! link texBeginEndName     SublimeOrange
+hi! link texCmdArgs          SublimeOrange
+hi! link texComment          SublimeGre
+hi! link texDelimiter        SublimeDarkGrey
+hi! link texDocType          SublimePurple
+hi! link texInputCurlies     SublimeEscapedSequence
 hi! link texMath             SublimeWhite
 hi! link texMathOper         SublimeGreen
 hi! link texSpecialChar      SublimePurple
 hi! link texStatement        SublimeGreen
-hi! link texDocType          SublimePurple
-hi! link texCmdArgs          SublimeOrange
-hi! link texInputCurlies     SublimeEscapedSequence
 
 
 " Syntastic

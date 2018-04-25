@@ -4,12 +4,35 @@
         package: "i3"
         config: ".i3"
 
+- name: Add i3gaps Dependencie Repo
+  apt_repository:
+          repo: 'ppa:aguignard/ppa'
+          update_cache: yes
+  become: True
+
 - name: Install Dependencies {{ package }}
   apt:
           name: "{{ item }}"
   with_items:
     - xinit
     - i3
+    # i3gaps dependencies
+    - libxcb1-dev
+    - libxcb-keysyms1-dev
+    - libpango1.0-dev
+    - libxcb-util0-dev
+    - libxcb-icccm4-dev
+    - libyajl-dev
+    - libstartup-notification0-dev
+    - libxcb-randr0-dev
+    - libev-dev
+    - libxcb-cursor-dev
+    - libxcb-xinerama0-dev
+    - libxcb-xkb-dev
+    - libxkbcommon-dev
+    - libxkbcommon-x11-dev
+    - autoconf
+    - libxcb-xrm-dev
     # i3lock dependencies
     - build-essential
     - pkg-config
@@ -41,6 +64,34 @@
 
 - name: Linking {{ package }}
   command: "/bin/ln -fs {{ playbook_dir }}/roles/setup/files/{{ config }} {{ ansible_env.HOME }}/{{ config }}"
+
+- name: Clone i3-Gaps From Git
+  git:
+    repo: 'https://www.github.com/Airblader/i3'
+    dest: "/tmp/i3gaps"
+
+- name: Config i3-Gaps Install
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/i3gaps"
+  with_items:
+    - autoreconf --force --install
+    - rm -rf build/
+    - mkdir -p build
+  become: true
+  ignore_errors: true
+
+- name: Build i3-Gaps and Install
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/i3gaps/build"
+  with_items:
+    - ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+    - make
+    - make install
+  become: true
+  ignore_errors: true
+
 
 - name: Clone i3lock From Git
   git:

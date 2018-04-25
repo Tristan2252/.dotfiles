@@ -542,7 +542,7 @@ hi! link sqlStatement Keyword
 
 " Latex
 hi! link texDelimiter        SublimeDarkGrey
-hi! link texBeginEnd         SublimePurple
+hi! link texBeginEnd         SublimeRed
 hi! link texBeginEndName     SublimeOrange
 hi! link texMath             SublimeWhite
 hi! link texMathOper         SublimeGreen
@@ -634,3 +634,4 @@ hi! link zshTypes    Keyword
 " * Commands aren't distinct from builtins and keywords in Vim
 "
 hi SpellBad cterm=underline ctermfg=none ctermbg=none
+hi SpellLocal ctermfg=none ctermbg=none

@@ -9,6 +9,7 @@
         black: '000000'
         light_gray: 'c9c9c9'
         black_green: '151414'
+        transparent: '151414FF'
         white_red: 'b64f61'
 
         i3_bar_bg: "{{ black_green }}"
@@ -18,7 +19,7 @@
         i3_inactive_bg: "{{ black }}"
         i3_inactive_fg: "{{ light_gray }}"
 
-        status_bg: "{{ black_green }}"
+        status_bg: "{{ transparent }}"
         status_fg: "{{ light_gray }}"
         status_secondary_fg: "{{ white }}"
 

@@ -105,7 +105,7 @@ def status_bat(cpalette, delim):
 def main():
 
     foreground = "c9c9c9"
-    background = "151414"
+    background = "151414FF"
     secondary_fg = "ffffff"
 
     color_palette = [foreground, background, secondary_fg]

@@ -2,11 +2,9 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-
 " Gen settings
 set number
 set numberwidth=6                   "set numberline margin"
-set clipboard=unnamed               "enable copy and paste with clipboard"
 set nowrap                          "Dont like wrapin in vim"
 set colorcolumn=110                 "Colorcolumn length"
 set timeoutlen=1000 ttimeoutlen=0   "Esc delay time"
@@ -17,12 +15,15 @@ set backspace=indent,eol,start      "Set backspace on everything in insert mode,
 set ttyfast                         "faster scrolling
 set cursorline                      "highlight cursor line"
 set noerrorbells                    "Disable that horrible bell!"
+set foldopen-=block                 "dont allow folds to be opened by []"
+set hlsearch                        "hilight search items"
+
+"disable hlsearch when enter is pressed
+nnoremap <CR> :nohlsearch<CR><CR>   
 
 colorscheme monokai
 " disable background
 hi Normal guibg=NONE ctermbg=NONE
-highlight Cursor guifg=#FFFFFF guibg=#FFFFFF
-highlight iCursor guifg=#FFFFFF guibg=#FFFFFF
 
 " Latex Settings for vim
 if has("autocmd")
@@ -112,22 +113,8 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-if isdirectory("/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/")
-    set rtp+=/usr/local/lib/python3.4/dist-packages/powerline/bindings/vim/
-    set laststatus=2
-    set showtabline=1
-    set noshowmode
-endif
-
 if isdirectory("/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/")
     set rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
-    set laststatus=2
-    set showtabline=1
-    set noshowmode
-endif
-
-if isdirectory("/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/")
-    set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/
     set laststatus=2
     set showtabline=1
     set noshowmode

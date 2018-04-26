@@ -199,7 +199,7 @@ hi! link PreCondit      SublimeWhite
 hi! link Special        SublimeAqua
 hi! link SpecialChar    SublimePink
 hi! link Tag            SublimeGreen
-hi! link Delimiter      SublimeAqua
+hi! link Delimiter      SublimeYellow
 hi! link SpecialComment SublimeAqua
 " call s:h('Debug'          {})
 call s:h('Underlined',    { 'format': 'underline' })
@@ -446,6 +446,14 @@ hi! link lessVariable Tag
 hi! link makeCommands    Normal
 hi! link makeCmdNextLine Normal
 
+" Man Page
+hi! link manOptionDesc        SublimeRed
+hi! link manTitle             SublimePink
+hi! link manLongOptionDesc    SublimeGreen
+hi! link manSectionHeading    SublimeYellow
+hi! link manCFuncDefinition   SublimePurple
+hi! link manSubHeading        SublimeOrange
+
 " NERDTree
 
 hi! link NERDTreeBookmarkName    SublimeYellow
@@ -544,14 +552,16 @@ hi! link sqlStatement Keyword
 hi! link texBeginEnd         SublimeRed
 hi! link texBeginEndName     SublimeOrange
 hi! link texCmdArgs          SublimeOrange
-hi! link texComment          SublimeGre
+hi! link texComment          SublimeGrey
 hi! link texDelimiter        SublimeDarkGrey
 hi! link texDocType          SublimePurple
-hi! link texInputCurlies     SublimeEscapedSequence
+hi! link texInputCurlies     SublimeGrey
 hi! link texMath             SublimeWhite
-hi! link texMathOper         SublimeGreen
-hi! link texSpecialChar      SublimePurple
+hi! link texMathOper         SublimeYellow
+hi! link texSpecialChar      SublimeYellow
 hi! link texStatement        SublimeGreen
+hi! link texSection          SublimePink
+
 
 
 " Syntastic

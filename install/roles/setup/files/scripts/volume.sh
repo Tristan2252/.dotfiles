@@ -1,16 +1,21 @@
 #! /bin/bash
 
+if [ "$1" = "-h" ] || [ -z "$1" ] || [ -z "$2" ]; then 
+    printf "volume [+|-] [SINKNUM]\n"
+    exit -1
+fi
+
 if [ "$1" = "+" ]; then 
-    pactl set-sink-volume 1 +2% 
+    pactl set-sink-volume $2 +2% 
 else 
     if [ "$1" = "-" ]; then 
-        pactl set-sink-volume 1 -2%
+        pactl set-sink-volume $2 -2%
     else
         exit 0
     fi
 fi
 
-LEVEL=$(pactl list sinks | grep -e "^[[:space:]]Volume" | tail -1 | sed 's,.* \([0-9][0-9]*\)%.*,\1,')
+LEVEL=$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $2 + 1  )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')
 
 # dunstify is a binary built from the dunst project found here:
 # https://github.com/dunst-project/dunst

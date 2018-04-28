@@ -1,4 +1,5 @@
 ##################### VARS ########################
+set $sinknum 0
 set $wallpaper ~/Pictures/Wallpapers/annie-spratt-260549-unsplash.jpg
 set $active_bg #151414
 set $active_fg #151414
@@ -197,9 +198,9 @@ bar {
 bindsym XF86LaunchB exec /home/tristan/.dotfiles/scripts/external_dsp && feh --bg-fill $wallpaper
 
 # Sound control key binds
-bindsym XF86AudioRaiseVolume exec /home/tristan/.dotfiles/scripts/volume.sh +
-bindsym XF86AudioLowerVolume exec /home/tristan/.dotfiles/scripts/volume.sh -
-bindsym XF86AudioMute exec pactl set-sink-mute 1 toggle
+bindsym XF86AudioRaiseVolume exec /home/tristan/.dotfiles/scripts/volume.sh + $sinknum
+bindsym XF86AudioLowerVolume exec /home/tristan/.dotfiles/scripts/volume.sh - $sinknum
+bindsym XF86AudioMute exec pactl set-sink-mute $sinknum toggle
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec /home/tristan/.dotfiles/scripts/brightness.sh +

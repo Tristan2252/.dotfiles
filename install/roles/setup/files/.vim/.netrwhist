@@ -1,9 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/tristan/.dotfiles/ansible/roles/basic'
-let g:netrw_dirhist_2='/home/tristan/.dotfiles/ansible/roles/basic/tasks'
-let g:netrw_dirhist_3='/home/tristan'
-let g:netrw_dirhist_4='/home/tristan/.dotfiles/install/roles/setup/files/scripts'
-let g:netrw_dirhist_5='/home/tristan/.dotfiles/install/roles/setup/files'
-let g:netrw_dirhist_6='/home/tristan/.dotfiles/install/roles/setup/files/configs'
-let g:netrw_dirhist_7='/home/tristan/.dotfiles/install/roles/setup/files/scripts'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/tristan/Documents/CSE/326/project/farms/server/app/controllers/v1'
+let g:netrw_dirhist_2='/home/tristan/Documents/CSE/326/hw3'
+let g:netrw_dirhist_3='/home/tristan/Documents/CSE/326/project/farms/server/app/controllers/v1'
+let g:netrw_dirhist_4='/home/tristan/Documents/CSE/326/hw3'
+let g:netrw_dirhist_5='/home/tristan/Documents/CSE/326/project/farms/server/app/controllers/v1'
+let g:netrw_dirhist_6='/home/tristan/Documents/CSE/373/hw7'

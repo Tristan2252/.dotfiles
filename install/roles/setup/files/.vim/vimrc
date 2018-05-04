@@ -1,8 +1,10 @@
 execute pathogen#infect()
-syntax on
 filetype plugin indent on
 
-" Gen settings
+" ###########################################################
+" #                       Gen settings                      #
+" ###########################################################
+
 set number
 set numberwidth=6                   "set numberline margin"
 set nowrap                          "Dont like wrapin in vim"
@@ -12,42 +14,49 @@ set incsearch                       "Show search matches while typing"
 set wildmenu                        "Tab complete vim command menu"
 set t_Co=256                        "Set to 16 to fix pantheon term colors in vim"
 set backspace=indent,eol,start      "Set backspace on everything in insert mode, for OS X"
-set ttyfast                         "faster scrolling
 set cursorline                      "highlight cursor line"
 set noerrorbells                    "Disable that horrible bell!"
 set foldopen-=block                 "dont allow folds to be opened by []"
 set hlsearch                        "hilight search items"
+set re=1                            "regex engine"
+"set ttyfast                         "faster scrolling
 
-"disable hlsearch when enter is pressed
-nnoremap <CR> :nohlsearch<CR><CR>   
+" ###########################################################
+" #                        COLORS                           #
+" ###########################################################
 
+" turn on syntx
+syntax on
+" color scheme
 colorscheme monokai
 " disable background
 hi Normal guibg=NONE ctermbg=NONE
 
-" Latex Settings for vim
+" ###########################################################
+" #                       KAY BINDS                         #
+" ###########################################################
+
+"disable hlsearch when enter is pressed
+nnoremap <CR> :nohlsearch<CR>
+" vertical split key map"
+nnoremap \ :vsp<CR>:wincmd l<CR>
+"Unmap p in normal mode because of tmux p command"
+map p <Nop> 
+
+" ###########################################################
+" #               TEMPLATES AUTOCOMMANDS                   #
+" ###########################################################
+
 if has("autocmd")
     augroup templates
     autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
     augroup END
 endif
-fun LatexSettings()
-    let g:tex_flavor='latex'         "Always set to latex file type
-    NoMatchParen                     "Disable matching paren to iliminate lag
-    set list                         "Show non text char's
-    set listchars=tab:>\             "show tabs as '>'
-    set expandtab                    "always add spaces as tabs
-    set tabstop=4
-    set shiftwidth=4
-    set softtabstop=4
-    set spell spelllang=en_us
-    " after write, run pdflatex command in background to compile tex file then
-    " redraw screen if needed
-    autocmd BufWritePost * :silent exec "!pdflatex -interaction=batchmode % > /dev/null" | redraw
-    " ctl-R to render latex file, the % is the current file name
-    map <C-R> :! pdflatex -interaction=batchmode %; lacheck %<CR>
 
-endf
+" ###########################################################
+" #                   FILETYPE FUNCTIONS                    #
+" ###########################################################
 
 " function for Plain Text such as .txt and or markdown
 function PlainTextSettings()
@@ -82,6 +91,23 @@ function PlainTextTab8()
     set softtabstop=8
 endfunction
 
+" Latex Settings for vim
+fun LatexSettings()
+    let g:tex_flavor='latex'         "Always set to latex file type
+    NoMatchParen                     "Disable matching paren to iliminate lag
+    set list                         "Show non text char's
+    set listchars=tab:>\             "show tabs as '>'
+    set expandtab                    "always add spaces as tabs
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4
+    set spell spelllang=en_us
+    " after write, run pdflatex command in background to compile tex file then redraw screen
+    autocmd BufWritePost * :silent exec "!pdflatex -interaction=batchmode % > /dev/null" | redraw
+    " ctl-R to render latex file, the % is the current file name
+    map <C-R> :! pdflatex -interaction=batchmode %; lacheck %<CR>
+endf
+
 
 " Call Functions based of file type
 autocmd FileType markdown,text call PlainTextSettings()
@@ -89,15 +115,6 @@ autocmd FileType tex,latex call LatexSettings()
 autocmd FileType vim,python,sh call PlainTextTab4()
 autocmd FileType c call PlainTextTab8()
 
-" vertical split key map"
-nnoremap \ :vsp<CR>:wincmd l<CR>
-imap <C-\> <Esc>:vsp<CR>
-
-" Keymapping for window management
-map = <C-W>+
-map - <C-W>-
-"Unmap p in normal mode because of tmux p command"
-map p <Nop> 
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}

@@ -56,7 +56,8 @@ color4 FFFFFF
 color5 DCDCDC
 color6 FFFFFF
 color7 FFFFFF
-color8 b20000
+# line color
+color8 FFFFFF
 
 TEXT
 ${voffset 20}

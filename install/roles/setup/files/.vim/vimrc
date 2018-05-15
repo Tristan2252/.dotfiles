@@ -30,7 +30,7 @@ syntax on
 " color scheme
 colorscheme monokai
 " disable background
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
 
 " ###########################################################
 " #                       KAY BINDS                         #

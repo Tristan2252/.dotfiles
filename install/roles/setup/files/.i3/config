@@ -1,6 +1,6 @@
 ##################### VARS ########################
 set $sinknum 0
-set $wallpaper ~/Pictures/Wallpapers/annie-spratt-260549-unsplash.jpg
+set $wallpaper ~/Pictures/Wallpapers/katarzyna-grabowska-647620-unsplash.jpg
 set $active_bg #151414
 set $active_fg #151414
 set $inactive_bg #000000
@@ -182,6 +182,7 @@ bar {
         font pango:Source Code Pro for Powerline 10
 	status_command exec ~/.dotfiles/scripts/bar_status_run
 	position 	top
+	#height 17
 	#separator_symbol "|"
 	#verbose yes 
 

@@ -39,7 +39,7 @@ def status_disk(cpalette, delim, stat):
 
 def status_sound():
     try :
-        output = os.popen("pactl list sinks | grep Mute | tail -1").read().rstrip()
+        output = os.popen("pactl list sinks | grep Mute | head -1").read().rstrip()
         output = output.split(": ")[1]
     except IndexError:
         output = "yes"
@@ -105,7 +105,7 @@ def status_bat(cpalette, delim):
 def main():
 
     foreground = "c9c9c9"
-    background = "151414FF"
+    background = "000000"
     secondary_fg = "ffffff"
 
     color_palette = [foreground, background, secondary_fg]
@@ -113,6 +113,7 @@ def main():
 
     # needs to be one single write to stdout because of i3status but 
     sys.stdout.write("[\n" + 
+            separator(color_palette[1]) + "," +
             status_date(color_palette, dividor) + "," +
             status_time(color_palette, dividor) + "," +
             status_net(color_palette, dividor, output) + "," +

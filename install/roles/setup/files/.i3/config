@@ -1,6 +1,6 @@
 ##################### VARS ########################
-set $sinknum 0
-set $wallpaper ~/Pictures/Wallpapers/katarzyna-grabowska-647620-unsplash.jpg
+set $sinknum 1
+set $wallpaper ~/Pictures/Wallpapers/green-leaves-plant-1072179.jpg
 set $active_bg #151414
 set $active_fg #151414
 set $inactive_bg #000000

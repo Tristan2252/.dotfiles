@@ -39,7 +39,7 @@ def status_disk(cpalette, delim, stat):
 
 def status_sound():
     try :
-        output = os.popen("pactl list sinks | grep Mute | head -1").read().rstrip()
+        output = os.popen("pactl list sinks | grep Mute | tail -1").read().rstrip()
         output = output.split(": ")[1]
     except IndexError:
         output = "yes"

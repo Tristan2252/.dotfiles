@@ -5,21 +5,20 @@ import os, sys, time
 def make_json(string, bgcolor, fgcolor):
     # this is a mess but cant use json.dump because of unicode chars -__- 
     return """ { "full_text": "<span background='#""" + bgcolor + \
-           """' foreground='#""" + fgcolor + """' size='10800' font='FontAwesome 10'> """ + string + \
-           """ </span>", "markup": "pango", "separator": false, "separator_block_width": -8}"""
+           """' foreground='#""" + fgcolor + """' > """ + string + \
+           """ </span>", "markup": "pango", "separator": false, "separator_block_width": -20}"""
 
 def separator(color, dummy_param=""):
-    return """{ "full_text": "<span foreground='#""" + color + """' size='10800'></span>",""" + \
+    return """{ "full_text": "<span foreground='#""" + color + """' ></span>",""" + \
            """ "markup": "pango", "separator":false, "separator_block_width": 0 }"""
 
 def dividor(bgcolor, fgcolor):
-    return """{ "full_text": "<span background='#""" + bgcolor + """' foreground='#""" + fgcolor + \
-            """'size='9000'></span>", """ + \
+    return """{ "full_text": "<span background='#""" + bgcolor + """' foreground='#""" + fgcolor + """' ></span>", """ + \
            """ "markup": "pango", "color": "#002b36","separator": false,"separator_block_width": 0}"""
 
 def status_net(cpalette, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
-    string = "  WAN:    " + output.split(", ")[0] + "    "
+    string = " LAN:     " + output.split(", ")[0] + "   "
     return delim(cpalette[1], cpalette[2]) + "," + make_json(string, cpalette[1], cpalette[2])
 
 def status_cpu(cpalette, delim, stat):
@@ -105,7 +104,7 @@ def status_bat(cpalette, delim):
 def main():
 
     foreground = "c9c9c9"
-    background = "000000"
+    background = "151414"
     secondary_fg = "ffffff"
 
     color_palette = [foreground, background, secondary_fg]
@@ -121,6 +120,7 @@ def main():
             status_ram(color_palette, dividor, output) + "," +
             status_disk(color_palette, dividor, output) + "," +
             separator(color_palette[1]) + "," +
+            make_json(" ", color_palette[1], color_palette[1]) + "," +
             status_bat(color_palette, separator) + 
             "],\n")
 

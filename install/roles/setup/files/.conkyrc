@@ -15,5 +15,5 @@ conky.config = {
 }
 
 conky.text = [[
-${addr wlp3s0}  ${wireless_essid wlp3s0}, ${cpu}, ${memperc}, ${fs_free /home}
+${addr enp6s18}  ${wireless_essid wlp3s0}, ${cpu}, ${memperc}, ${fs_free /home}
 ]]

@@ -7,12 +7,12 @@ no_buffers yes
 #imlib_cache_size 10
 
 # Window specifications #
-gap_x 100
-gap_y 100
+gap_x 2150
+gap_y -70
 #gap_y 350
 minimum_size 500 200
-maximum_width 500
-alignment top_right
+maximum_width 380
+alignment bottom_left
 own_window yes
 ##This line keeps conky from getting controlled by the wm:
 own_window_type override
@@ -37,7 +37,7 @@ show_graph_range no
 # Text settings #
 use_xft yes
 xftalpha 0
-xftfont Source Code Pro for Powerline :size=15
+xftfont Source Code Pro for Powerline :size=9
 #xftfont FontAwesome:size=15
 text_buffer_size 256
 override_utf8_locale yes
@@ -61,21 +61,21 @@ color8 FFFFFF
 
 TEXT
 ${voffset 20}
-${voffset 2}${font FontAwesome:size=19}${voffset -2}${font} \
-${font :size=20}Time 
-${font :size=70}\
+${voffset 2}${font FontAwesome:size=10}${voffset -2}${font} \
+${font :size=10}Time 
+${font :size=30}\
 ${time %l:%M}\
-${font :size=20}\
-${voffset -50}${time %P}${voffset 50}  
+${font :size=10}\
+${voffset -35}${time %P}${voffset 27}
 
 ${color8}${hr 2}{$color}
 ${if_match "${wireless_essid wlp3s0}" != "off/any" }\
 \
-${goto 330} \
-${voffset -185}${font FontAwesome:size=19}${voffset -2}\
-${font :size=20} Weather 
-${font :size=70}\
-${goto 330}${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $12 }'| head -1}${color2}°${font}${color} \
+${goto 250} \
+${voffset -120}${font FontAwesome:size=10}${voffset -2}\
+${font :size=10} Weather 
+${font :size=30}\
+${goto 250}${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $12 }'| head -1}${color2}°${font}${color} \
 ${font }\
 \
 ${endif}

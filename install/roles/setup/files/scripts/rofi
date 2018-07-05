@@ -1,28 +1,43 @@
 # !/bin/bash
 
+
+#### ARGB ###
+# 100% - FF
+# 95% - F2
+# 90% - E6
+# 85% - D9
+# 80% - CC
+# 75% - BF
+# 70% - B3
+# 65% - A6
+# 60% - 99
+# 55% - 8C
+# 50% - 80
+# 45% - 73
+# 40% - 66
+# 35% - 59
+# 30% - 4D
+# 25% - 40
+# 20% - 33
+# 15% - 26
+# 10% - 1A
+# 5% - 0D
+# 0% - 00
+
+
 light_gray='#b3b2b2'
 dark_gray='#262626'
+dark_gray_trans='#80000000'
 
 
-############ DMENU CONFIG ###########
-#exec $(dmenu_path | rofi -dmenu -p '  ' -location 0 -width 40 \
-#         -lines 8 -line-margin 0 \
-#         -separator-style none -font "Source Code Pro for Powerline 10" -columns 1 -bw 0 \
-#         -hide-scrollbar \
-#         -color-enabled \
-#         -color-window "$dark_gray, $dark_gray, $dark_gray" \
-#         -color-normal "$dark_gray, $light_gray, $dark_gray, $light_gray, $dark_gray" \
-#         -color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" \
-#         -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" )
-
-
-rofi -show run -location 0 -width 40 -sidebar-mode \
+rofi -show run -location 0 -width 100 -padding 800 -sidebar-mode \
          -lines 8 -line-margin 0 -line-padding 6 -fixed-num-lines 1 \
-         -separator-style none -font "Source Code Pro for Powerline 10" -columns 1 -bw 0 \
+         -separator-style none -font "Source Code Pro for Powerline 7" -columns 1 -bw 0 \
          -hide-scrollbar \
          -color-enabled \
-         -color-window "$dark_gray, $dark_gray, $dark_gray" \
-         -color-normal "$dark_gray, $light_gray, $dark_gray, $light_gray, $dark_gray" \
+         -color-window "$dark_gray_trans, $dark_gray_trans, $dark_gray_trans" \
+         -color-normal "$dark_gray, $light_gray, $dark_gray, $light_gray, #000000" \
          -color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" \
          -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" 
 
+# Selected_text

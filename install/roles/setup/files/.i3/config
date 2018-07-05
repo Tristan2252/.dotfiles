@@ -1,16 +1,17 @@
 ##################### VARS ########################
-set $sinknum 0
-set $wallpaper ~/Pictures/Wallpapers/katarzyna-grabowska-647620-unsplash.jpg
+set $sinknum 3
+set $wallpaper ~/Pictures/jack-cain-332370-unsplash.jpg ~/Pictures/daniel-sessler-571415-unsplash.jpg 
 set $active_bg #151414
 set $active_fg #151414
 set $inactive_bg #000000
 set $inactive_fg #ffffff
-set $bar_bg #151414
-set $bar_fg #c9c9c9
+#set $bar_bg #15141480
+set $bar_bg #00000087
+set $bar_fg #ffffff
 
 ################# i3 GAPS SETTINGS #################
 for_window [class="^.*"] border pixel 0
-gaps inner 30
+gaps inner 15
 gaps outer 2
 smart_gaps on
 
@@ -25,12 +26,12 @@ smart_gaps on
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 #font pango:FontAwesome 10, FontAwesome 10
-font pango:Source Code Pro for Powerline 10
+font pango:Source Code Pro for Powerline 6
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -46,7 +47,7 @@ font pango:Source Code Pro for Powerline 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec pantheon-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -179,10 +180,14 @@ set $transparent #00000000
 # finds out, if available)
 bar {
         i3bar_command i3bar -t
-        font pango:Source Code Pro for Powerline 10
+        font pango:Source Code Pro for Powerline 5
 	status_command exec ~/.dotfiles/scripts/bar_status_run
+	output HDMI-0
+
+	#status_command i3status
+	
 	position 	top
-	#height 17
+	#height 20
 	#separator_symbol "|"
 	#verbose yes 
 
@@ -190,7 +195,31 @@ bar {
 		background $bar_bg
 		
 		# workspace indicator       outline      fill           text
-		focused_workspace           $bar_bg      $bar_fg   $bar_bg
+		focused_workspace           $bar_bg      $bar_bg        $bar_fg
+		active_workspace 	    $bar_bg      $bar_bg        $bar_fg
+		inactive_workspace 	    $bar_bg      $bar_bg        #5f676a
+	}
+
+}
+
+bar {
+        i3bar_command i3bar -t
+        font pango:Source Code Pro for Powerline 6
+	output DVI-I-1
+	#status_command i3status
+	
+	position 	top
+	#height 20
+	#separator_symbol "|"
+	#verbose yes 
+
+	colors {
+		background $bar_bg
+		
+		# workspace indicator       outline      fill           text
+		focused_workspace           $bar_bg      $bar_bg        $bar_fg
+		active_workspace 	    $bar_bg      $bar_bg        $bar_fg
+		inactive_workspace 	    $bar_bg      $bar_bg        #5f676a
     
 	}
 

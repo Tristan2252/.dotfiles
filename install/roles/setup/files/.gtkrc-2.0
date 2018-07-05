@@ -4,7 +4,7 @@
 include "/home/tristan/.gtkrc-2.0.mine"
 gtk-theme-name="Numix"
 gtk-icon-theme-name="Papirus-Adapta"
-gtk-font-name="FontAwesome 10"
+gtk-font-name="FontAwesome 6"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH

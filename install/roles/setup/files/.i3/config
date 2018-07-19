@@ -1,10 +1,10 @@
 ##################### VARS ########################
 set $sinknum 1
-set $wallpaper ~/Pictures/Wallpapers/green-leaves-plant-1072179.jpg
+set $wallpaper ~/Pictures/Wallpapers/ivana-cajina-728980-unsplash.jpg
 set $active_bg #151414
 set $active_fg #151414
 set $inactive_bg #000000
-set $inactive_fg #ffffff
+set $inactive_fg #c9c9c9
 set $bar_bg #151414
 set $bar_fg #c9c9c9
 
@@ -226,20 +226,20 @@ bindsym $mod+Shift+Tab workspace next
 # Move left and right workspaces
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
-exec libinput-gestures-setup start # start gestures deamon
+exec --no-startup-id libinput-gestures-setup start # start gestures deamon
 
 # launch feh as wallpaper
 #exec /home/tristan/.dotfiles/scripts/wallpic.sh && feh --bg-scale .wallpaper.jpg
-exec feh --bg-fill $wallpaper
+exec --no-startup-id feh --bg-fill $wallpaper
 
 # start compton
-exec compton
+exec --no-startup-id compton
 
 # notification service
-exec dunst
+exec --no-start-id dunst
 
 # start desktop widget
-exec conky -c .dotfiles/configs/conky_widget_desktop 
+exec --no-start-id conky -c .dotfiles/configs/conky_widget_desktop 
 
 # set max and min sizes for floating windows
 #floating_minimum_size 1200 x 1500
@@ -251,31 +251,30 @@ for_window [class="TeamViewer"] floating enable
 
 #this prevent the focus to follow mouse movements
 focus_follows_mouse no
-exec synclient PalmDetect=1
-exec synclient PalmMinWidth=8
-exec synclient VertEdgeScroll=0
+exec --no-startup-id synclient PalmDetect=1
+exec --no-startup-id synclient PalmMinWidth=8
+exec --no-startup-id synclient VertEdgeScroll=0
 # exec synclient FingerLow=10
 # exec synclient FingerHigh=20
 # exec synclient TapButton1=0
 # exec synclient TapButton2=0
 # exec synclient TapButton3=0
-exec synclient TapAndDragGesture=0
-exec synclient RTCornerButton=0
-exec synclient RBCornerButton=0
-exec synclient LTCornerButton=0
-exec synclient LBCornerButton=0
-exec synclient FingerHigh=12
-exec synclient FingerLow=1
-exec synclient TapButton1=0
-exec synclient TapButton2=0
-exec synclient TapButton3=0
-exec synclient ClickFinger1=1
-exec synclient ClickFinger2=3
-exec synclient ClickFinger3=3
-exec synclient ClickTime=25
-exec synclient BottomEdge=25
-exec synclient VertScrollDelta=-111
-exec synclient HorizScrollDelta=11
+exec --no-startup-id synclient TapAndDragGesture=0
+exec --no-startup-id synclient RTCornerButton=0
+exec --no-startup-id synclient RBCornerButton=0
+exec --no-startup-id synclient LTCornerButton=0
+exec --no-startup-id synclient LBCornerButton=0
+exec --no-startup-id synclient FingerHigh=12
+exec --no-startup-id synclient FingerLow=1
+exec --no-startup-id synclient TapButton1=0
+exec --no-startup-id synclient TapButton2=0
+exec --no-startup-id synclient TapButton3=0
+exec --no-startup-id synclient ClickFinger1=1
+exec --no-startup-id synclient ClickFinger2=3
+exec --no-startup-id synclient ClickFinger3=3
+exec --no-startup-id synclient ClickTime=25
+exec --no-startup-id synclient BottomEdge=25
+exec --no-startup-id synclient VertScrollDelta=-111
+exec --no-startup-id synclient HorizScrollDelta=11
 # disable tap to click
-exec synclient MaxTapTime=0
-set $inactive_fg #c9c9c9
+exec --no-startup-id synclient MaxTapTime=0

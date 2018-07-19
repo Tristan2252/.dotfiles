@@ -58,3 +58,5 @@
 - include: root_scripts.yml
   tags: [scripts]
 
+- include: mouse_theme.yml
+  tags: [mouse_theme]

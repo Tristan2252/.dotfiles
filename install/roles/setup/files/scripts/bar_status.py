@@ -17,25 +17,26 @@ def dividor(bgcolor, fgcolor):
             """'size='9000'></span>", """ + \
            """ "markup": "pango", "color": "#002b36","separator": false,"separator_block_width": 0}"""
 
-def status_net(cpalette, delim, stat):
+def status_net(bg, fg, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
     string = "  WAN:    " + output.split(", ")[0] + "    "
-    return delim(cpalette[1], cpalette[2]) + "," + make_json(string, cpalette[1], cpalette[2])
+    return delim(bg, fg) + "," + make_json(string, bg, fg)
 
-def status_cpu(cpalette, delim, stat):
+def status_cpu(bg, fg, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
     string = " CPU:    " + output.split(", ")[1] + "    "
-    return delim(cpalette[0], cpalette[1]) + "," + make_json(string, cpalette[0], cpalette[1])
+    #return delim(bg, fg) + "," + make_json(string, bg, fg)
+    return delim(bg, fg) + "," + make_json(string, bg, fg)
 
-def status_ram(cpalette, delim, stat):
+def status_ram(bg, fg, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
     string = " RAM:  " + output.split(", ")[2] + "    "
-    return delim(cpalette[0], cpalette[1]) + "," + make_json(string, cpalette[0], cpalette[1])
+    return delim(bg, fg) + "," + make_json(string, bg, fg)
 
-def status_disk(cpalette, delim, stat):
+def status_disk(bg, fg, delim, stat):
     output = os.popen("conky -i 1").read().rstrip()
     string = " HDD: " + output.split(", ")[3] + "    "
-    return delim(cpalette[0], cpalette[1]) + "," + make_json(string, cpalette[0], cpalette[1])
+    return delim(bg, fg) + "," + make_json(string, bg, fg)
 
 def status_sound():
     try :
@@ -52,20 +53,20 @@ def status_sound():
     return string
 
 
-def status_date(cpalette, delim):
+def status_date(bg, fg, delim):
     day = os.popen("date +'%a'").read().rstrip()
     date_num = os.popen("date +'%m/%d/%Y'").read().rstrip()
     
     string = "     " + day + " " + date_num + "    "
-    return delim(cpalette[1], cpalette[2]) + "," + make_json(string, cpalette[1], cpalette[2])
+    return delim(bg, fg) + "," + make_json(string, bg, fg)
 
-def status_time(cpalette, delim):
+def status_time(bg, fg, delim):
     time = os.popen("date +'%I:%M:%S'").read().rstrip()
     
     string  = "    " + time + "    "
-    return delim(cpalette[1], cpalette[2]) + "," + make_json(string, cpalette[1], cpalette[2])
+    return delim(bg, fg) + "," + make_json(string, bg, fg)
 
-def status_bat(cpalette, delim):
+def status_bat(bg, fg, delim):
     
     output = os.popen("acpi").read().rstrip()
     try :
@@ -79,7 +80,7 @@ def status_bat(cpalette, delim):
         
     if state == "Charging,":
         string = "BAT:   {}".format(percent)
-        return delim(cpalette[0], cpalette[1]) + "," + make_json(string + status_sound(), cpalette[0], cpalette[1])
+        return delim(bg, fg) + "," + make_json(string + status_sound(), bg, fg)
 
     if level <= 100 and level >= 80:
         string = "BAT:   {}".format(percent)
@@ -99,29 +100,37 @@ def status_bat(cpalette, delim):
 
         return delim("d75f00") + "," + make_json(string + status_sound(), "d75f00", "002b36")
 
-    return delim(cpalette[0], cpalette[1]) + "," + make_json(string + status_sound(), cpalette[0], cpalette[1])
+    return delim(bg, fg) + "," + make_json(string + status_sound(), bg, fg)
 
 
 def main():
+    
+    # Background Right side
+    primary_bg = "EE8A56"
 
-    foreground = "c9c9c9"
-    background = "000000"
-    secondary_fg = "ffffff"
+    # Text Color
+    primary_fg = "151414"
+    
+    # Background Left side
+    secondary_bg = "151414"
 
-    color_palette = [foreground, background, secondary_fg]
+    # Text Color
+    secondary_fg = "EE8A56" 
+
+    # System stats output
     output = os.popen("conky -i 1").read().rstrip()
 
     # needs to be one single write to stdout because of i3status but 
     sys.stdout.write("[\n" + 
-            separator(color_palette[1]) + "," +
-            status_date(color_palette, dividor) + "," +
-            status_time(color_palette, dividor) + "," +
-            status_net(color_palette, dividor, output) + "," +
-            status_cpu(color_palette, separator, output) + "," +
-            status_ram(color_palette, dividor, output) + "," +
-            status_disk(color_palette, dividor, output) + "," +
-            separator(color_palette[1]) + "," +
-            status_bat(color_palette, separator) + 
+            separator(secondary_bg) + "," +
+            status_date(secondary_bg, secondary_fg, dividor) + "," +
+            status_time(secondary_bg, secondary_fg, dividor) + "," +
+            status_net(secondary_bg, secondary_fg, dividor, output) + "," +
+            status_cpu(primary_bg, primary_fg, separator, output) + "," +
+            status_ram(primary_bg, primary_fg, dividor, output) + "," +
+            status_disk(primary_bg, primary_fg, dividor, output) + "," +
+            separator(secondary_bg) + "," +
+            status_bat(primary_bg, primary_fg, separator) +
             "],\n")
 
 if __name__ == "__main__":

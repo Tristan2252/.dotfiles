@@ -26,6 +26,8 @@
               - intel-microcode
               - pulseaudio
               - pulseaudio-utils
+              - pulseaudio-module-bluetooth
+              - bluetooth
 
                 ######## sysadmin stuff ######
               - pass
@@ -41,6 +43,7 @@
               - gparted
 
               - rofi # app menu
+              - gpick # color picker
 
                 # theme stuff
               - papirus-icon-theme

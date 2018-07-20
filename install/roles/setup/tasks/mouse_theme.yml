@@ -1,14 +1,32 @@
 ---
 # install cursor themes
 
+- set_fact:
+        package: "la-capitaine-cursor-theme"
+        config: ".Xresources"
+
+
 - name: Add Capitaine Mouse theme Repo
   apt_repository:
     repo: ppa:dyatlov-igor/la-capitaine
     state: present
   become: true
 
-- name: Install La Capitaine Packages
+  
+- name: Install Packages {{ package }}
   apt:
-          name: 'la-capitaine-cursor-theme'
+          name: "{{ package }}"
   become: True
+
+- name: Checking Existing {{ config }}
+  stat: path={{ ansible_env.HOME }}/{{ config }}
+  register: file
+
+- name: Remove Old {{ config }}
+  file: path={{ file.stat.path }} state=absent force=yes
+  when: file.stat.exists == True
+
+- name: Linking {{ package }}
+  command: "/bin/ln -fs {{ playbook_dir }}/roles/setup/files/{{ config }} {{ ansible_env.HOME }}/{{ config }}"
+
 

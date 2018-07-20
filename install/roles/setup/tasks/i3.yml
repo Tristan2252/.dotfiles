@@ -98,11 +98,22 @@
     repo: 'https://github.com/Lixxia/i3lock'
     dest: "/tmp/i3lock"
 
-- name: Build i3lock and Install
+- name: Setup i3lock build
   shell: "{{ item }}"
   args:
     chdir: "/tmp/i3lock"
   with_items:
+    - autoreconf -fi
+    - mkdir -p build
+  become: true
+  ignore_errors: true
+
+- name: i3lock build and install
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/i3lock/build"
+  with_items:
+    - ../configure
     - make
     - make install
   become: true

@@ -10,8 +10,8 @@
 - include: cups.yml
   tags: [ cups ]
 
-- include: terminal.yml
-  tags: [ terminal ]
+  #- include: terminal.yml
+  #tags: [ terminal ]
 
 - include: latex.yml
   tags: [ latex ]

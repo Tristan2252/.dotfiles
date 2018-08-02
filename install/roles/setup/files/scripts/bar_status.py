@@ -98,7 +98,7 @@ def status_bat(bg, fg, delim):
         #if(percent < 5): 
         #    os.popen("notify-send 'Low Battery' --icon=notification-gpm-battery-empty")
 
-        return delim("d75f00") + "," + make_json(string + status_sound(), "d75f00", "002b36")
+        return delim("FF0000") + "," + make_json(string + status_sound(), "ff0000", "002b36")
 
     return delim(bg, fg) + "," + make_json(string + status_sound(), bg, fg)
 
@@ -106,16 +106,16 @@ def status_bat(bg, fg, delim):
 def main():
     
     # Background Right side
-    primary_bg = "EE8A56"
+    primary_bg = "E37B4D"
 
     # Text Color
-    primary_fg = "151414"
+    primary_fg = "1C1C1C"
     
     # Background Left side
-    secondary_bg = "151414"
+    secondary_bg = "1C1C1C"
 
     # Text Color
-    secondary_fg = "EE8A56" 
+    secondary_fg = "E37B4D"
 
     # System stats output
     output = os.popen("conky -i 1").read().rstrip()
@@ -135,3 +135,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    background = "151414FF"
+    foreground = "FBA874"

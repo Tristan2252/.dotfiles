@@ -60,3 +60,10 @@
 
 - include: mouse_theme.yml
   tags: [mouse_theme]
+
+- include: gpg_config.yml
+  tags: [gpg]
+
+- include: grub_config.yml
+  tags: [grub]
+ 

@@ -4,26 +4,22 @@
 
 export TERM='screen-256color'
 
+# get python 3 version for powerline
+PY_VERSION="$(python3 -V | awk '{print $2}' | head -c 3)"
+
 #### Test if powerline exists
-if [ -e /usr/local/lib/python3.4/dist-packages/powerline ]; then
+if [ -e /usr/local/lib/python${PY_VERSION}/dist-packages/powerline ]; then
     powerline-daemon -q 
     POWERLINE_BASH_CONTINUATION=1     
     POWERLINE_BASH_SELECT=1   
-    . /usr/local/lib/python3.4/dist-packages/powerline/bindings/bash/powerline.sh  
+    . /usr/local/lib/python${PY_VERSION}/dist-packages/powerline/bindings/bash/powerline.sh  
 fi
 
-if [ -e /home/tristan/.local/lib/python3.6/site-packages/powerline ]; then
+if [ -e /home/tristan/.local/lib/python${PY_VERSION}/site-packages/powerline ]; then
     powerline-daemon -q 
     POWERLINE_BASH_CONTINUATION=1     
     POWERLINE_BASH_SELECT=1   
-    . /home/tristan/.local/lib/python3.6/site-packages/powerline/bindings/bash/powerline.sh  
-fi
-
-if [ -e /usr/local/lib/python2.7/dist-packages/powerline ]; then
-    powerline-daemon -q 
-    POWERLINE_BASH_CONTINUATION=1     
-    POWERLINE_BASH_SELECT=1   
-    . /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh  
+    . /home/tristan/.local/lib/python${PY_VERSION}/site-packages/powerline/bindings/bash/powerline.sh  
 fi
 
 # If not running interactively, don't do anything

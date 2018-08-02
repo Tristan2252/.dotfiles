@@ -1,0 +1,30 @@
+---
+
+- name: Copy to /etc/default/grub
+  copy: 
+        src: "{{ ansible_env.HOME }}/.dotfiles/configs/grub"
+        dest: /etc/default/grub
+        owner: root
+        group: root
+        mode: 0644
+        force: yes
+  become: true
+  register: grub_config
+
+- name: Copy to /etc/grub.d/40_custom
+  copy: 
+        src: "{{ ansible_env.HOME }}/.dotfiles/configs/40_custom"
+        dest: /etc/grub.d/40_custom 
+        owner: root
+        group: root
+        mode: 0755
+        force: yes
+  become: true
+  register: grub_custom
+
+
+- name: Update Grub Config
+  command: update-grub
+  become: true
+  when: (grub_custom.changed) or
+        (grub_config.changed)

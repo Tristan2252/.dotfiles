@@ -1,5 +1,5 @@
 ##################### VARS ########################
-set $sinknum 1
+set $sinknum 0
 set $wallpaper ~/Pictures/Wallpapers/01687552.jpg
 set $active_bg #151414
 set $active_fg #151414
@@ -239,7 +239,7 @@ exec --no-startup-id compton
 exec --no-start-id dunst
 
 # start desktop widget
-exec --no-start-id conky -c .dotfiles/configs/conky_widget_desktop 
+exec --no-start-id sleep 1 && conky -c /home/tristan/.dotfiles/configs/conky_widget_desktop 
 
 # set max and min sizes for floating windows
 #floating_minimum_size 1200 x 1500

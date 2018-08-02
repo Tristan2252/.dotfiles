@@ -3,17 +3,24 @@
 if [ "$1" = '-h' ]; then
     echo "$ ./run [INSTALL TAG]"
     echo ""
-    echo "Edit Mode: --edit"
+    echo "Edit Mode: --edit [FILE.yml]"
     echo ""
     echo "Install Tags: "
     echo ""
     cat roles/setup/tasks/main.yml | grep -o -e " [a-z,1-9,_]*\.yml" -e ".*tags.*"
+    echo ""
     exit 0
 fi
 
 if [ "$1" = '--edit' ]; then
     cd roles/setup/tasks/
-    vim .
+
+    if [ -z "$2" ]; then 
+        vim .
+    else
+        vim $2
+    fi
+
     exit 0
 fi
 

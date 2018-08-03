@@ -132,13 +132,14 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-if isdirectory("/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/")
-    set rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
-    set laststatus=2
-    set showtabline=1
-    set noshowmode
-endif
-
+" enable powerline fons for vim airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#enabled = 0
+let airline#extensions#default#section_use_groupitems = 0
+let g:airline_theme='custom'
+let g:airline_section_a = airline#section#create(['mode'])
+let g:airline_section_b = airline#section#create(['spell'])
+ 
 " >>> Keymap commands <<<
 "
 " v goes into visual mode

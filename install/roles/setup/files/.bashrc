@@ -83,9 +83,7 @@ if [ "$color_prompt" = yes ]; then
     b_color="$(tput setaf 250)$(tput setab 240)"
     b_end="$(tput setaf 240)"
     
-    dir="$(pwd | sed 's/\//  /g; s/  home  tristan/~/g')"
-
-    PS1='$bold$a_color \u $a_end$b_color $dir \033[00m$b_end \033[00m'
+    PS1='$bold$a_color \u $a_end$b_color $(pwd | sed "s/\//  /g; s/  home  tristan/~/g") \033[00m$b_end \[\033[00m\]'
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ tristan '

@@ -2,25 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-export TERM='screen-256color'
-
-# get python 3 version for powerline
-#PY_VERSION="$(python3 -V | awk '{print $2}' | head -c 3)"
-
-#### Test if powerline exists
-#if [ -e /usr/local/lib/python${PY_VERSION}/dist-packages/powerline ]; then
-#    powerline-daemon -q 
-#    #POWERLINE_BASH_CONTINUATION=1     
-#    #POWERLINE_BASH_SELECT=1   
-#    . /usr/local/lib/python${PY_VERSION}/dist-packages/powerline/bindings/bash/powerline.sh  
-#fi
-#
-#if [ -e ~/.local/lib/python${PY_VERSION}/site-packages/powerline ]; then
-#    powerline-daemon -q 
-#    #POWERLINE_BASH_CONTINUATION=1     
-#    #POWERLINE_BASH_SELECT=1   
-#    . ~/.local/lib/python${PY_VERSION}/site-packages/powerline/bindings/bash/powerline.sh  
-#fi
+#export TERM='screen-256color'
+export TERM='xterm-256color'
 
 # If not running interactively, don't do anything
 case $- in
@@ -82,8 +65,13 @@ if [ "$color_prompt" = yes ]; then
     a_end="$(tput setaf 253)$(tput setab 240)"
     b_color="$(tput setaf 250)$(tput setab 240)"
     b_end="$(tput setaf 240)"
+    reset=$(tput sgr0)
+
+    PS1='\[$bold\]\[$a_color\] \u \[$a_end\]\[$b_color\] $(pwd | sed "s/\/home\/tristan/~/g; s/\//  /g") \[\033[00m\]\[$b_end\]\[$reset\] '
     
-    PS1='$bold$a_color \u $a_end$b_color $(pwd | sed "s/\//  /g; s/  home  tristan/~/g") \033[00m$b_end \[\033[00m\]'
+    #if [ $(expr length $(pwd)) -gt 50 ]; then 
+    #    PS1='\[$bold\]\[$a_color\] \u \[$a_end\]\[$b_color\]  ...  \W \[\033[00m\]\[$b_end\] \[\033[00m\]'
+    #fi
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ tristan '

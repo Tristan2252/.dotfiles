@@ -15,9 +15,9 @@ NEW_MAC=$(hexdump -n 8 -e '4/4 "%0X"' /dev/random | sed 's/.\{2\}/&:/g' | cut -c
 sudo ip link set dev $1 down
 sudo ip link set dev $1 address $NEW_MAC
 
-sudo dhclient -r $1
-sudo ip link set dev $1 up
+#sudo dhclient -r $1
+#sudo ip link set dev $1 up
 
-sudo dhclient $1
+#sudo dhclient $1
 
 exit 0

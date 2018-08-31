@@ -5,6 +5,13 @@
 #export TERM='screen-256color'
 export TERM='xterm-256color'
 
+###### Powerline Colors ######
+A_BACKGROUND='158:164:62'
+A_FORGROUND='24:33:41'
+B_BACKGROUND='81:92:44'
+#B_FORGROUND='198:198:198'
+B_FORGROUND='178:178:178'
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -61,13 +68,13 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     bold=$(tput bold)
-    a_color="$(tput setaf 232)$(tput setab 253)"
-    a_end="$(tput setaf 253)$(tput setab 240)"
-    b_color="$(tput setaf 250)$(tput setab 240)"
-    b_end="$(tput setaf 240)"
-    reset=$(tput sgr0)
+    a_color=$(printf "\033[38:2:${A_FORGROUND}m\033[48:2:${A_BACKGROUND}m")
+    a_end=$(printf "\033[38:2:${A_BACKGROUND}m\033[48:2:${B_BACKGROUND}m")
+    b_color=$(printf "\033[38:2:${B_FORGROUND}m\033[48:2:${B_BACKGROUND}m")
+    b_end=$(printf "\033[38:2:${B_BACKGROUND}m")
+    re_color=$(tput sgr0)
 
-    PS1='\[$bold\]\[$a_color\] \u \[$a_end\]\[$b_color\] $(pwd | sed "s/\/home\/tristan/~/g; s/\//  /g") \[\033[00m\]\[$b_end\]\[$reset\] '
+    PS1='\[$bold\]\[$a_color\] \u \[$a_end\]\[$b_color\] $(pwd | sed "s/\/home\/tristan/~/g; s/\//  /g") \[$re_color\]\[$b_end\]\[$re_color\]\[$re_color\] '
     
     #if [ $(expr length $(pwd)) -gt 50 ]; then 
     #    PS1='\[$bold\]\[$a_color\] \u \[$a_end\]\[$b_color\]  ...  \W \[\033[00m\]\[$b_end\] \[\033[00m\]'

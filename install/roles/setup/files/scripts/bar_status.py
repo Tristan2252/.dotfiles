@@ -104,33 +104,35 @@ def status_bat(bg, fg, delim):
 
 
 def main():
+
+    #        BBB  BBBB  AAA  AAAA 
     
     # Background Right side
-    primary_bg = "E37B4D"
+    a_bg = "9EA33E"
 
     # Text Color
-    primary_fg = "1C1C1C"
+    a_fg = "1C1C1C"
     
     # Background Left side
-    secondary_bg = "1C1C1C"
+    b_bg = "1C1C1C"
 
     # Text Color
-    secondary_fg = "E37B4D"
+    b_fg = "9EA33E"
 
     # System stats output
     output = os.popen("conky -i 1").read().rstrip()
 
     # needs to be one single write to stdout because of i3status but 
     sys.stdout.write("[\n" + 
-            separator(secondary_bg) + "," +
-            status_date(secondary_bg, secondary_fg, dividor) + "," +
-            status_time(secondary_bg, secondary_fg, dividor) + "," +
-            status_net(secondary_bg, secondary_fg, dividor, output) + "," +
-            status_cpu(primary_bg, primary_fg, separator, output) + "," +
-            status_ram(primary_bg, primary_fg, dividor, output) + "," +
-            status_disk(primary_bg, primary_fg, dividor, output) + "," +
-            separator(secondary_bg) + "," +
-            status_bat(primary_bg, primary_fg, separator) +
+            separator(b_bg) + "," +
+            status_date(b_bg, b_fg, dividor) + "," +
+            status_time(b_bg, b_fg, dividor) + "," +
+            status_net(b_bg, b_fg, dividor, output) + "," +
+            status_cpu(a_bg, a_fg, separator, output) + "," +
+            status_ram(a_bg, a_fg, dividor, output) + "," +
+            status_disk(a_bg, a_fg, dividor, output) + "," +
+            separator(b_bg) + "," +
+            status_bat(a_bg, a_fg, separator) +
             "],\n")
 
 if __name__ == "__main__":

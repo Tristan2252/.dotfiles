@@ -23,6 +23,7 @@ if [ $SUSPEND_STATE -eq 0 ]; then
     
     # if network is up, put down 
     if [ $NET_STATE = "up"  ]; then
+        ifdown $INTERFACE
         rfkill block wifi # block wifi
     fi
 

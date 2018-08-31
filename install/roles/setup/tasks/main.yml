@@ -66,4 +66,4 @@
 
 - include: grub_config.yml
   tags: [grub]
- 
+

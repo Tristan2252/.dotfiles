@@ -74,6 +74,7 @@
               - { name: 'Cramer213', location: 'socket://129.138.6.236', driver: 'drv:///sample.drv/generic.ppd' }
               - { name: 'HpNetPrinter', location: 'socket://192.168.1.123:9100', driver: 'drv:///hpcups.drv/hp-deskjet_2540_series.ppd' }
               - { name: 'Office', location: 'dnssd://Dell%20Laser%20Printer%201700n._printer._tcp.local/', driver: 'drv:///sample.drv/generic.ppd' }
+              - { name: 'Cannon', location: 'usb://Canon/MG2500%20series?serial=A1E5A7&interface=1', driver: 'gutenprint.5.2://bjc-MG2500-series/expert' }
 
         ## Pantheon Terminal Settings ##
         terminal_settings:

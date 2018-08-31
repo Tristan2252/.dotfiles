@@ -1,7 +1,7 @@
 # !/bin/bash
 
-light_gray='#b3b2b2'
-dark_gray='#262626'
+foreground="#C9C9C9"
+background="#1C1C1C"
 
 
 
@@ -10,8 +10,8 @@ rofi -show run -location 0 -width 40 -sidebar-mode \
          -separator-style none -font "Source Code Pro for Powerline 10" -columns 1 -bw 0 \
          -hide-scrollbar \
          -color-enabled \
-         -color-window "$dark_gray, $dark_gray, $dark_gray" \
-         -color-normal "$dark_gray, $light_gray, $dark_gray, $light_gray, $dark_gray" \
+         -color-window "$background, $background, $background" \
+         -color-normal "$background, $foreground, $background, $foreground, $background" \
          -color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" \
          -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" 
 

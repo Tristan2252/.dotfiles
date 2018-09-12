@@ -19,6 +19,7 @@ set noerrorbells                    "Disable that horrible bell!"
 set foldopen-=block                 "dont allow folds to be opened by []"
 set hlsearch                        "hilight search items"
 set re=1                            "regex engine"
+set mouse=a
 "set ttyfast                         "faster scrolling
 
 " ###########################################################
@@ -43,6 +44,20 @@ nnoremap \ :vsp<CR>:wincmd l<CR>
 "Unmap p in normal mode because of tmux p command"
 map p <Nop> 
 
+" Disable Scrolling and Clicking
+map <LeftMouse> <nop>
+map <ScrollWheelUp> <nop>
+map <S-ScrollWheelUp> <nop>
+map <C-ScrollWheelUp> <nop>
+map <ScrollWheelDown> <nop>
+map <S-ScrollWheelDown> <nop>
+map <C-ScrollWheelDown> <nop>
+map <ScrollWheelLeft> <nop>
+map <S-ScrollWheelLeft> <nop>
+map <C-ScrollWheelLeft> <nop>
+map <ScrollWheelRight> <nop>
+map <S-ScrollWheelRight> <nop>
+map <C-ScrollWheelRight> <nop>
 " ###########################################################
 " #               TEMPLATES AUTOCOMMANDS                   #
 " ###########################################################
@@ -126,6 +141,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_html_checkers = ['tidy']
 let g:syntastic_mode_map = { 'passive_filetypes': ['tex','latex']  }
 
 let g:UltiSnipsExpandTrigger="<tab>"

@@ -12,21 +12,21 @@ logger "[Lid]: STARTED: NET_STATE ${NET_STATE} SUSPEND_STATE ${SUSPEND_STATE}"
 
 get_best_net() {
     if [ "${NET_STATE}" = "down"  ]; then
-        ip link set wlp3s0 up
+        ip link set ${INTERFACE} up
         sleep 2
     fi
 
     NETWORKS=($(iwlist ${INTERFACE} scan | grep -e "ESSID" -e "Quality" | sed 's/.*Quality=//g; s/Signal.*//g; s/.*ESSID://g'))
 
-     for network in ${!NETWORKS[@]}; do
-        if [ "${NETWORKS[${network}]}" = '"CSDeptWifi"' ]; then
-            INTERFACE="$INTERFACE=cs"
-            return
-        elif [ "${NETWORKS[${network}]}" = '"NMT-Encrypted"' ]; then
-            INTERFACE="$INTERFACE=nmt"
-            return
-        fi
-     done
+    for network in ${!NETWORKS[@]}; do
+       if [ "${NETWORKS[${network}]}" = '"CSDeptWifi"' ]; then
+           INTERFACE="$INTERFACE=cs"
+           return
+       elif [ "${NETWORKS[${network}]}" = '"NMT-Encrypted"' ]; then
+           INTERFACE="$INTERFACE=nmt"
+           return
+       fi
+    done
 }
 
 if [ "${SUSPEND_STATE}" = "closed" ]; then 
@@ -44,7 +44,8 @@ if [ "${SUSPEND_STATE}" = "closed" ]; then
     # if network is up, put down 
     if [ "${NET_STATE}" = "up"  ]; then
         logger "[Lid]: SETTING ${INTERFACE} => DOWN"
-        ifdown ${INTERFACE}
+        ip link set ${INTERFACE} down
+        sleep 2 # wait for network to go down
         rfkill block wifi
     fi
 
@@ -75,4 +76,3 @@ fi
 
 logger "[Lid]: STOPPED: NET_STATE ${NET_STATE} SUSPEND_STATE ${SUSPEND_STATE}"
 
-exit 0

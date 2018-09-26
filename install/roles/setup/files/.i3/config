@@ -1,12 +1,12 @@
 ##################### VARS ########################
 set $sinknum 0
-set $wallpaper ~/Pictures/Wallpapers/photo-1525919646094-d07bd618cd93.jpg
-set $active_bg #9EA33E
+set $wallpaper ~/Pictures/Wallpapers/frame-harirak-1061151-unsplash.jpg
+set $active_bg #8CA293
 set $active_fg #1C1C1C
-set $inactive_bg #9EA33E
+set $inactive_bg #8CA293
 set $inactive_fg #1C1C1C
 set $bar_bg #1C1C1C
-set $bar_fg #9EA33E
+set $bar_fg #8CA293
 
 ################# i3 GAPS SETTINGS #################
 for_window [class="^.*"] border pixel 2
@@ -239,7 +239,7 @@ exec --no-startup-id compton
 exec --no-start-id dunst
 
 # start desktop widget
-exec --no-start-id sleep 1 && conky -c /home/tristan/.dotfiles/configs/conky_widget_desktop 
+#exec --no-start-id sleep 1 && conky -c /home/tristan/.dotfiles/configs/conky_widget_desktop 
 
 # set max and min sizes for floating windows
 #floating_minimum_size 1200 x 1500

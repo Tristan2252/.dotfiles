@@ -108,16 +108,16 @@ def main():
     #        BBB  BBBB  AAA  AAAA 
     
     # Background Right side
-    a_bg = "9EA33E"
+    a_bg = "8CA293"
 
     # Text Color
-    a_fg = "1C1C1C"
+    a_fg = "123626"
     
     # Background Left side
     b_bg = "1C1C1C"
 
     # Text Color
-    b_fg = "9EA33E"
+    b_fg = "8CA293"
 
     # System stats output
     output = os.popen("conky -i 1").read().rstrip()

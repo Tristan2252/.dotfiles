@@ -8,11 +8,11 @@ no_buffers yes
 
 # Window specifications #
 gap_x 100
-gap_y 100
+gap_y -100
 #gap_y 350
 minimum_size 500 200
 maximum_width 500
-alignment top_right
+alignment bottom_right
 own_window yes
 ##This line keeps conky from getting controlled by the wm:
 own_window_type override
@@ -72,7 +72,7 @@ ${color8}${hr 2}{$color}
 ${if_match "${wireless_essid wlp3s0}" != "off/any" }\
 \
 ${goto 330} \
-${voffset -185}${font FontAwesome:size=19}${voffset -2}\
+${voffset -187}${font FontAwesome:size=19}${voffset -2}\
 ${font :size=20} Weather 
 ${font :size=70}\
 ${goto 330}${execi 300 wget -q -O- "https://www.accuweather.com/en/us/socorro-nm/87801/weather-forecast/334571" | awk -F\' '/acm_RecentLocationsCarousel\.push/{print $12 }'| head -1}${color2}°${font}${color} \

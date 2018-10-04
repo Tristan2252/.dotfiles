@@ -18,6 +18,8 @@ if [ "$EXT" != "pdf" ]; then
     exit -1
 fi
 
-scp $1 900318369@login.nmt.edu:~/Print/
+scp $1 tristan@login.cs.nmt.edu:~/Print/
 
-ssh -t 900318369@login.nmt.edu "lp ~/Print/$1 -d $2"
+#ssh -t 900318369@login.nmt.edu "lp ~/Print/$1 -d $2"
+
+ssh -t 900318369@login.nmt.edu "scp tristan@login.cs.nmt.edu:~/Print/$1 ~/Print/; lp ~/Print/$1 -d $2 $3"

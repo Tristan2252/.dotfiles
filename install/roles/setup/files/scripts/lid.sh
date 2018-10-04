@@ -5,6 +5,13 @@
 # (see /etc/acpi and configs/lm_lid)
 
 INTERFACE=wlp3s0
+CONF=wpa_networks.conf
+
+set_up() {
+    ip link set ${INTERFACE} up
+    wpa_supplicant -B -i ${INTERFACE} -c /etc/wpa_networks/${CONF}
+    #dhclient ${INTERFACE}
+}
 
 get_state() {
     NET_STATE=$(cat /sys/class/net/$INTERFACE/operstate)
@@ -19,17 +26,20 @@ get_best_net() {
     fi
 
     #NETWORKS=($(iwlist ${INTERFACE} scan | grep -e "ESSID" -e "Quality" | sed 's/.*Quality=//g; s/Signal.*//g; s/.*ESSID://g'))
-    NETWORKS=($(sudo iw dev wlp3s0 scan | egrep "signal|SSID" | sed -e "s/\tsignal: //" -e "s/\tSSID: //" | awk '{ORS = (NR % 2 == 0)? "\n" : " "; print}' | sort | awk '{print $3}' | tr '\n' ' '))
+    NETWORKS=($(iw dev wlp3s0 scan | egrep "signal|SSID" | sed -e "s/\tsignal: //" -e "s/\tSSID: //" | awk '{ORS = (NR % 2 == 0)? "\n" : " "; print}' | sort | awk '{print $3}' | tr '\n' ' '))
 
     for network in ${!NETWORKS[@]}; do
+       echo ${NETWORKS[${network}]}
        if [ "${NETWORKS[${network}]}" = 'CSDeptWifi' ]; then
-           INTERFACE="$INTERFACE=cs"
+           CONF=cs.conf
+           #INTERFACE="$INTERFACE=cs"
            return
        elif [ "${NETWORKS[${network}]}" = 'NMT-Encrypted' ]; then
-           INTERFACE="$INTERFACE=nmt"
+           CONF=nmt.conf
+           #INTERFACE="$INTERFACE=nmt"
            return
-       elif [ "${NETWORKS[${network}]}" = 'NMT-ENCRYPTED-WPA-WPA2' ]; then
-           return
+       #elif [ "${NETWORKS[${network}]}" = 'NMT-ENCRYPTED-WPA-WPA2' ]; then
+           #return
        fi
     done
 }
@@ -68,24 +78,26 @@ if [ "${SUSPEND_STATE}" = "open" ]; then
     rfkill unblock wifi
 
     # stop interface from starting on resume
-    ip link set ${INTERFACE} down 
+    #ip link set ${INTERFACE} down 
 
-    if [ $(pgrep dhclient) ]; then
-        logger "[Lid]: KILLING dhclient for ${INTERFACE}"
-        killall -9 dhclient
-    fi
+    #if [ $(pgrep dhclient) ]; then
+    #    logger "[Lid]: KILLING dhclient for ${INTERFACE}"
+    #    killall -9 dhclient
+    #fi
     if [ $(pgrep wpa_supplicant) ]; then
         logger "[Lid]: KILLING wpa_supplicant for ${INTERFACE}"
         killall -9 wpa_supplicant
-        ifdown ${INTERFACE}
+        ip link set ${INTERFACE} down 
+        #ifdown ${INTERFACE}
     fi
 
     get_best_net
 
     logger "[Lid]: SETTING ${INTERFACE} => UP"
-    ifup $INTERFACE
+    set_up
+    #ifup $INTERFACE
 fi
 
 get_state
-logger "[Lid]: STOPPED: NET_STATE ${NET_STATE} SUSPEND_STATE ${SUSPEND_STATE}"
+logger "[Lid]: STOPPED: NET_STATE ${NET_STATE} USING ${CONF} SUSPEND_STATE ${SUSPEND_STATE}"
 

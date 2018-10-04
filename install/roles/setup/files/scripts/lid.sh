@@ -4,44 +4,9 @@
 # interface before suspending to avoid bugs when resuming from sleep 
 # (see /etc/acpi and configs/lm_lid)
 
-INTERFACE=wlp3s0
-CONF=wpa_networks.conf
-
-set_up() {
-    ip link set ${INTERFACE} up
-    wpa_supplicant -B -i ${INTERFACE} -c /etc/wpa_networks/${CONF}
-    #dhclient ${INTERFACE}
-}
-
 get_state() {
     NET_STATE=$(cat /sys/class/net/$INTERFACE/operstate)
     SUSPEND_STATE=$(cat /proc/acpi/button/lid/*/state | awk '{print $2}')
-}
-
-get_best_net() {
-    get_state
-    if [ "${NET_STATE}" = "down"  ]; then
-        ip link set ${INTERFACE} up
-        sleep 2
-    fi
-
-    #NETWORKS=($(iwlist ${INTERFACE} scan | grep -e "ESSID" -e "Quality" | sed 's/.*Quality=//g; s/Signal.*//g; s/.*ESSID://g'))
-    NETWORKS=($(iw dev wlp3s0 scan | egrep "signal|SSID" | sed -e "s/\tsignal: //" -e "s/\tSSID: //" | awk '{ORS = (NR % 2 == 0)? "\n" : " "; print}' | sort | awk '{print $3}' | tr '\n' ' '))
-
-    for network in ${!NETWORKS[@]}; do
-       echo ${NETWORKS[${network}]}
-       if [ "${NETWORKS[${network}]}" = 'CSDeptWifi' ]; then
-           CONF=cs.conf
-           #INTERFACE="$INTERFACE=cs"
-           return
-       elif [ "${NETWORKS[${network}]}" = 'NMT-Encrypted' ]; then
-           CONF=nmt.conf
-           #INTERFACE="$INTERFACE=nmt"
-           return
-       #elif [ "${NETWORKS[${network}]}" = 'NMT-ENCRYPTED-WPA-WPA2' ]; then
-           #return
-       fi
-    done
 }
 
 get_state
@@ -59,43 +24,14 @@ if [ "${SUSPEND_STATE}" = "closed" ]; then
         logger "[Lid]: LID0 DISABLED"
     fi
     
-    # if network is up, put down 
-    get_state
-    if [ "${NET_STATE}" = "up"  ]; then
-        logger "[Lid]: SETTING ${INTERFACE} => DOWN"
-        ip link set ${INTERFACE} down
-        sleep 2 # wait for network to go down
-        rfkill block wifi
-    fi
-
+    rfkill block wifi
     logger "[Lid]: SUSPENDING..."
     #systemctl suspend
 fi
 
 if [ "${SUSPEND_STATE}" = "open" ]; then
     sleep 2
-    
     rfkill unblock wifi
-
-    # stop interface from starting on resume
-    #ip link set ${INTERFACE} down 
-
-    #if [ $(pgrep dhclient) ]; then
-    #    logger "[Lid]: KILLING dhclient for ${INTERFACE}"
-    #    killall -9 dhclient
-    #fi
-    if [ $(pgrep wpa_supplicant) ]; then
-        logger "[Lid]: KILLING wpa_supplicant for ${INTERFACE}"
-        killall -9 wpa_supplicant
-        ip link set ${INTERFACE} down 
-        #ifdown ${INTERFACE}
-    fi
-
-    get_best_net
-
-    logger "[Lid]: SETTING ${INTERFACE} => UP"
-    set_up
-    #ifup $INTERFACE
 fi
 
 get_state

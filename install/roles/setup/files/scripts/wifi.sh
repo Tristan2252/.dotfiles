@@ -23,10 +23,9 @@ set_down() {
         logger "WIFI[$$]: forcibly killing wpa_supplicant for ${INTERFACE}"
         killall -9 wpa_supplicant
     fi
-    if [ $(pgrep dhclient) ]; then
-        logger "WIFI[$$]: releasing ip for ${INTERFACE}"
-        dhclient -r ${INTERFACE}
-    fi
+    
+    logger "WIFI[$$]: releasing ip for ${INTERFACE}"
+    dhclient -r ${INTERFACE}
 
     logger "WIFI[$$]: setting ${INTERFACE} DOWN"
     ip link set ${INTERFACE} down
@@ -39,15 +38,23 @@ get_best_net() {
     NETWORKS=($(iw dev wlp3s0 scan | egrep "signal|SSID" | sed -e "s/\tsignal: //" -e "s/\tSSID: //" | awk '{ORS = (NR % 2 == 0)? "\n" : " "; print}' | sort | awk '{print $3}' | tr '\n' ' '))
 
     for network in ${!NETWORKS[@]}; do
-       if [ "${NETWORKS[${network}]}" = 'CSDeptWifi' ]; then
-           CONF=cs.conf
-           echo "${NETWORKS[${network}]}"
-           return
-       elif [ "${NETWORKS[${network}]}" = 'NMT-Encrypted' ]; then
-           CONF=nmt.conf
-           echo "${NETWORKS[${network}]}"
-           return
-       fi
+        
+        # if the cs network exists, connect to it no matter the strength
+        case "${NETWORKS[@]}" in  
+            *"CSDeptWifi"*) 
+                CONF=cs.conf
+                echo "CSDeptWifi" 
+                return ;; 
+        esac
+ 
+        if [ "${NETWORKS[${network}]}" = 'NMT-Encrypted' ]; then
+            CONF=nmt.conf
+            echo "${NETWORKS[${network}]}"
+            return
+        elif [ "${NETWORKS[${network}]}" = 'NMT-ENCRYPTED-WPA-WPA2' ]; then
+            CONF=wpa_networks.conf
+            echo "${NETWORKS[${network}]}"
+        fi
     done
 }
 
@@ -61,6 +68,6 @@ if [ "${1}" == "up" ]; then
 
 elif [ "${1}" == "down" ]; then 
     set_down
-    rfkill block wifi
+    #rfkill block wifi
 fi
 

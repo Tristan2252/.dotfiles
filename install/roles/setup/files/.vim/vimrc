@@ -85,6 +85,17 @@ function PlainTextSettings()
 endfunction
 
 " function for languages the use 4 space tabs
+function PlainTextTab2()
+    set spell spelllang=en_us        "If Plain Text spellling should be checked
+    set expandtab                    "always add spaces as tabs
+    set list                         "Show non text char's
+    set listchars=tab:▸\ ,eol:~
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
+endfunction
+
+" function for languages the use 4 space tabs
 function PlainTextTab4()
     set spell spelllang=en_us        "If Plain Text spellling should be checked
     set expandtab                    "always add spaces as tabs
@@ -125,6 +136,7 @@ endf
 
 
 " Call Functions based of file type
+autocmd FileType html,xml,xslt call PlainTextTab2()
 autocmd FileType dokuwiki,markdown,text call PlainTextSettings()
 autocmd FileType tex,latex call LatexSettings()
 autocmd FileType vim,python,sh call PlainTextTab4()

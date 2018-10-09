@@ -3,6 +3,7 @@
 # This script is used in conjunction with acpi events to power down a wireless 
 # interface before suspending to avoid bugs when resuming from sleep 
 # (see /etc/acpi and configs/lm_lid)
+INTERFACE=wlp3s0
 
 get_state() {
     NET_STATE=$(cat /sys/class/net/$INTERFACE/operstate)
@@ -24,6 +25,7 @@ if [ "${SUSPEND_STATE}" = "closed" ]; then
         logger "[Lid]: LID0 DISABLED"
     fi
     
+    ifdown wlp3s0
     rfkill block wifi
     logger "[Lid]: SUSPENDING..."
     #systemctl suspend
@@ -35,5 +37,5 @@ if [ "${SUSPEND_STATE}" = "open" ]; then
 fi
 
 get_state
-logger "[Lid]: STOPPED: NET_STATE ${NET_STATE} USING ${CONF} SUSPEND_STATE ${SUSPEND_STATE}"
+logger "[Lid]: STOPPED: NET_STATE ${NET_STATE} SUSPEND_STATE ${SUSPEND_STATE}"
 

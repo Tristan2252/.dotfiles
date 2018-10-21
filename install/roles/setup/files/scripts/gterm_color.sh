@@ -111,8 +111,8 @@ if which "$DCONF" > /dev/null 2>&1; then
         dset bold-color-same-as-fg "true"
         dset use-theme-colors "false"
         dset use-theme-background "false"
-
-        echo "$DCONF write $BASE_KEY_NEW/default '$PROFILE_SLUG'"
+        
+        "$DCONF" write "$BASE_KEY_NEW/default" "'$PROFILE_SLUG'"
 
         unset PROFILE_NAME
         unset PROFILE_SLUG

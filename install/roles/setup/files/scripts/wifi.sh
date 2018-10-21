@@ -54,6 +54,7 @@ get_best_net() {
         elif [ "${NETWORKS[${network}]}" = 'NMT-ENCRYPTED-WPA-WPA2' ]; then
             CONF=wpa_networks.conf
             echo "${NETWORKS[${network}]}"
+            return
         fi
     done
 }

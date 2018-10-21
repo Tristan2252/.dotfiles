@@ -9,3 +9,7 @@ GtkAccelLabel { color: #c9c9c9; }
 /* BEGIN GtkMenuBar */
 GtkMenuBar { background-color: #151414; }
 /* END GtkMenuBar */
+
+VteTerminal, vte-terminal {
+        padding: 15px;
+}

@@ -5,7 +5,7 @@
 - hosts: local
   connection: local
   vars:
-        theme_name: "clover_green"
+        theme_name: "fall_morning"
 
         #####################################################
         ##################    COLORS    #####################
@@ -137,7 +137,7 @@
                 - { name: "GtkMenuBar", attribute: "background-color", color: "{{ gtk_window }}"}
 
         - name: Config Terminal - Get Default Profile Id
-          script: {{ playbook_dir }}/scripts/gterm_color.sh --palette {{ terminal_colors }} --name {{ theme_name }}
+          script: {{ playbook_dir }}/scripts/gterm_color.sh -p {{ terminal_colors }} -bg {{ terminal_bg }} -fg {{ terminal_fg }} -n {{ theme_name }}
           tags:
                 - terminal
 

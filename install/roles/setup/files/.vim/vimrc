@@ -75,7 +75,7 @@ endif
 
 " function for Plain Text such as .txt and or markdown
 function PlainTextSettings()
-    set spell spelllang=en_us        "If Plain Text spellling should be checked
+    set spell spelllang=en_us        "If Plain Text spelling should be checked
     set expandtab                    "always add spaces as tabs
     set list                         "Show non text char's
     set listchars=tab:▸\ ,eol:~
@@ -86,7 +86,7 @@ endfunction
 
 " function for languages the use 4 space tabs
 function PlainTextTab2()
-    set spell spelllang=en_us        "If Plain Text spellling should be checked
+    set spell spelllang=en_us        "If Plain Text spelling should be checked
     set expandtab                    "always add spaces as tabs
     set list                         "Show non text char's
     set listchars=tab:▸\ ,eol:~
@@ -97,7 +97,7 @@ endfunction
 
 " function for languages the use 4 space tabs
 function PlainTextTab4()
-    set spell spelllang=en_us        "If Plain Text spellling should be checked
+    set spell spelllang=en_us        "If Plain Text spelling should be checked
     set expandtab                    "always add spaces as tabs
     set list                         "Show non text char's
     set listchars=tab:▸\ ,eol:~
@@ -108,7 +108,7 @@ endfunction
 
 " function for languages the use 8 space tabs
 function PlainTextTab8()
-    set spell spelllang=en_us        "If Plain Text spellling should be checked
+    set spell spelllang=en_us        "If Plain Text spelling should be checked
     set expandtab                    "always add spaces as tabs
     set list                         "Show non text char's
     set listchars=tab:▸\ ,eol:~
@@ -167,7 +167,10 @@ let airline#extensions#default#section_use_groupitems = 0
 let g:airline_theme='custom'
 let g:airline_section_a = airline#section#create(['mode'])
 let g:airline_section_b = airline#section#create(['spell'])
- 
+
+" html match tag plugin
+let g:mta_use_matchparen_group = 1
+
 " >>> Keymap commands <<<
 "
 " v goes into visual mode

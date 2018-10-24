@@ -67,3 +67,6 @@
 - include: grub_config.yml
   tags: [grub]
 
+- include: sxiv.yml
+  tags: [sxiv]
+

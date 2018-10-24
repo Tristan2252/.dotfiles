@@ -3,7 +3,7 @@
 #### SOURCE: https://terminal.sexy/
 
 [[ -z "$PROFILE_NAME" ]] && PROFILE_NAME="My Theme"
-[[ -z "$PROFILE_SLUG" ]] && PROFILE_SLUG="terminal-dot-theme"
+[[ -z "$PROFILE_SLUG" ]] && PROFILE_SLUG=""
 [[ -z "$DCONF" ]] && DCONF=dconf
 [[ -z "$UUIDGEN" ]] && UUIDGEN=uuidgen
 
@@ -39,6 +39,7 @@ usage ()
         -bg | --background-color \n\t set terminal background color\n
         -fg | --foreground-color \n\t set terminal foreground color\n
         -p  | --palette \n\t set terminal color palette\n
+        -i  | --id\n\t append to theme with this id number\n
         -n  | --name \n\t set profile name\n
         -h  | --help \n\t print help page\n
     "
@@ -62,6 +63,10 @@ while [ "$1" != "" ]; do
             shift
             PALETTE=$1
             ;;
+        -i | --id)
+            shift
+            PROFILE_SLUG=$1
+            ;;
         -n | --name)
             shift
             PROFILE_NAME=$1
@@ -83,8 +88,10 @@ if which "$DCONF" > /dev/null 2>&1; then
     [[ -z "$BASE_KEY_NEW" ]] && BASE_KEY_NEW=/org/gnome/terminal/legacy/profiles:
 
     if [[ -n "`$DCONF list $BASE_KEY_NEW/`" ]]; then
-        if which "$UUIDGEN" > /dev/null 2>&1; then
-            PROFILE_SLUG=`uuidgen`
+        if [[ -z $PROFILE_SLUG ]]; then
+            if which "$UUIDGEN" > /dev/null 2>&1; then
+                PROFILE_SLUG=`uuidgen`
+            fi
         fi
 
         if [[ -n "`$DCONF read $BASE_KEY_NEW/default`" ]]; then

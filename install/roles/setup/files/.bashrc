@@ -2,15 +2,25 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-#export TERM='screen-256color'
-export TERM='xterm-256color'
 
 ###### Powerline Colors ######
-A_BACKGROUND='140:162:147'
-A_FORGROUND='18:54:38'
-B_BACKGROUND='47:88:68'
-#B_FORGROUND='198:198:198'
-B_FORGROUND='178:178:178'
+A_BACKGROUND='223:159:12'
+A_FORGROUND='57:54:68'
+B_BACKGROUND='57:54:68'
+B_FORGROUND='223:159:12'
+
+prompt() {
+    bold=$(tput bold)
+    a_color="\033[38:2:${A_FORGROUND}m\033[48:2:${A_BACKGROUND}m"
+    a_end="\033[38:2:${A_BACKGROUND}m\033[48:2:${B_BACKGROUND}m"
+    b_color="\033[38:2:${B_FORGROUND}m\033[48:2:${B_BACKGROUND}m"
+    b_end="\033[38:2:${B_BACKGROUND}m"
+    re_color=$(tput sgr0)
+
+    local pmt='\[$bold\]\[%s\] $USER \[%s\]\[%s\] $(pwd | sed "s/\/home\/tristan/~/g; s/\//  /g") \[$re_color\]\[%s\]\[$re_color\]\[$re_color\] '
+    
+    PS1=$(printf "$pmt" "$a_color" "$a_end" "$b_color" "$b_end")
+}
 
 # If not running interactively, don't do anything
 case $- in
@@ -67,21 +77,14 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    bold=$(tput bold)
-    a_color=$(printf "\033[38:2:${A_FORGROUND}m\033[48:2:${A_BACKGROUND}m")
-    a_end=$(printf "\033[38:2:${A_BACKGROUND}m\033[48:2:${B_BACKGROUND}m")
-    b_color=$(printf "\033[38:2:${B_FORGROUND}m\033[48:2:${B_BACKGROUND}m")
-    b_end=$(printf "\033[38:2:${B_BACKGROUND}m")
-    re_color=$(tput sgr0)
-
-    PS1='\[$bold\]\[$a_color\] \u \[$a_end\]\[$b_color\] $(pwd | sed "s/\/home\/tristan/~/g; s/\//  /g") \[$re_color\]\[$b_end\]\[$re_color\]\[$re_color\] '
+    PROMPT_COMMAND=prompt
     
     #if [ $(expr length $(pwd)) -gt 50 ]; then 
     #    PS1='\[$bold\]\[$a_color\] \u \[$a_end\]\[$b_color\]  ...  \W \[\033[00m\]\[$b_end\] \[\033[00m\]'
     #fi
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$'
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ tristan '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
     #PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ tristan '
 fi
 unset color_prompt force_color_prompt

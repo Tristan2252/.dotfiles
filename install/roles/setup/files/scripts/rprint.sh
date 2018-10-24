@@ -7,7 +7,8 @@
 
 if [ -z "$1" ] || [ -z "$2" ]; then 
     printf "Print PDF files remotely\n"
-    printf "rprint [FILE].pdf [REMOTE NETWORK PRINTER]\n"
+    printf "rprint [FILE].pdf [REMOTE NETWORK PRINTER]\n\n"
+    printf "print double sided use -o sides=two-sided-long-edge \n"
     exit 0
 fi
 

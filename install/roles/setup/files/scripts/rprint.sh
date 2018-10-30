@@ -23,4 +23,5 @@ scp $1 tristan@login.cs.nmt.edu:~/Print/
 
 #ssh -t 900318369@login.nmt.edu "lp ~/Print/$1 -d $2"
 
+#ssh -t tristan@login.cs.nmt.edu "ssh 900318369@login.nmt.edu \"scp tristan@login.cs.nmt.edu:~/Print/$1 ~/Print/; lp ~/Print/$1 -d $2 $3\""
 ssh -t 900318369@login.nmt.edu "scp tristan@login.cs.nmt.edu:~/Print/$1 ~/Print/; lp ~/Print/$1 -d $2 $3"

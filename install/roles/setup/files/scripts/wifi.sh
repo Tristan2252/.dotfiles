@@ -10,7 +10,11 @@ get_state() {
 set_up() {
     if [ $(pgrep wpa_supplicant) ]; then
         logger "WIFI[$$]: KILLING wpa_supplicant for ${INTERFACE}"
-        killall wpa_supplicant
+        pkill -9 -f wpa_supplicant
+    fi
+    if [ $(pgrep dhclient) ]; then
+        logger "WIFI[$$]: forcibly killing dhclient for ${INTERFACE}"
+        pkill -9 -f dhclient
     fi
 
     logger "WIFI[$$]: initializing ${INTERFACE} connection..."
@@ -21,7 +25,7 @@ set_up() {
 set_down() {
     if [ $(pgrep wpa_supplicant) ]; then
         logger "WIFI[$$]: forcibly killing wpa_supplicant for ${INTERFACE}"
-        killall -9 wpa_supplicant
+        pkill -9 -f wpa_supplicant
     fi
     
     logger "WIFI[$$]: releasing ip for ${INTERFACE}"
@@ -69,6 +73,5 @@ if [ "${1}" == "up" ]; then
 
 elif [ "${1}" == "down" ]; then 
     set_down
-    #rfkill block wifi
 fi
 

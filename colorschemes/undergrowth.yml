@@ -3,9 +3,10 @@
 # run roles
 
 - hosts: 127.0.0.1
-  connection: 127.0.0.1
+  connection: local
   vars:
-        theme_name: "fall_morning"
+        theme_name: "undergrowth"
+        terminal_id: "da53d9cf-e2f2-4b85-82bf-5cea26088d21"
 
         #####################################################
         ##################    COLORS    #####################
@@ -13,45 +14,45 @@
         
         white: 'ffffff'
         black: '000000'
-        base_dark: '292823'
-        base_light: 'C9C9C9'
+        terminal_white: 'C9C9C9'
 
-        fall_orange: 'DF9F0C'
-        light_orange: 'D99F5A'
-        fall_yellow: 'EDB987'
-        fall_green: '7D8063'
-        fall_brown: '705E47'
-        fall_dark: '292823'
+        brown: '84503B'
+        light_brown: 'C1947B'
+        dark_gray: '1D221C'
+        light_green: '5B5A52'
+        
+        base_dark: "{{ dark_gray }}"
+        base_light: "{{ light_brown }}"
 
         #####################################################
         ################    i3 SETTINGs    ##################
         #####################################################
         
         i3_bar_bg: "{{ base_dark }}"
-        i3_bar_fg: "{{ fall_orange }}"
-        i3_active_bg: "{{ fall_orange }}"
+        i3_bar_fg: "{{ light_brown }}"
+        i3_active_bg: "{{ brown }}"
         i3_active_fg: "{{ base_dark }}"
-        i3_inactive_bg: "{{ fall_orange }}"
+        i3_inactive_bg: "{{ brown }}"
         i3_inactive_fg: "{{ base_dark }}"
 
-        status_A_BG: "{{ fall_orange }}"
+        status_A_BG: "{{ light_brown }}"
         status_A_FG: "{{ base_dark }}"
         status_B_BG: "{{ base_dark }}"
-        status_B_FG: "{{ fall_orange }}"
+        status_B_FG: "{{ light_brown }}"
 
         #####################################################
         ##############    DUNST  SETTINGs    ################
         #####################################################
         
-        dunst_bg: "{{ mint }}"
-        dunst_fg: "{{ black_green }}"
+        dunst_bg: "{{ base_light }}"
+        dunst_fg: "{{ base_dark }}"
         
         #####################################################
         ###############    ROFI  SETTINGs    ################
         #####################################################
         
-        rofi_bg: "{{ fall_dark }}"
-        rofi_fg: "{{ fall_orange }}"
+        rofi_bg: "{{ base_dark }}"
+        rofi_fg: "{{ base_light }}"
 
         #####################################################
         ###############    GTK3  SETTINGs    ################
@@ -64,11 +65,10 @@
         ############    TERMINAL  SETTINGs    ###############
         #####################################################
         
-        terminal_id: "da53d9cf-e2f2-4b85-82bf-5cea26088d21"
         terminal_bg: "{{ black }}"        
-        terminal_fg: "{{ base_light }}"
-        folder: "{{ light_orange }}"
-        symlink: "{{ fall_brown }}"
+        terminal_fg: "{{ terminal_white }}"
+        folder: "{{ terminal_white }}"
+        symlink: "{{ light_brown }}"
 
         #                   0          1          2          3          4          5          6          7          8          9          10         11         12               13         14                15        
         terminal_colors: "['#282A2E', '#A54242', '#8C9440', '#DE935F', '#5F819D', '#85678F', '#5E8D87', '#707880', '#373B41', '#CC6666', '#B5BD68', '#F0C674', '#{{ folder }}', '#B294BB', '#{{ symlink }}', '#C5C8C6']"

@@ -32,6 +32,8 @@ syntax on
 colorscheme monokai
 " disable background
 "hi Normal guibg=NONE ctermbg=NONE
+" search highlight color
+hi MatchParen cterm=underline ctermfg=208 ctermbg=none
 
 " ###########################################################
 " #                       KAY BINDS                         #

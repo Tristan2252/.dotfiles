@@ -10,6 +10,6 @@ if [ -z "$LOCK_WIN_ID" ]; then
     exit 0
 fi
 
-conky -q --window-id=$WIN_ID -c /home/tristan/.dotfiles/configs/conky_widget_bar  &
+#conky -q --window-id=$WIN_ID -c /home/tristan/.dotfiles/configs/conky_widget_bar  &
 
 exit 0

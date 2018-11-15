@@ -70,3 +70,6 @@
 - include: sxiv.yml
   tags: [sxiv]
 
+- include: rofi.yml
+  tags: [rofi, desktop, links]
+

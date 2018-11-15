@@ -1,0 +1,24 @@
+---
+
+- set_fact:
+        package: "rofi"
+        config: ".config/rofi"
+
+- name: Install Packages {{ package }}
+  apt:
+        name: "{{ item }}"
+  with_items:
+          - "{{ package }}"
+  become: True
+
+- name: Checking Existing {{ config }}
+  stat: path={{ ansible_env.HOME }}/{{ config }}
+  register: file
+
+- name: Remove Old {{ config }}
+  file: path={{ file.stat.path }} state=absent force=yes
+  when: file.stat.exists == True
+
+- name: Linking {{ package }}
+  command: "/bin/ln -fs {{ playbook_dir }}/roles/setup/files/{{ config }} {{ ansible_env.HOME }}/{{ config }}"
+

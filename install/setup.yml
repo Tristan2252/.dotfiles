@@ -2,7 +2,7 @@
 # run.yml
 # run roles
 
-- hosts: local
+- hosts: localhost
   connection: local
   vars:
 

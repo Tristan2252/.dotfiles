@@ -246,6 +246,8 @@ exec --no-start-id dunst
 floating_maximum_size 1200 x 1500
 
 for_window [class=feh] floating enable
+for_window [class="etcher-electron"] floating enable
+for_window [class="Gnome-calculator"] floating enable
 for_window [class="TeamViewer"] floating enable
 
 

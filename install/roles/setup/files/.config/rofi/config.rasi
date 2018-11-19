@@ -7,20 +7,20 @@ configuration {
 * {
     font: "SF Pro Text Light 12";
     padding: 5px 10px;
-    background-color: #1C1C1C;
-    color: #C1947B;
+    background-color: #2A2926;
+    color: #D1D6D2;
 }
 
 
 window {
     border-radius: 10px;
-    height: 600px;
+    height: 400px;
     width: 1000px;
     padding: 30px;
 }
 
 #prompt {
-  color: #D0D4CC;
+  color: #D1D6D2;
 }
       
 listview {
@@ -29,6 +29,6 @@ listview {
 }
 
 #element selected {
-  text-color: #D0D4CC;
+    text-color: #95B4CB;
 }
 

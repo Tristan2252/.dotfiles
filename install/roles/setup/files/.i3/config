@@ -1,12 +1,12 @@
 ##################### VARS ########################
 set $sinknum 0
-set $wallpaper ~/Pictures/Wallpapers/annie-spratt-458094-unsplash.jpg
-set $active_bg #84503B
-set $active_fg #1D221C
-set $inactive_bg #84503B
-set $inactive_fg #1D221C
-set $bar_bg #1D221C
-set $bar_fg #C1947B
+set $wallpaper ~/Pictures/Wallpapers/dave-ruck-1075678-unsplash.jpg
+set $active_bg #D1D6D2
+set $active_fg #2A2926
+set $inactive_bg #D1D6D2
+set $inactive_fg #2A2926
+set $bar_bg #2A2926
+set $bar_fg #D1D6D2
 
 ################# i3 GAPS SETTINGS #################
 for_window [class="^.*"] border pixel 2

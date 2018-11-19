@@ -1,57 +1,44 @@
 #!/bin/bash
+# Use this script to adjust the brightness level of intel backlight.
+# The percentage is then calculated and reported to dunst
 
-MAX=1370
-CUR_VAL=$(cat /sys/class/backlight/intel_backlight/brightness)
-IS_RUNNING=$(pidof -x "brightness.sh" | wc -w)
-TIME_STAMP=$(awk '{print $2}' < /tmp/dunst_id)
-TIME_NOW=$(date +%d%H%M%S)
+MAX=1380
+OFFSET=10
+CUR_VAL=$(< /sys/class/backlight/intel_backlight/brightness)
 
 notify() {
+    # convert number to percent
+    VALUE=$(echo "scale = 2; (($CUR_VAL / $MAX) * 100)" | bc)
+
     if [ -e /tmp/dunst_id ]; then
-        if [ $TIME_STAMP -lt $(($TIME_NOW-2)) ]; then
-            DUNST_DI=$(dunstify -p -t 1000 "    Brightness: $VALUE%")
-            echo "$DUNST_DI $TIME_NOW" > /tmp/dunst_id
-        else 
-            dunstify -t 1000 -r $(awk '{print $1}' < /tmp/dunst_id) "    Brightness: $VALUE%"
-        fi
+        DUNST_ID=$(dunstify -p -t 1000 -r $(< /tmp/dunst_id) "    Brightness: $VALUE%")
+        echo "$DUNST_ID" > /tmp/dunst_id
     else 
-        DUNST_DI=$(dunstify -p -t 1000 "    Brightness: $VALUE%")
-        echo "$DUNST_DI $TIME_NOW" > /tmp/dunst_id
+        DUNST_ID=$(dunstify -p -t 1000 "    Brightness: $VALUE%")
+        echo "$DUNST_ID" > /tmp/dunst_id
     fi
 }
 
-if [ $IS_RUNNING -ge 3 ]; then
+if [ $(pgrep $0) ]; then
     exit 0
-fi
 
-if [ $1 = "+" ]; then
-    SET_VAL=$(($CUR_VAL + 10))
+elif [ $1 = "+" ]; then
+    SET_VAL=$(($CUR_VAL + $OFFSET))
 
     if [ $SET_VAL -le $MAX ]; then
-
-        VALUE=$(echo "scale = 2; (($CUR_VAL / $MAX) * 100)" | bc)
         notify
-
-        for i in $(seq $CUR_VAL 2 $SET_VAL); do
-            echo $i | sudo tee /sys/class/backlight/intel_backlight/brightness # be sure to add command to sudo file
-        done 
+        echo $SET_VAL | sudo tee /sys/class/backlight/intel_backlight/brightness # be sure to add command to sudo file
     fi
+
 elif [ $1 = "-" ]; then 
-    SET_VAL=$(($CUR_VAL - 10))
+    SET_VAL=$(($CUR_VAL - $OFFSET))
     
     # do nothing if value is below 0
-    if [ $SET_VAL -lt 0 ]; then 
-        exit 0
+    if [ $SET_VAL -ge 0 ]; then 
+        notify
+        echo $SET_VAL | sudo tee /sys/class/backlight/intel_backlight/brightness # be sure to add command to sudo file
     fi
 
-    VALUE=$(echo "scale = 2; (($CUR_VAL / $MAX) * 100)" | bc)
-    #$HOME/.dotfiles/scripts/dunstify -r 2000 "   Brightness: $VALUE%"
-    notify
-
-    for i in $(seq $CUR_VAL -2 $SET_VAL); do
-        # check if value is within range of brightness levels
-        echo $i | sudo tee /sys/class/backlight/intel_backlight/brightness
-    done 
 elif [ "$1" = "cal" ]; then 
     echo 0 | sudo tee /sys/class/backlight/intel_backlight/brightness
     

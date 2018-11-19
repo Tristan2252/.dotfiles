@@ -1,4 +1,6 @@
 #! /bin/bash
+# Wifi connection script launched from /etc/network/interfaces 
+# to bring up and down network using wpa_supplicant
 
 INTERFACE=wlp3s0
 CONF=wpa_networks.conf

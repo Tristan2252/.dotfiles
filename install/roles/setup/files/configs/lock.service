@@ -8,7 +8,7 @@ After=suspend.target
 Type=forking
 User=tristan
 Environment=DISPLAY=:0
-ExecStart=/home/tristan/.dotfiles/scripts/lockstat.sh
+ExecStart=/usr/bin/i3lock -i /home/tristan/.lockpic.png -c '#000000' -o '#191d0f' -w '#572020' -l '#ffffff' -e
 ExecStop=/home/tristan/.dotfiles/scripts/lockpic.sh
 
 [Install]

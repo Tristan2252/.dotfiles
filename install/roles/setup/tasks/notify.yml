@@ -1,15 +1,47 @@
 ---
 
 - set_fact:
-        package: "dunst"
         config: ".config/dunst"
 
-- name: Install Packages {{ package }}
+- name: Install Dependencies {{ package }}
   apt:
         name: "{{ item }}"
   with_items:
-          - "{{ package }}"
+          - libdbus-1-dev 
+          - libx11-dev 
+          - libxinerama-dev 
+          - libxrandr-dev 
+          - libxss-dev 
+          - libglib2.0-dev 
+          - libpango1.0-dev 
+          - libgtk-3-dev 
+          - libxdg-basedir-dev
+          - libnotify-dev
   become: True
+
+- name: Clone dunst From Git
+  git:
+    repo: 'https://github.com/dunst-project/dunst.git'
+    dest: "/tmp/dunst"
+
+- name: dunst build and install
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/dunst"
+  with_items:
+    - make
+    - make install
+    - make dunstify
+  become: true
+  ignore_errors: true
+
+- name: Install dunstify
+  copy:
+    src: /tmp/dunst/dunstify
+    dest: /usr/local/bin/dunstify
+    owner: root
+    group: root
+  become: true
 
 - name: Checking Existing {{ config }}
   stat: path={{ ansible_env.HOME }}/{{ config }}

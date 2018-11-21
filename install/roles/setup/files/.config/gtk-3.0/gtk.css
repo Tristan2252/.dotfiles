@@ -14,4 +14,8 @@ VteTerminal, vte-terminal {
         padding: 15px;
 }
 
+*:selected {
+	background-color: #6F94AD
+}
+
 

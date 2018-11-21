@@ -17,6 +17,7 @@ case $OPT in
         systemctl reboot
         ;;
       *)
+        echo "Unexpected Error"
         ;;
 esac
 

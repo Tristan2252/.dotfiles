@@ -12,11 +12,11 @@ notify() {
 
     if [ -e /tmp/dunst_id ]; then
         DUNST_ID=$(dunstify -p -t 1000 -r $(< /tmp/dunst_id) "    Brightness: $VALUE%")
-        echo "$DUNST_ID" > /tmp/dunst_id
     else 
         DUNST_ID=$(dunstify -p -t 1000 "    Brightness: $VALUE%")
-        echo "$DUNST_ID" > /tmp/dunst_id
     fi
+    
+    echo "$DUNST_ID" > /tmp/dunst_id
 }
 
 if [ $(pgrep $0) ]; then

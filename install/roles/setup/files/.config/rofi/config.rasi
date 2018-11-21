@@ -1,7 +1,8 @@
 
 configuration {
 	display-drun:    "";
-	show-icons:      false;
+	show-icons:      true;
+	drun-icon-theme: "macOS";
 }
 
 * {

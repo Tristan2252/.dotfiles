@@ -1,12 +1,13 @@
 ##################### VARS ########################
 set $sinknum 0
-set $wallpaper ~/Pictures/Wallpapers/dave-ruck-1075678-unsplash.jpg
-set $active_bg #D1D6D2
-set $active_fg #2A2926
-set $inactive_bg #D1D6D2
-set $inactive_fg #2A2926
-set $bar_bg #2A2926
-set $bar_fg #D1D6D2
+set $wallpaper ~/Pictures/Wallpapers/unsplash-Annie-Spratt.jpg
+set $active_bg #24211A
+set $active_fg #24211A
+set $inactive_bg #24211A
+set $inactive_fg #24211A
+set $bar_bg #00000000
+set $bar_fg #24211A
+set $i3_text #00000000
 
 ################# i3 GAPS SETTINGS #################
 for_window [class="^.*"] border pixel 2
@@ -191,7 +192,8 @@ bar {
 		background $bar_bg
 		
 		# workspace indicator       outline      fill           text
-		focused_workspace           $bar_bg      $bar_fg   $bar_bg
+		inactive_workspace          $bar_bg      $bar_bg        $bar_fg
+		focused_workspace           $bar_bg      $bar_fg        $i3_text
     
 	}
 

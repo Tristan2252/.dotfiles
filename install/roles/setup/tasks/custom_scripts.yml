@@ -1,0 +1,6 @@
+---
+
+- name: Linking tex_file.sh
+  command: "/bin/ln -fs {{ playbook_dir }}/roles/setup/files/scripts/tex_file.sh {{ ansible_env.HOME }}/.local/bin/tex_file"
+
+

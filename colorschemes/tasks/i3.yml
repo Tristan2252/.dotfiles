@@ -1,0 +1,41 @@
+---
+
+- name: Setup i3 Color
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.i3/config"
+    state: present
+    regexp: 'set \${{ item.name }}.*'
+    line: 'set ${{ item.name }} #{{ item.color }}'
+  with_items: 
+        - { name: "active_bg", color: "{{ i3_active_bg }}"}
+        - { name: "active_fg", color: "{{ i3_active_fg }}"}
+        - { name: "inactive_bg", color: "{{ i3_inactive_bg }}"}
+        - { name: "inactive_fg", color: "{{ i3_inactive_fg }}"}
+        - { name: "bar_bg", color: "{{ i3_bar_bg }}"}
+        - { name: "bar_fg", color: "{{ i3_bar_fg }}"}
+        - { name: "i3_text", color: "{{ i3_text }}"}
+  register: config
+  tags:
+        - i3
+
+- name: Reload i3
+  shell: i3-msg reload
+  when: config.changed
+  tags: 
+        - i3
+
+- name: Setup Status Bar Color
+  lineinfile:
+    dest: "{{ ansible_env.HOME }}/.dotfiles/scripts/bar_status.py"
+    state: present
+    regexp: '{{ item.name }} =.*'
+    line: '    {{ item.name }} = "{{ item.color }}"'
+  with_items: 
+        - { name: "a_bg", color: "{{ status_A_BG }}"}
+        - { name: "a_fg", color: "{{ status_A_FG }}"}
+        - { name: "b_bg", color: "{{ status_B_BG }}"}
+        - { name: "b_fg", color: "{{ status_B_FG }}"}
+  tags:
+        - status
+
+

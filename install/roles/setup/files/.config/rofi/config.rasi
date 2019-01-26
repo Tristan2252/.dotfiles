@@ -8,8 +8,8 @@ configuration {
 * {
     font: "SF Pro Text Light 12";
     padding: 5px 10px;
-    background-color: #2A2926;
-    color: #D1D6D2;
+    background-color: #24211A;
+    color: #E4E8E9;
 }
 
 
@@ -30,6 +30,6 @@ listview {
 }
 
 #element selected {
-    text-color: #95B4CB;
+    text-color: #AB8370;
 }
 

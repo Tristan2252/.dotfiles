@@ -1,0 +1,8 @@
+---
+
+- name: Config Terminal - Get Default Profile Id
+  shell: "{{ playbook_dir }}/scripts/gterm_color.sh --palette \"{{ terminal_colors }}\" --background-color '#{{ terminal_bg }}' --foreground-color '#{{ terminal_fg }}' --name '{{ theme_name }}' --id 'da53d9cf-e2f2-4b85-82bf-5cea26088d21'"
+  tags:
+        - terminal
+
+

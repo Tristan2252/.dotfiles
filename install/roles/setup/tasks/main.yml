@@ -73,3 +73,10 @@
 - include: rofi.yml
   tags: [rofi, desktop, links]
 
+- include: vimix_gtk_theme.yml
+  tags: [vimix, desktop]
+
+- include: custom_scripts.yml
+  tags: [scripts, links]
+
+

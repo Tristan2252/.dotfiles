@@ -45,7 +45,10 @@ nnoremap <CR> :nohlsearch<CR>
 nnoremap \ :vsp<CR>:wincmd l<CR>
 "Unmap p in normal mode because of tmux p command"
 map p <Nop> 
-
+"Tab Shortcuts
+nnoremap tn :tabnext<CR>
+nnoremap tp :tabprev<CR>
+nnoremap tc :tabedit<CR>:NERDTreeToggle<CR>
 " Disable Scrolling and Clicking
 imap <LeftMouse> <nop>
 imap <ScrollWheelUp> <nop>
@@ -74,6 +77,7 @@ endif
 " ###########################################################
 " #                   FILETYPE FUNCTIONS                    #
 " ###########################################################
+autocmd BufWritePost set_colors.yml :silent exec "!ansible-playbook set_colors.yml &> /dev/null &" | redraw
 
 " function for Plain Text such as .txt and or markdown
 function PlainTextSettings()
@@ -169,6 +173,12 @@ let airline#extensions#default#section_use_groupitems = 0
 let g:airline_theme='custom'
 let g:airline_section_a = airline#section#create(['mode'])
 let g:airline_section_b = airline#section#create(['spell'])
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " html match tag plugin
 let g:mta_use_matchparen_group = 1

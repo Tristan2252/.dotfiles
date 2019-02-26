@@ -17,6 +17,8 @@
         terminal_white: 'C9C9C9'
         transparent: '00000000'
         
+        gray: '6A6A6A'
+
         green_sea: '2A332C'
         green_sea_dark: '24211A'
         white_fog: 'E4E8E9'
@@ -55,15 +57,15 @@
         #####################################################
 
         rofi_bg: "{{ base_dark }}"
-        rofi_fg: "{{ base_light }}"
-        rofi_select: "{{ brown_grass }}"
+        rofi_fg: "{{ gray }}"
+        rofi_select: "{{ base_light }}"
 
         #####################################################
         ###############    GTK3  SETTINGs    ################
         #####################################################
 
-        gtk_window: "{{ black_green }}"
-        gtk_menu_text: "{{ light_gray }}"
+        gtk_window: "{{ brown_grass }}"
+        gtk_menu_text: "{{ white_fog }}"
 
         #####################################################
         ############    TERMINAL  SETTINGs    ###############
@@ -81,7 +83,7 @@
         - include: tasks/i3.yml 
         - include: tasks/dunst.yml 
         - include: tasks/rofi.yml 
-          #        - include: tasks/gtk.yml 
+        - include: tasks/gtk.yml 
           #        - include: tasks/terminal.yml 
           #        
 

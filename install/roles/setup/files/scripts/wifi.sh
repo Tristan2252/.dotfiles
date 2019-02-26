@@ -32,6 +32,11 @@ set_down() {
     
     logger "WIFI[$$]: releasing ip for ${INTERFACE}"
     dhclient -r ${INTERFACE}
+    
+    if [ $(pgrep dhclient) ]; then
+        logger "WIFI[$$]: forcibly killing dhclient"
+        pkill -9 -f dhclient
+    fi
 
     logger "WIFI[$$]: setting ${INTERFACE} DOWN"
     ip link set ${INTERFACE} down

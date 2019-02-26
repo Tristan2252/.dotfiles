@@ -18,3 +18,7 @@ for file in $(ls *.tex); do
 
 done
 
+# if no file in tex dir then remove
+if [ ! "$(ls tex/)" ]; then
+    rmdir tex/
+fi

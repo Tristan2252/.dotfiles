@@ -4,10 +4,10 @@
  */
 
 /* BEGIN GtkAccelLabel */
-GtkAccelLabel { color: #c9c9c9; }
+GtkAccelLabel { color: #E4E8E9; }
 /* END GtkAccelLabel */
 /* BEGIN GtkMenuBar */
-GtkMenuBar { background-color: #151414; }
+GtkMenuBar { background-color: #AB8370; }
 /* END GtkMenuBar */
 
 VteTerminal, vte-terminal {

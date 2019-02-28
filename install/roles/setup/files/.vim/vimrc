@@ -135,7 +135,7 @@ fun LatexSettings()
     set softtabstop=4
     set spell spelllang=en_us
     " after write, run pdflatex command in background to compile tex file then redraw screen
-    autocmd BufWritePost * :silent exec "!pdflatex -interaction=batchmode % > /dev/null" | redraw
+    autocmd BufWritePost * :silent exec "!pdflatex -interaction=batchmode '%' > /dev/null" | redraw
     " ctl-R to render latex file, the % is the current file name
     map <C-R> :! pdflatex -interaction=batchmode %; lacheck %<CR>
 endf

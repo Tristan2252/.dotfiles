@@ -1,7 +1,12 @@
 #! /bin/bash
 
-[ ! -e *.tex ] && exit 0
-[ ! -d tex ] && mkdir tex
+if [ ! $(ls | grep *.tex) ]; then 
+    exit 0
+fi
+
+if [ ! -d tex ]; then 
+    mkdir tex
+fi
 
 latest=$(ls -t *.tex | head -1) 
 

@@ -5,7 +5,7 @@
         config: ".config/compton.conf"
 
 - name: Install Packages {{ package }}
-  apt:
+  yum:
           name: "{{ package }}"
   become: True
 

@@ -2,7 +2,7 @@
 # Use this script to adjust the brightness level of intel backlight.
 # The percentage is then calculated and reported to dunst
 
-MAX=1380
+MAX=851
 OFFSET=10
 CUR_VAL=$(< /sys/class/backlight/intel_backlight/brightness)
 

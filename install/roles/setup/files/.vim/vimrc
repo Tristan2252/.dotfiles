@@ -170,7 +170,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let airline#extensions#default#section_use_groupitems = 0
-let g:airline_theme='custom'
+"let g:airline_theme='custom'
 let g:airline_section_a = airline#section#create(['mode'])
 let g:airline_section_b = airline#section#create(['spell'])
 

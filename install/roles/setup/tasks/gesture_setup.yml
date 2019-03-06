@@ -7,10 +7,10 @@
                 - git
                 - xdotool 
                 - wmctrl
-                - libinput-tools
+                - libinput-utils
 
 - name: Gesture Install Dependencies
-  apt:
+  yum:
           name: '{{ item }}'
   with_items: "{{ dependencies }}"
   become: true

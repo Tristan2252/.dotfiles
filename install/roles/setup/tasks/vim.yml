@@ -1,7 +1,7 @@
 ---
 
 - name: Install vim Packages
-  apt:
+  yum:
           name: 'vim'
   become: True
 

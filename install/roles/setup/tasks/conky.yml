@@ -5,7 +5,7 @@
         config: ".conkyrc"
 
 - name: Install Packages {{ package }}
-  apt:
+  yum:
           name: "{{ package }}"
   become: True
 

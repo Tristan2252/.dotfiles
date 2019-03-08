@@ -149,5 +149,5 @@ alias feh='feh --scale '
 alias tetris='quadrapassel'
 
 ###### VIM MAN PAGES #####
-export MANPAGER="/bin/sh -c \"col -b | vim --not-a-term -c 'set ft=man ts=8 nomod nolist noma' -\""
+export MANPAGER="/bin/sh -c \"less -c\""
 

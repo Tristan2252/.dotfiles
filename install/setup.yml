@@ -15,16 +15,16 @@
               - tree
               - htop
               - sshuttle
-              - smbclient
-              - wpasupplicant
-              - build-essential
+                #- smbclient
+                #- wpasupplicant
+                #- build-essential
               - python3-pip
-              - imagemagick
+              - ImageMagick
 
                 ######## Drivers ########
-              - rfkill
-              - acpi
-              - intel-microcode
+                #- rfkill
+                #- acpi
+                #- intel-microcode
               - pulseaudio
               - pulseaudio-utils
 
@@ -38,26 +38,25 @@
               - compton
               - conky
               - evince
-              - chromium-browser
+              - gnome-calculator
+                #- chromium-browser
               - gparted
 
               - rofi # app menu
               - gpick # color picker
 
                 # theme stuff
-              - papirus-icon-theme
-              - numix-gtk-theme
-              - fonts-font-awesome
+                #- fonts-font-awesome
 
         # latex packages for linux
         latex: 
               - texlive
-              - texlive-bibtex-extra
-              - texlive-extra-utils
-              - texlive-latex-base
-              - texlive-latex-extra
-              - texlive-latex-recommended
-              - texlive-lang-english
+                #- texlive-bibtex-extra
+                #- texlive-extra-utils
+              - texlive-latex
+                #- texlive-latex-extra
+                #- texlive-latex-recommended
+                #- texlive-lang-english
               - latexmk
 
         root_scripts:

@@ -35,7 +35,7 @@
   tags: [ bash, links ]
 
 - include: i3.yml
-  tags: [ i3, links, desktop ]
+  tags: [ i3 ]
 
 - include: notify.yml
   tags: [ notify, links, desktop ]

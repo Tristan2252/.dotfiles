@@ -29,6 +29,6 @@ else
     fi
 fi
 
-notify
+#notify
 
 exit 0

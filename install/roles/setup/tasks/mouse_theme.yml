@@ -7,14 +7,11 @@
 
 
 - name: Add Capitaine Mouse theme Repo
-  apt_repository:
-    repo: ppa:dyatlov-igor/la-capitaine
-    state: present
-  become: true
+  command: yum copr enable tcg/themes -y
+  become: True
 
-  
 - name: Install Packages {{ package }}
-  apt:
+  yum:
           name: "{{ package }}"
   become: True
 

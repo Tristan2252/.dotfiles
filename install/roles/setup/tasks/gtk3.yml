@@ -1,7 +1,7 @@
 ---
 
 - set_fact:
-        package: "gtk2"
+        package: ""
         config: ".config/gtk-3.0"
 
 #- name: Install Packages {{ package }}

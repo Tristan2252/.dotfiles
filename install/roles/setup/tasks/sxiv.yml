@@ -3,11 +3,12 @@
         package: "sxiv"
 
 - name: Install Dependencies {{ package }}
-  apt:
+  yum:
           name: "{{ item }}"
   with_items:
-    - libexif-dev
-    - libimlib2-dev
+    - libexif-devel
+    - imlib2-devel
+    - giflib-devel
   become: True
 
 - name: Clone {{ package }} From Git

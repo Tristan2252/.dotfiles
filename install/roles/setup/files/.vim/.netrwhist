@@ -1,10 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
-let g:netrw_dirhist_1='/home/tristan/Documents/CSE/326/final'
-let g:netrw_dirhist_2='/home/tristan/Documents/CSE/326'
-let g:netrw_dirhist_3='/home/tristan/Documents/CSE/326/notes'
-let g:netrw_dirhist_4='/home/tristan/Documents/CSE/326/notes/Apr-9-2018'
-let g:netrw_dirhist_5='/home/tristan/.dotfiles/install/roles/setup/files/scripts'
-let g:netrw_dirhist_6='/home/tristan/.dotfiles/install/roles/setup/tasks'
-let g:netrw_dirhist_7='/home/tristan/.dotfiles/install'
-let g:netrw_dirhist_8='/home/tristan/Documents/Netbeans/WebApplication1/src/java/data'
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/tristan/.dotfiles/install/roles/setup/tasks'
+let g:netrw_dirhist_2='/home/tristan/.dotfiles/install/roles/setup'
+let g:netrw_dirhist_3='/home/tristan/.dotfiles/install/roles/setup/tasks'
+let g:netrw_dirhist_4='/home/tristan/.dotfiles/install/roles/setup/files/.config/i3'
+let g:netrw_dirhist_5='/home/tristan/.dotfiles/install/roles/setup/tasks'

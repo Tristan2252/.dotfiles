@@ -79,4 +79,8 @@
 - include: custom_scripts.yml
   tags: [scripts, links]
 
+- include: polybar.yml
+  tags: [polybar]
+
+
 

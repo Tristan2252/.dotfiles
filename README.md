@@ -1,3 +1,5 @@
+# Ansible dotfiles
+=======
 # Dotfiles
 
 A repo to store all my dotfiles along with other scripts for configuration and setup of my everyday tools. With this repo I can easily clone and run the ansible setup script to setup a fresh install with my typical desktop environment.

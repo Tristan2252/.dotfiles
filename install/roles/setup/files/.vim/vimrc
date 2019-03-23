@@ -1,0 +1,203 @@
+execute pathogen#infect()
+filetype plugin indent on
+
+" ###########################################################
+" #                       Gen settings                      #
+" ###########################################################
+
+set number
+set numberwidth=6                   "set numberline margin"
+set nowrap                          "Dont like wrapin in vim"
+set colorcolumn=110                 "Colorcolumn length"
+set timeoutlen=1000 ttimeoutlen=0   "Esc delay time"
+set incsearch                       "Show search matches while typing"
+set wildmenu                        "Tab complete vim command menu"
+set t_Co=256                        "Set to 16 to fix pantheon term colors in vim"
+set backspace=indent,eol,start      "Set backspace on everything in insert mode, for OS X"
+set cursorline                      "highlight cursor line"
+set noerrorbells                    "Disable that horrible bell!"
+set foldopen-=block                 "dont allow folds to be opened by []"
+set hlsearch                        "hilight search items"
+set re=1                            "regex engine"
+set mouse=i
+"set ttyfast                         "faster scrolling
+
+" ###########################################################
+" #                        COLORS                           #
+" ###########################################################
+
+" turn on syntx
+syntax on
+" color scheme
+colorscheme monokai
+" disable background
+"hi Normal guibg=NONE ctermbg=NONE
+" search highlight color
+hi MatchParen cterm=underline ctermfg=208 ctermbg=none
+
+" ###########################################################
+" #                       KAY BINDS                         #
+" ###########################################################
+
+"disable hlsearch when enter is pressed
+nnoremap <CR> :nohlsearch<CR>
+" vertical split key map"
+nnoremap \ :vsp<CR>:wincmd l<CR>
+"Unmap p in normal mode because of tmux p command"
+map p <Nop> 
+"Tab Shortcuts
+nnoremap tn :tabnext<CR>
+nnoremap tp :tabprev<CR>
+nnoremap tc :tabedit<CR>:NERDTreeToggle<CR>
+" Disable Scrolling and Clicking
+imap <LeftMouse> <nop>
+imap <ScrollWheelUp> <nop>
+imap <S-ScrollWheelUp> <nop>
+imap <C-ScrollWheelUp> <nop>
+imap <ScrollWheelDown> <nop>
+imap <S-ScrollWheelDown> <nop>
+imap <C-ScrollWheelDown> <nop>
+imap <ScrollWheelLeft> <nop>
+imap <S-ScrollWheelLeft> <nop>
+imap <C-ScrollWheelLeft> <nop>
+imap <ScrollWheelRight> <nop>
+imap <S-ScrollWheelRight> <nop>
+imap <C-ScrollWheelRight> <nop>
+" ###########################################################
+" #               TEMPLATES AUTOCOMMANDS                   #
+" ###########################################################
+
+if has("autocmd")
+    augroup templates
+    autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+    augroup END
+endif
+
+" ###########################################################
+" #                   FILETYPE FUNCTIONS                    #
+" ###########################################################
+autocmd BufWritePost set_colors.yml :silent exec "!ansible-playbook set_colors.yml &> /dev/null &" | redraw
+
+" function for Plain Text such as .txt and or markdown
+function PlainTextSettings()
+    set spell spelllang=en_us        "If Plain Text spelling should be checked
+    set expandtab                    "always add spaces as tabs
+    set list                         "Show non text char's
+    set listchars=tab:▸\ ,eol:~
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4
+endfunction
+
+" function for languages the use 4 space tabs
+function PlainTextTab2()
+    set spell spelllang=en_us        "If Plain Text spelling should be checked
+    set expandtab                    "always add spaces as tabs
+    set list                         "Show non text char's
+    set listchars=tab:▸\ ,eol:~
+    set tabstop=2
+    set shiftwidth=2
+    set softtabstop=2
+endfunction
+
+" function for languages the use 4 space tabs
+function PlainTextTab4()
+    set spell spelllang=en_us        "If Plain Text spelling should be checked
+    set expandtab                    "always add spaces as tabs
+    set list                         "Show non text char's
+    set listchars=tab:▸\ ,eol:~
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4
+endfunction
+
+" function for languages the use 8 space tabs
+function PlainTextTab8()
+    set spell spelllang=en_us        "If Plain Text spelling should be checked
+    set expandtab                    "always add spaces as tabs
+    set list                         "Show non text char's
+    set listchars=tab:▸\ ,eol:~
+    set tabstop=8
+    set shiftwidth=8
+    set softtabstop=8
+endfunction
+
+" Latex Settings for vim
+fun LatexSettings()
+    let g:tex_flavor='latex'         "Always set to latex file type
+    NoMatchParen                     "Disable matching paren to iliminate lag
+    set list                         "Show non text char's
+    set listchars=tab:>\             "show tabs as '>'
+    set expandtab                    "always add spaces as tabs
+    set tabstop=4
+    set shiftwidth=4
+    set softtabstop=4
+    set spell spelllang=en_us
+    " after write, run pdflatex command in background to compile tex file then redraw screen
+    autocmd BufWritePost * :silent exec "!pdflatex -interaction=batchmode '%' > /dev/null" | redraw
+    " ctl-R to render latex file, the % is the current file name
+    map <C-R> :! pdflatex -interaction=batchmode %; lacheck %<CR>
+endf
+
+
+" Call Functions based of file type
+autocmd FileType html,xml,xslt call PlainTextTab2()
+autocmd FileType dokuwiki,markdown,text call PlainTextSettings()
+autocmd FileType tex,latex call LatexSettings()
+autocmd FileType vim,python,sh call PlainTextTab4()
+autocmd FileType c call PlainTextTab8()
+
+au BufNewFile,BufRead *.wiki set filetype=dokuwiki
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1  
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_html_checkers = ['tidy']
+let g:syntastic_mode_map = { 'passive_filetypes': ['tex','latex']  }
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" enable powerline fons for vim airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#whitespace#enabled = 0
+let airline#extensions#default#section_use_groupitems = 0
+let g:airline_theme='custom'
+let g:airline_section_a = airline#section#create(['mode'])
+let g:airline_section_b = airline#section#create(['spell'])
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" html match tag plugin
+let g:mta_use_matchparen_group = 1
+
+" >>> Keymap commands <<<
+"
+" v goes into visual mode
+" $ goes to end of line
+" '_d cuts secection into black hole register
+" 0 adds empty line
+"
+" >>>> SOURCES <<<<<
+"
+" Vim documentation: options:
+" http://vimdoc.sourceforge.net/htmldoc/options.html#g:colors_name
+"
+" Syntax Highlighting
+" http://www.sbf5.com/~cduan/technical/vi/vi-4.shtml#scheme
+"
+" Xterm 256color chart
+" https://upload.wikimedia.org/wikipedia/en/1/15/Xterm_256color_chart.svg
+

@@ -1,0 +1,10 @@
+---
+
+- name: Setup root Script Permissions
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    insertafter: EOF
+    line: '{{ item }}'
+  with_items: "{{ sudoers }}"
+  become: true

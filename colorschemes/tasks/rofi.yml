@@ -1,0 +1,17 @@
+---
+
+- name: Colorize ROFI
+  replace:
+    dest: "{{ ansible_env.HOME }}/.config/rofi/config.rasi"
+    regexp: '\ {4}{{ item.name }}:.*'
+    replace: '    {{ item.name }}: #{{ item.color }};'
+  with_items: 
+        - { name: "background-color", color: "{{ rofi_bg }}"}
+        - { name: "color", color: "{{ rofi_fg }}"}
+        - { name: "text-color", color: "{{ rofi_select }}"}
+  tags:
+        - rofi
+
+        
+
+

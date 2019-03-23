@@ -1,0 +1,21 @@
+---
+
+- name: Setup Dunst Background Color
+  replace:
+    dest: "{{ ansible_env.HOME }}/.config/dunst/dunstrc"
+    regexp: '{{ item.name }} =.*'
+    replace: '{{ item.name }} = "#{{ item.color }}"'
+  register: dunst
+  with_items: 
+        - { name: "background", color: "{{ dunst_bg }}"}
+        - { name: "foreground", color: "{{ dunst_fg }}"}
+        - { name: "frame_color", color: "{{ dunst_bg }}"}
+  tags:
+        - dunst
+
+- name: Restart Dunst
+  command: killall dunst
+  when: dunst.changed
+  tags: 
+        - dunst
+

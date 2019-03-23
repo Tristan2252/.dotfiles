@@ -1,0 +1,27 @@
+---
+- set_fact:
+        package: "sxiv"
+
+- name: Install Dependencies {{ package }}
+  apt:
+          name: "{{ item }}"
+  with_items:
+    - libexif-dev
+    - libimlib2-dev
+  become: True
+
+- name: Clone {{ package }} From Git
+  git:
+    repo: 'https://github.com/muennich/sxiv.git'
+    dest: "/tmp/sxiv"
+
+- name: Build {{ package }} and Install
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/sxiv"
+  with_items:
+    - make
+    - make install
+  become: true
+  ignore_errors: true
+

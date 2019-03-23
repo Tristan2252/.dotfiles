@@ -1,0 +1,103 @@
+---
+# run.yml
+# run roles
+
+- hosts: localhost
+  connection: local
+  vars:
+
+        ######### NO GUI APPS ########
+        common:
+              - ssh
+              - git
+              - vim
+              - tmux
+              - tree
+              - htop
+              - sshuttle
+              - smbclient
+              - wpasupplicant
+              - build-essential
+              - python3-pip
+              - imagemagick
+
+                ######## Drivers ########
+              - rfkill
+              - acpi
+              - intel-microcode
+              - pulseaudio
+              - pulseaudio-utils
+
+                ######## sysadmin stuff ######
+              - pass
+
+        desktop:
+                # gui desktop apps
+              - feh
+              - thunar
+              - compton
+              - conky
+              - evince
+              - chromium-browser
+              - gparted
+
+              - rofi # app menu
+              - gpick # color picker
+
+                # theme stuff
+              - papirus-icon-theme
+              - numix-gtk-theme
+              - fonts-font-awesome
+
+        # latex packages for linux
+        latex: 
+              - texlive
+              - texlive-bibtex-extra
+              - texlive-extra-utils
+              - texlive-latex-base
+              - texlive-latex-extra
+              - texlive-latex-recommended
+              - texlive-lang-english
+              - latexmk
+
+        root_scripts:
+              - backlight.sh
+              - brightness.sh
+
+        # printer and hp drivers
+        cups:
+              - cups
+              - printer-driver-hpcups
+
+        ## Printers to be added ##
+        printers:
+              - { name: 'Cramer213', location: 'socket://129.138.6.236', driver: 'drv:///sample.drv/generic.ppd' }
+              - { name: 'HpNetPrinter', location: 'socket://192.168.1.123:9100', driver: 'drv:///hpcups.drv/hp-deskjet_2540_series.ppd' }
+              - { name: 'Office', location: 'dnssd://Dell%20Laser%20Printer%201700n._printer._tcp.local/', driver: 'drv:///sample.drv/generic.ppd' }
+              - { name: 'HPhomePrinter', location: 'usb://HP/Deskjet%202540%20series?serial=CN561690PH061T&interface=1', driver: 'drv:///hpcups.drv/hp-deskjet_2540_series.ppd' }
+              - { name: 'Cannon', location: 'usb://Canon/MG2500%20series?serial=A1E5A7&interface=1', driver: 'gutenprint.5.2://bjc-MG2500-series/expert' }
+
+        ## Pantheon Terminal Settings ##
+        terminal_settings:
+              - { name: 'background', value: "'rgba(0, 0, 0, 0.65)'" }
+              - { name: 'foreground', value: "'#E9ECED'" }
+              - { name: 'font', value: "'Source Code Pro for Powerline 10'" }
+              - { name: 'tab-bar-behavior', value: "'Never Show Tabs'" }
+                # - { name: 'prefer-dark-style', value: "true" } # no loger exists ?
+
+        vim_plugins:
+              - { repo: 'https://github.com/jiangmiao/auto-pairs', dest: "auto-pairs" }
+              - { repo: 'https://github.com/scrooloose/nerdtree.git', dest: "nerdtree" }
+              - { repo: 'https://github.com/ervandew/supertab.git', dest: "supertab" }
+              - { repo: 'https://github.com/scrooloose/syntastic.git', dest: "syntastic" }
+              - { repo: 'https://github.com/sirver/ultisnips', dest: "ultisnips" }
+              - { repo: 'https://github.com/honza/vim-snippets.git', dest: "vim-snippets" }
+              - { repo: 'https://github.com/vim-airline/vim-airline.git', dest: "vim-airline" }
+
+        sudoers:
+              - 'tristan ALL=(ALL) NOPASSWD: /bin/systemctl start lock'
+              - 'tristan ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/brightness'
+              - 'tristan ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/class/leds/smc\:\:kbd_backlight/brightness'
+
+  roles:
+          - setup

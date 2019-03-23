@@ -1,0 +1,8 @@
+---
+# install latex packages
+- name: Install Latex Software
+  apt:
+          name: '{{ item }}'
+  with_items: "{{ latex }}"
+  become: True
+  tags: [all,latex]

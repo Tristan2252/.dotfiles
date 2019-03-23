@@ -1,0 +1,12 @@
+---
+
+- name: Setup Gtk Color
+  blockinfile:
+    dest: "{{ ansible_env.HOME }}/.config/gtk-3.0/gtk.css"
+    marker: "/* {mark} {{ item.name }} */"
+    block: | 
+            {{ item.name }} { {{ item.attribute }}: #{{ item.color }}; }
+  with_items:
+        - { name: "GtkAccelLabel", attribute: "color",  color: "{{ gtk_menu_text }}" }
+        - { name: "GtkMenuBar", attribute: "background-color", color: "{{ gtk_window }}"}
+

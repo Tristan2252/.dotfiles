@@ -1,0 +1,23 @@
+---
+
+- name: Install vim Packages
+  apt:
+          name: 'vim'
+  become: True
+
+- name: Checking Existing .vim
+  stat: path={{ ansible_env.HOME }}/.vim
+  register: vim
+
+- name: Remove Old .vim
+  file: path={{ vim.stat.path }} state=absent force=yes
+  when: vim.stat.exists == True
+
+- name: Linking .vim
+  command: "/bin/ln -fs {{ playbook_dir }}/roles/setup/files/.vim {{ ansible_env.HOME }}/.vim"
+
+- name: Clone vim Plugins
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ playbook_dir }}/roles/setup/files/.vim/bundle/{{ item.dest }}"
+  with_items: "{{ vim_plugins }}"

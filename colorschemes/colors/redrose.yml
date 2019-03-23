@@ -1,0 +1,84 @@
+---
+# run.yml
+# run roles
+
+- hosts: local
+  connection: local
+  vars:
+        white: 'ffffff'
+        black: '000000'
+        light_gray: 'c9c9c9'
+        black_green: '151414'
+        transparent: '151414FF'
+        white_red: 'b64f61'
+
+        i3_bar_bg: "{{ black_green }}"
+        i3_bar_fg: "{{ light_gray }}"
+        i3_active_bg: "{{ black_green }}"
+        i3_active_fg: "{{ black_green }}"
+        i3_inactive_bg: "{{ black }}"
+        i3_inactive_fg: "{{ light_gray }}"
+
+        status_bg: "{{ transparent }}"
+        status_fg: "{{ light_gray }}"
+        status_secondary_fg: "{{ white }}"
+
+        dunst_bg: "{{ light_gray }}"
+        dunst_fg: "{{ black_green }}"
+
+        ls_folder: "{{ white_red }}"
+
+        gtk_window: "{{ black_green }}"
+        gtk_menu_text: "{{ light_gray }}"
+
+        terminal: '#073642:#dc322f:#859900:#b58900:#268bd2:#ec0048:#2aa198:#94a3a5:#586e75:#cb4b16:#859900:#b58900:#{{ ls_folder }}:#d33682:#2aa198:#6c71c4'
+
+  tasks:
+        - name: Setup i3 Color
+          lineinfile:
+            dest: "{{ ansible_env.HOME }}/.i3/config"
+            state: present
+            regexp: 'set \${{ item.name }}.*'
+            line: 'set ${{ item.name }} #{{ item.color }}'
+          with_items: 
+                - { name: "active_bg", color: "{{ i3_active_bg }}"}
+                - { name: "active_fg", color: "{{ i3_active_fg }}"}
+                - { name: "inactive_bg", color: "{{ i3_inactive_bg }}"}
+                - { name: "inactive_fg", color: "{{ i3_inactive_fg }}"}
+                - { name: "bar_bg", color: "{{ i3_bar_bg }}"}
+                - { name: "bar_fg", color: "{{ i3_bar_fg }}"}
+
+        - name: Setup Status Bar Color
+          lineinfile:
+            dest: "{{ ansible_env.HOME }}/.dotfiles/scripts/bar_status.py"
+            state: present
+            regexp: '{{ item.name }} =.*'
+            line: '    {{ item.name }} = "{{ item.color }}"'
+          with_items: 
+                - { name: "background", color: "{{ status_bg }}"}
+                - { name: "foreground", color: "{{ status_fg }}"}
+                - { name: "secondary_fg", color: "{{ status_secondary_fg }}"}
+
+        - name: Setup Dunst Background Color
+          replace:
+            dest: "{{ ansible_env.HOME }}/.config/dunst/dunstrc"
+            regexp: '{{ item.name }} =.*'
+            replace: '{{ item.name }} = "#{{ item.color }}"'
+          with_items: 
+                - { name: "background", color: "{{ dunst_bg }}"}
+                - { name: "foreground", color: "{{ dunst_fg }}"}
+
+        - name: Setup Gtk Color
+          blockinfile:
+            dest: "{{ ansible_env.HOME }}/.config/gtk-3.0/gtk.css"
+            marker: "/* {mark} {{ item.name }} */"
+            block: | 
+                    {{ item.name }} { {{ item.attribute }}: #{{ item.color }}; }
+          with_items:
+                - { name: "GtkAccelLabel", attribute: "color",  color: "{{ gtk_menu_text }}" }
+                - { name: "GtkMenuBar", attribute: "background-color", color: "{{ gtk_window }}"}
+
+
+        - name: Config Terminal
+          command: "gsettings set org.pantheon.terminal.settings palette {{ terminal }}"
+

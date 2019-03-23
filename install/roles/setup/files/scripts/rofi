@@ -1,0 +1,22 @@
+# !/bin/bash
+
+##############################################################
+##                                                          ##
+## This Script has been deprecated in favor of rofi config  ##
+## See .config/rofi/config.rasi and .i3/config              ##
+##                                                          ##
+##############################################################
+
+foreground="#C1947B"
+background="#1D221C"
+
+rofi -show run -location 0 -width 40 -sidebar-mode 
+         -lines 8 -line-margin 0 -line-padding 6 -fixed-num-lines 1 \
+         -separator-style none -font "Source Code Pro for Powerline 10" -columns 1 -bw 0 \
+         -hide-scrollbar \
+         -color-enabled 
+         -color-window "$background, $background, $background" \
+         -color-normal "$background, $foreground, $background, $foreground, $background" \
+         -color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" \
+         -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" 
+

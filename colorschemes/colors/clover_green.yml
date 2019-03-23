@@ -1,0 +1,145 @@
+---
+# run.yml
+# run roles
+
+- hosts: local
+  connection: local
+  vars:
+        theme_name: "clover_green"
+
+        #####################################################
+        ##################    COLORS    #####################
+        #####################################################
+        
+        white: 'ffffff'
+        black: '000000'
+        base_dark: '1C1C1C'
+        base_light: 'C9C9C9'
+
+        mint: '8CA293'
+        moss_green: '2F5844'
+        forest_green: '515C2C'
+        black_green: '123626'
+
+        #####################################################
+        ################    i3 SETTINGs    ##################
+        #####################################################
+        
+        i3_bar_bg: "{{ base_dark }}"
+        i3_bar_fg: "{{ mint }}"
+        i3_active_bg: "{{ mint }}"
+        i3_active_fg: "{{ base_dark }}"
+        i3_inactive_bg: "{{ mint }}"
+        i3_inactive_fg: "{{ base_dark }}"
+
+        status_A_BG: "{{ mint }}"
+        status_A_FG: "{{ black_green }}"
+        status_B_BG: "{{ base_dark }}"
+        status_B_FG: "{{ mint }}"
+
+        #####################################################
+        ##############    DUNST  SETTINGs    ################
+        #####################################################
+        
+        dunst_bg: "{{ mint }}"
+        dunst_fg: "{{ black_green }}"
+        
+        #####################################################
+        ###############    ROFI  SETTINGs    ################
+        #####################################################
+        
+        rofi_bg: "{{ base_dark }}"
+        rofi_fg: "{{ mint }}"
+
+        #####################################################
+        ###############    GTK3  SETTINGs    ################
+        #####################################################
+
+        gtk_window: "{{ black_green }}"
+        gtk_menu_text: "{{ light_gray }}"
+
+        #####################################################
+        ############    TERMINAL  SETTINGs    ###############
+        #####################################################
+        
+        ls_folder: "{{ tropical_blue }}"
+        terminal_colors: "['#2E3436', '#CC0000', '#4E9A06', '#C4A000', '#3465A4', '#75507B', '#06989A', '#D3D7CF', '#555753', '#EF2929', '#8AE234', '#FCE94F', '#729FCF', '#AD7FA8', '#34E2E2', '#EEEEEC']"
+
+  tasks:
+        - name: Setup i3 Color
+          lineinfile:
+            dest: "{{ ansible_env.HOME }}/.i3/config"
+            state: present
+            regexp: 'set \${{ item.name }}.*'
+            line: 'set ${{ item.name }} #{{ item.color }}'
+          with_items: 
+                - { name: "active_bg", color: "{{ i3_active_bg }}"}
+                - { name: "active_fg", color: "{{ i3_active_fg }}"}
+                - { name: "inactive_bg", color: "{{ i3_inactive_bg }}"}
+                - { name: "inactive_fg", color: "{{ i3_inactive_fg }}"}
+                - { name: "bar_bg", color: "{{ i3_bar_bg }}"}
+                - { name: "bar_fg", color: "{{ i3_bar_fg }}"}
+          tags:
+                - i3
+
+        - name: Reload i3
+          command: i3-msg reload
+          tags: 
+                - i3
+
+        - name: Setup Status Bar Color
+          lineinfile:
+            dest: "{{ ansible_env.HOME }}/.dotfiles/scripts/bar_status.py"
+            state: present
+            regexp: '{{ item.name }} =.*'
+            line: '    {{ item.name }} = "{{ item.color }}"'
+          with_items: 
+                - { name: "a_bg", color: "{{ status_A_BG }}"}
+                - { name: "a_fg", color: "{{ status_A_FG }}"}
+                - { name: "b_bg", color: "{{ status_B_BG }}"}
+                - { name: "b_fg", color: "{{ status_B_FG }}"}
+          tags:
+                - status_bar
+
+
+        - name: Colorize ROFI
+          replace:
+            dest: "{{ playbook_dir }}/scripts/rofi"
+            regexp: '{{ item.name }}=.*'
+            replace: '{{ item.name }}="#{{ item.color }}"'
+          with_items: 
+                - { name: "background", color: "{{ rofi_bg }}"}
+                - { name: "foreground", color: "{{ rofi_fg }}"}
+          tags:
+                - rofi
+        
+                
+        - name: Setup Dunst Background Color
+          replace:
+            dest: "{{ ansible_env.HOME }}/.config/dunst/dunstrc"
+            regexp: '{{ item.name }} =.*'
+            replace: '{{ item.name }} = "#{{ item.color }}"'
+          with_items: 
+                - { name: "background", color: "{{ dunst_bg }}"}
+                - { name: "foreground", color: "{{ dunst_fg }}"}
+                - { name: "frame_color", color: "{{ dunst_bg }}"}
+          tags:
+                - dunst
+
+        - name: Setup Gtk Color
+          blockinfile:
+            dest: "{{ ansible_env.HOME }}/.config/gtk-3.0/gtk.css"
+            marker: "/* {mark} {{ item.name }} */"
+            block: | 
+                    {{ item.name }} { {{ item.attribute }}: #{{ item.color }}; }
+          with_items:
+                - { name: "GtkAccelLabel", attribute: "color",  color: "{{ gtk_menu_text }}" }
+                - { name: "GtkMenuBar", attribute: "background-color", color: "{{ gtk_window }}"}
+
+        - name: Config Terminal - Get Default Profile Id
+          script: "{{ playbook_dir }}/scripts/gterm_color.sh --palette {{ terminal_colors }} --name {{ theme_name }}"
+          tags:
+                - terminal
+
+
+

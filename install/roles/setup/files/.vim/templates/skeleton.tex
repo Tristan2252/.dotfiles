@@ -1,0 +1,99 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%            Two Column Article for Notes                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[twocolumn]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               Normal Article Style                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  \documentclass[]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                      Packages                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{amsfonts}
+\usepackage{enumitem}
+\usepackage{graphicx}         % allow for adding pictures: use \includegraphics[]{}
+\usepackage{float}            % allow for floating objects: use begin{figure}[H]
+\usepackage{amsmath}          % nice formatting for equations use begin{gather*}
+\usepackage{cancel}           % allow for cancel signs in math use \cancel{}
+\usepackage{amssymb}          % fancy symbols
+\usepackage{enumitem}         % better enumerate
+\usepackage{fancyhdr}         % header and footer package
+\usepackage{currfile}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                Set margins manually                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  \usepackage[letterpaper]{geometry}
+%  \geometry{top=.2in, bottom=1.0in, left=0.2in, right=.2in} % notes margins
+%  \geometry{top=1.0in, bottom=1.0in, left=1.0in, right=1.0in} % 1in report margins
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                    Dont Indent                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  \setlist[itemize]{leftmargin=*}    % item lists
+%  \setlist[enumerate]{leftmargin=*}  % number lists
+%  \setlength{\parindent}{0pt}        % paragraphs
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        Part and Section Offsets for Lab Reports        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  \renewcommand\partname{Lab}
+%  \setcounter{part}{2}
+%  \setcounter{section}{3}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%              Change Page Number Style                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  \renewcommand{\thepage}{Page \arabic{page}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  Custom Commands                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%  \newcommand{\cmdname}[arg]{\command{#arg}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%               Autofill Document Info                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\yourtitle}{  }
+\newcommand{\yoursubject}{  }
+\newcommand{\yourauthor}{Tristan Vigil}
+\newcommand{\yoursemester}{Spring \the\year}
+\newcommand{\yourinstitution}{New Mexico Tech}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                Header/Title Settings                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lhead{\yourinstitution}
+\chead{\yoursubject}
+\rhead{\yoursemester}
+\lfoot{\currfilebase}
+\cfoot{}
+\rfoot{Page \thepage}
+
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\title{\yourtitle}
+\author{\yourauthor}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   Begin Document                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%\maketitle
+%\thispagestyle{fancy}
+
+
+
+\end{document}

@@ -1,0 +1,12 @@
+---
+
+- name: Clone Powerline Fonts From Git
+  git:
+    repo: 'https://github.com/powerline/fonts.git'
+    dest: "/tmp/fonts"
+  register: install
+
+- name: Run Powerline Fonts Installer
+  command: "/tmp/fonts/install.sh"
+  when: install.changed  # skip install if already done
+

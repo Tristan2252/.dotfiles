@@ -1,0 +1,26 @@
+Xcursor.theme: Capitaine
+
+!Blacks
+xterm*color0:           #151515
+xterm*color8:           #505450
+! Reds
+xterm*color1:           #a60101
+xterm*color9:           #f99090
+! Greens
+xterm*color2:           #026802
+xterm*color10:          #a7e14b
+! Yellows
+xterm*color3:           #ab6e03
+xterm*color11:          #fddc01
+! Blues
+xterm*color4:           #ffffff
+xterm*color12:          #ffffff
+! Purples
+xterm*color5:           #9c3885
+xterm*color13:          #e628ba
+! Cyans
+xterm*color6:           #08bab0
+xterm*color14:          #74fff7
+! Whites
+xterm*color7:           #bbbbbb
+xterm*color15:          #ffffff

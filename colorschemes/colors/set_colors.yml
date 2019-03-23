@@ -1,0 +1,88 @@
+---
+# run.yml
+# run roles
+
+- hosts: 127.0.0.1
+  connection: local
+  vars:
+        theme_name: "theme"
+        terminal_id: "da53d9cf-e2f2-4b85-82bf-5cea26088d22"
+
+        #####################################################
+        ##################    COLORS    #####################
+        #####################################################
+        
+        white: 'ffffff'
+        black: '000000'
+        terminal_white: 'C9C9C9'
+        transparent: '00000000'
+        
+        green_sea: '2A332C'
+        green_sea_dark: '24211A'
+        white_fog: 'E4E8E9'
+        brown_grass: 'AB8370'
+        
+        text_primary: {{ brown_grass }}
+        base_dark: "{{ green_sea_dark }}"
+        base_light: "{{ white_fog }}"
+
+        #####################################################
+        ################    i3 SETTINGs    ##################
+        #####################################################
+        
+        i3_text: "{{ transparent }}"
+        i3_bar_bg: "{{ transparent }}"
+        i3_bar_fg: "{{ base_dark }}"
+        i3_active_bg: "{{ base_dark }}"
+        i3_active_fg: "{{ base_dark }}"
+        i3_inactive_bg: "{{ base_dark }}"
+        i3_inactive_fg: "{{ base_dark }}"
+
+        status_A_BG: "{{ base_dark }}"
+        status_A_FG: "{{ base_light }}"
+        status_B_BG: "{{ base_light }}"
+        status_B_FG: "{{ base_dark }}"
+
+        #####################################################
+        ##############    DUNST  SETTINGs    ################
+        #####################################################
+        
+        dunst_bg: "{{ white }}"
+        dunst_fg: "{{ base_dark }}"
+        
+        #####################################################
+        ###############    ROFI  SETTINGs    ################
+        #####################################################
+
+        rofi_bg: "{{ base_light }}"
+        rofi_fg: "{{ base_dark }}"
+        rofi_select: "{{ brown_grass }}"
+
+        #####################################################
+        ###############    GTK3  SETTINGs    ################
+        #####################################################
+
+        gtk_window: "{{ black_green }}"
+        gtk_menu_text: "{{ light_gray }}"
+
+        #####################################################
+        ############    TERMINAL  SETTINGs    ###############
+        #####################################################
+        
+        terminal_bg: "{{ black }}"        
+        terminal_fg: "{{ terminal_white }}"
+        folder: "{{ terminal_white }}"
+        symlink: "{{ glacier_blue }}"
+
+        #                   0          1          2          3          4          5          6          7          8          9          10         11         12               13         14                15        
+        terminal_colors: "['#282A2E', '#A54242', '#8C9440', '#DE935F', '#5F819D', '#85678F', '#5E8D87', '#707880', '#373B41', '#CC6666', '#B5BD68', '#F0C674', '#{{ folder }}', '#B294BB', '#{{ symlink }}', '#C5C8C6']"
+
+  tasks:
+        - include: tasks/i3.yml 
+        - include: tasks/dunst.yml 
+          #        - include: tasks/rofi.yml 
+          #        - include: tasks/gtk.yml 
+          #        - include: tasks/terminal.yml 
+          #        
+
+

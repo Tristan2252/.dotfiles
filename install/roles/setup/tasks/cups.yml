@@ -1,0 +1,15 @@
+---
+# install latex packages
+- name: Install Cups Software
+  apt:
+          name: '{{ item }}'
+  with_items: "{{ cups }}"
+  become: True
+
+# configure cups 
+- name: Setup Printers
+  #command: "lpadmin -p {{ item.name }} -E -v {{ item.location }} -P {{ item.driver }}"
+  command: "lpadmin -p {{ item.name }} -E -v {{ item.location }} -m {{ item.driver }}"
+  with_items: "{{ printers }}"
+  become: True
+

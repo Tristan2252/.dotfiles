@@ -2,7 +2,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-
 ###### Powerline Colors ######
 A_BACKGROUND='227:231:232'
 A_FORGROUND='36:33:26'

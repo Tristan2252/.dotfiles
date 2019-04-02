@@ -1,7 +1,7 @@
 ---
 # install latex packages
 - name: Install Cups Software
-  apt:
+  yum:
           name: '{{ item }}'
   with_items: "{{ cups }}"
   become: True

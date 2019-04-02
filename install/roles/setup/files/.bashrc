@@ -148,6 +148,13 @@ alias lc='ls --color=none'
 alias feh='feh --scale '
 alias tetris='quadrapassel'
 
-###### VIM MAN PAGES #####
-export MANPAGER="/bin/sh -c \"less -c\""
+export MANPAGER=less
+export PAGER=less
+export LESS_TERMCAP_mb=$(printf '\E[01;31m')       # begin blinking
+export LESS_TERMCAP_md=$(printf '\E[01;38;5;74m')  # begin bold
+export LESS_TERMCAP_me=$(printf '\E[0m')           # end mode
+export LESS_TERMCAP_se=$(printf '\E[0m')           # end standout-mode
+export LESS_TERMCAP_so=$(printf '\E[38;5;246m')    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$(printf '\E[0m')           # end underline
+export LESS_TERMCAP_us=$(printf '\E[04;38;5;146m') # begin underline
 

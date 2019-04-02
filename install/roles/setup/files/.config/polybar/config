@@ -27,6 +27,9 @@ primary = #2EB398
 secondary = #e60053
 alert = #bd2c40
 
+foreground-a = #222
+background-a = #dfdfdf
+
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -42,8 +45,8 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 0
-border-color = #00000000
+border-size = 1
+border-color = ${colors.background}
 
 padding-left = 0
 padding-right = 0
@@ -51,14 +54,15 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = fixed:pixelsize=7;1
+font-0 = fixed:pixelsize=7;2
 font-1 = Source Code Pro for Powerline:size=11;3
-font-2 = unifont:fontformat=truetype:size=9:antialias=false;0
+#font-2 = unifont:fontformat=truetype:size=9:antialias=false;0
+font-2 = FontAwesome:size=8;2
 font-3 = siji:pixelsize=7;1
 
 modules-left = i3
 modules-center = 
-modules-right = pulseaudio arrowthin filesystem arrowthin memory arrowthin cpu arrowthin wlan arrowthin battery arrowthin temperature arrowthin date
+modules-right = pulseaudio arrowthin filesystem arrowthin memory arrowthin cpu arrow-a wlan arrowthin-a battery arrowthin-a temperature arrowthin-a date
 
 tray-position = right
 tray-padding = 2
@@ -84,10 +88,23 @@ content = ""
 content-foreground = ${colors.foreground-alt}
 content-background = ${colors.background}
 
+[module/arrow-a]
+type = custom/text
+content = "   "
+content-foreground = ${colors.background-a}
+content-background = ${colors.foreground-a}
+
+[module/arrowthin-a]
+type = custom/text
+content = ""
+content-foreground = ${colors.foreground-a}
+content-background = ${colors.background-a}
+content-padding = 2
+
 [module/arrowthin]
 type = custom/text
 content = ""
-content-foreground = ${colors.primary}
+content-foreground = ${colors.foreground}
 content-background = ${colors.background}
 content-padding = 2
 
@@ -117,7 +134,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted =   %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -137,7 +154,7 @@ label-mode-background = ${colors.primary}
 ; focused = Active workspace on focused monitor
 label-focused = %index%
 label-focused-background = ${colors.background-alt}
-label-focused-underline = ${colors.primary}
+label-focused-underline = ${colors.foreground}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
@@ -161,16 +178,16 @@ label-urgent-padding = 2
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "  "
-format-prefix-foreground = ${colors.primary}
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
 ;format-overline = ${colors.primary}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.primary}
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
 ;format-overline = ${colors.primary}
 label-percent = %percentage_used%%
 label-percent-background = #555555
@@ -180,7 +197,9 @@ type = internal/network
 interface = wlp3s0
 interval = 3.0
 
-format-connected =  <ramp-signal> <label-connected>
+format-connected =    <label-connected>
+format-connected-background = ${colors.background-a}
+format-connected-foreground = ${colors.foreground-a}
 ;format-connected-overline = ${colors.primary}
 label-connected = %essid%
 
@@ -190,12 +209,13 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.primary}
+#ramp-signal-0 = 
+#ramp-signal-1 = 
+#ramp-signal-2 = 
+#ramp-signal-3 = 
+#ramp-signal-4 = 
+#ramp-signal-foreground = ${colors.primary}
+
 
 ;[module/eth]
 ;type = internal/network
@@ -223,10 +243,10 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.primary}
-format-foreground = ${colors.foreground}
-format-background = ${colors.background}
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-a}
+format-foreground = ${colors.foreground-a}
+format-background = ${colors.background-a}
 ;format-overline = ${colors.primary}
 
 label = %date% %time%
@@ -292,44 +312,54 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
+format-charging = <ramp-capacity> <label-charging>
+format-charging-background = ${colors.background-a}
+format-charging-foreground = ${colors.foreground-a}
+#format-charging = <animation-charging> <label-charging>
 ;format-charging-overline = ${colors.primary}
 
-format-discharging = <animation-discharging> <label-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-foreground = ${colors.foreground-a}
+format-discharging-background = ${colors.background-a}
 ;format-discharging-overline = ${colors.primary}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.primary}
+format-full-prefix = 
+format-full-prefix-foreground = ${colors.foreground-a}
 ;format-full-overline = ${colors.primary}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.primary}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+#ramp-capacity-0-foreground = ${colors.alert}
+#ramp-capacity-foreground = ${colors.foreground-a}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.primary}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.primary}
-animation-discharging-framerate = 750
+#animation-charging-0 = 
+#animation-charging-1 = 
+#animation-charging-2 = 
+#animation-charging-foreground = ${colors.primary}
+#animation-charging-framerate = 750
+#
+#animation-discharging-0 = 
+#animation-discharging-1 = 
+#animation-discharging-2 = 
+#animation-discharging-foreground = ${colors.primary}
+#animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
-format = <ramp> <label>
+format =  <label>
+format-background = ${colors.background-a}
+format-foreground = ${colors.foreground-a}
 ;format-overline = ${colors.primary}
-format-warn = <ramp> <label-warn>
+format-warn =  <label-warn>
 ;format-warn-overline = ${self.format-overline}
 
-label = "%temperature-c%   "
+label = "%temperature-c%  "
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 

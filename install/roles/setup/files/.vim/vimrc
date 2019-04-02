@@ -26,6 +26,7 @@ set mouse=i
 " #                        COLORS                           #
 " ###########################################################
 
+set term=xterm-256color
 " turn on syntx
 syntax on
 " color scheme

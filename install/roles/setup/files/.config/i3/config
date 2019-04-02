@@ -1,6 +1,6 @@
 ##################### VARS ########################
 set $sinknum 0
-set $wallpaper ~/Pictures/Wallpapers/collin-yung-1412287-unsplash.jpg 
+set $wallpaper ~/Pictures/Wallpapers/nathaniel-foong-1453745-unsplash.jpg
 set $active_bg #24211A
 set $active_fg #24211A
 set $inactive_bg #24211A
@@ -209,6 +209,10 @@ bindsym $mod+l exec sudo systemctl start lock
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Shift+Tab workspace next
 
+# Move left and right workspaces
+bindsym $mod+Control+Left workspace prev
+bindsym $mod+Control+Right workspace next
+
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec /home/tristan/.dotfiles/scripts/brightness.sh +
 bindsym XF86MonBrightnessDown exec /home/tristan/.dotfiles/scripts/brightness.sh -
@@ -232,25 +236,31 @@ exec --no-startup-id compton
 exec --no-startup-id polybar example -q 
 
 # mouse settings
-exec --no-startup-id synclient PalmDetect=1
-exec --no-startup-id synclient PalmMinWidth=8
-exec --no-startup-id synclient VertEdgeScroll=0
-exec --no-startup-id synclient TapAndDragGesture=0
-exec --no-startup-id synclient RTCornerButton=0
-exec --no-startup-id synclient RBCornerButton=0
-exec --no-startup-id synclient LTCornerButton=0
-exec --no-startup-id synclient LBCornerButton=0
-exec --no-startup-id synclient FingerHigh=12
-exec --no-startup-id synclient FingerLow=1
-exec --no-startup-id synclient TapButton1=0
-exec --no-startup-id synclient TapButton2=0
-exec --no-startup-id synclient TapButton3=0
-exec --no-startup-id synclient ClickFinger1=1
-exec --no-startup-id synclient ClickFinger2=3
-exec --no-startup-id synclient ClickFinger3=3
-exec --no-startup-id synclient ClickTime=25
-exec --no-startup-id synclient BottomEdge=25
-exec --no-startup-id synclient VertScrollDelta=-111
-exec --no-startup-id synclient HorizScrollDelta=11
-exec --no-startup-id synclient MaxTapTime=0
+# Disable right clock by extending left button
+exec --no-startup-id synclient RightButtonAreaLeft=1680
+# Enable natrual scrolling 
+exec --no-startup-id synclient VertScrollDelta=-39
 
+# old settings
+#exec --no-startup-id synclient PalmDetect=1
+#exec --no-startup-id synclient PalmMinWidth=8
+#exec --no-startup-id synclient VertEdgeScroll=0
+#exec --no-startup-id synclient TapAndDragGesture=0
+#exec --no-startup-id synclient RTCornerButton=0
+#exec --no-startup-id synclient RBCornerButton=0
+#exec --no-startup-id synclient LTCornerButton=0
+#exec --no-startup-id synclient LBCornerButton=0
+#exec --no-startup-id synclient FingerHigh=12
+#exec --no-startup-id synclient FingerLow=1
+#exec --no-startup-id synclient TapButton1=0
+#exec --no-startup-id synclient TapButton2=0
+#exec --no-startup-id synclient TapButton3=0
+#exec --no-startup-id synclient ClickFinger1=1
+#exec --no-startup-id synclient ClickFinger2=3
+#exec --no-startup-id synclient ClickFinger3=3
+#exec --no-startup-id synclient ClickTime=25
+#exec --no-startup-id synclient BottomEdge=25
+#exec --no-startup-id synclient VertScrollDelta=-111
+#exec --no-startup-id synclient HorizScrollDelta=11
+#exec --no-startup-id synclient MaxTapTime=0
+#

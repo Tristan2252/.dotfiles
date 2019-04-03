@@ -27,8 +27,10 @@ primary = #2EB398
 secondary = #e60053
 alert = #bd2c40
 
-foreground-a = #222
-background-a = #dfdfdf
+#foreground-a = #222
+foreground-a = #dfdfdf
+#background-a = #dfdfdf
+background-a = #555
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -62,7 +64,7 @@ font-3 = siji:pixelsize=7;1
 
 modules-left = i3
 modules-center = 
-modules-right = pulseaudio arrowthin filesystem arrowthin memory arrowthin cpu arrow-a wlan arrowthin-a battery arrowthin-a temperature arrowthin-a date
+modules-right = pulseaudio memory cpu arrow-a wlan arrowthin-a battery arrowthin-a temperature arrowthin-a date
 
 tray-position = right
 tray-padding = 2
@@ -92,7 +94,7 @@ content-background = ${colors.background}
 type = custom/text
 content = "   "
 content-foreground = ${colors.background-a}
-content-background = ${colors.foreground-a}
+content-background = ${colors.background}
 
 [module/arrowthin-a]
 type = custom/text
@@ -152,19 +154,24 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline = ${colors.foreground}
+#label-focused = %index%
+label-focused = 
+label-focused-background = ${colors.background}
+#label-focused-underline = ${colors.foreground}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
+#label-unfocused = %index%
 label-unfocused = %index%
+#label-unfocused =  
 label-unfocused-padding = 2
+#label-unfocused-foreground = ${colors.foreground-alt}
+label-unfocused-foreground = #737373
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
 label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
+#label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
@@ -178,19 +185,38 @@ label-urgent-padding = 2
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "  "
+format = <ramp-load>
+#format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
 ;format-overline = ${colors.primary}
 label = %percentage:2%%
 
+ramp-load-0 = " "
+ramp-load-1 = " "
+ramp-load-2 = " "
+ramp-load-3 = " "
+ramp-load-4 = 
+ramp-load-5 = 
+ramp-load-6 = 
+ramp-load-7 = 
+
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
+#format-prefix = " "
+#format-prefix-foreground = ${colors.foreground}
 ;format-overline = ${colors.primary}
-label-percent = %percentage_used%%
-label-percent-background = #555555
+#label-percent = %percentage_used%%
+#label-percent-background = #555555
+format = <ramp-used>
+ramp-used-0 = " "
+ramp-used-1 = " "
+ramp-used-2 = " "
+ramp-used-3 = " "
+ramp-used-4 = 
+ramp-used-5 = 
+ramp-used-6 = 
+ramp-used-7 = 
 
 [module/wlan]
 type = internal/network
@@ -258,8 +284,8 @@ format-volume = <bar-volume> <label-volume>
 label-volume = ""
 label-volume-foreground = ${root.foreground}
 
-label-muted = ""
-label-muted-foreground = #666
+label-muted = " "
+label-muted-foreground = ${colors.background}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55

@@ -195,10 +195,14 @@ ramp-load-0 = " "
 ramp-load-1 = " "
 ramp-load-2 = " "
 ramp-load-3 = " "
-ramp-load-4 = 
-ramp-load-5 = 
-ramp-load-6 = 
-ramp-load-7 = 
+ramp-load-4 = "  "
+ramp-load-4-foreground = ${colors.foreground}
+ramp-load-5 = "  "
+ramp-load-5-foreground = ${colors.foreground}
+ramp-load-6 = "  "
+ramp-load-6-foreground = ${colors.alert}
+ramp-load-7 = "  "
+ramp-load-7-foreground = ${colors.alert}
 
 [module/memory]
 type = internal/memory
@@ -350,7 +354,9 @@ format-discharging-background = ${colors.background-a}
 ;format-discharging-overline = ${colors.primary}
 
 format-full-prefix = 
+format-full-background = ${colors.background-a}
 format-full-prefix-foreground = ${colors.foreground-a}
+format-full-prefix-background = ${colors.background-a}
 ;format-full-overline = ${colors.primary}
 
 ramp-capacity-0 = 

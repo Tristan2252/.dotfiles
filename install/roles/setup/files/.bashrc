@@ -17,7 +17,7 @@ prompt() {
     b_end="\033[38:2:${B_BACKGROUND}m"
     re_color=$(tput sgr0)
 
-    local pmt='\[$bold\]\[%s\] $USER \[%s\]\[%s\] $(pwd | sed "s/\/home\/tristan/~/g; s/\//  /g") \[$re_color\]\[%s\]\[$re_color\]\[$re_color\] '
+    local pmt='\[$bold\]\[%s\] $USER \[%s\]\[%s\] $(pwd | sed "s/\/home\/$USER/~/g; s/\//  /g") \[$re_color\]\[%s\]\[$re_color\]\[$re_color\] '
     
     PS1=$(printf "$pmt" "$a_color" "$a_end" "$b_color" "$b_end")
 }

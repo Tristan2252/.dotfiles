@@ -1,10 +1,10 @@
 ##################### VARS ########################
 set $sinknum 0
 set $wallpaper ~/Pictures/Wallpapers/nathaniel-foong-1453745-unsplash.jpg
-set $active_bg #24211A
-set $active_fg #24211A
-set $inactive_bg #24211A
-set $inactive_fg #24211A
+set $active_bg #222222
+set $active_fg #222222
+set $inactive_bg #222222
+set $inactive_fg #222222
 set $bar_bg #00000000
 set $bar_fg #B6B6B6
 set $i3_text #00000000

@@ -38,7 +38,10 @@
               - tumbler # thumbnail generator for thunar
               - compton
               - conky
-              - evince
+              - zathura
+              - zathura-pdf-mupdf
+              - zathura-bash-completion
+                #- evince
               - gnome-calculator
                 #- chromium-browser
               - gparted

@@ -1,0 +1,27 @@
+---
+
+- name: Install Dependencies i3
+  apt:
+          name: "{{ item }}"
+  with_items:
+    # i3gaps dependencies
+    - libxcb-devel
+    - xcb-util-keysyms-devel
+    - xcb-util-devel
+    - xcb-util-wm-devel
+    - xcb-util-xrm-devel
+    - yajl-devel
+    - libXrandr-devel
+    - startup-notification-devel
+    - libev-devel
+    - xcb-util-cursor-devel
+    - libXinerama-devel
+    - libxkbcommon-devel
+    - libxkbcommon-x11-devel
+    - pcre-devel
+    - pango-devel
+    - git
+    - gcc
+    - make
+    - automake
+  become: True

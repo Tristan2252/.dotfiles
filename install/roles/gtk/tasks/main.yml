@@ -1,0 +1,34 @@
+---
+
+- name: Configure gtk3 settings with generic/dotfile
+  include_role:
+    name: generic
+    tasks_from: dotfile
+  vars:
+    package_redhat: "gtk3"
+    package_debian: "gtk3"
+    config_dir: "{{ ansible_env.HOME }}/.config/gtk-3.0"
+    config_src: "{{ playbook_dir }}/roles/gtk/files/gtk3/settings.ini"
+    config_dest: "{{ config_dir }}/settings.ini"
+
+- name: Configure gtk3 CSS with generic/dotfile
+  include_role:
+    name: generic
+    tasks_from: dotfile
+  vars:
+    package_redhat: "gtk3"
+    package_debian: "gtk3"
+    config_dir: "{{ ansible_env.HOME }}/.config/gtk-3.0"
+    config_src: "{{ playbook_dir }}/roles/gtk/files/gtk3/gtk.css"
+    config_dest: "{{ config_dir }}/gtk.css"
+
+- name: Configure gtk2 with generic/dotfile
+  include_role:
+    name: generic
+    tasks_from: dotfile
+  vars:
+    package_redhat: "gtk2"
+    package_debian: "gtk2"
+    config_dir: "{{ ansible_env.HOME }}/.config/gtk-2.0"
+    config_src: "{{ playbook_dir }}/roles/gtk/files/gtk2/gtkfilechooser.ini"
+    config_dest: "{{ config_dir }}/gtkfilechooser.ini"

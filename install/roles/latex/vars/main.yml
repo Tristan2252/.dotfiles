@@ -1,0 +1,13 @@
+---
+
+latex:
+  - texlive
+    #- texlive-bibtex-extra
+    #- texlive-extra-utils
+  - texlive-latex
+    #- texlive-latex-extra
+    #- texlive-latex-recommended
+    #- texlive-lang-english
+  - latexmk
+
+

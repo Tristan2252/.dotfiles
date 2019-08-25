@@ -1,0 +1,11 @@
+---
+- name: Configure with generic/dotfile
+  include_role:
+    name: generic
+    tasks_from: dotfile
+  vars:
+    package_redhat: "bash"
+    package_debian: "bash"
+    config_dir: "{{ ansible_env.HOME }}"
+    config_src: "{{ playbook_dir }}/roles/{{ role_name }}/files/bashrc_mac"
+    config_dest: "{{ ansible_env.HOME }}/.bash_profile"

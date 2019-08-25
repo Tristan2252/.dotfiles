@@ -1,0 +1,17 @@
+---
+
+- name: Set i3 config var for other tasks
+  set_fact:
+    i3_config_file: "{{ ansible_env.HOME }}/.config/i3/config"
+
+- name: Configure i3 with generic/dotfile
+  include_role:
+    name: generic
+    tasks_from: dotfile
+  vars:
+    package_redhat: "i3"
+    package_debian: "i3"
+    config_dir: "{{ ansible_env.HOME }}/.config/i3"
+    config_src: "{{ playbook_dir }}/roles/i3/files/config"
+    config_dest: "{{ i3_config_file }}"
+

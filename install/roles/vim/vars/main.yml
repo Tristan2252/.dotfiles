@@ -1,0 +1,10 @@
+---
+
+vim_plugins:
+      - { repo: 'https://github.com/jiangmiao/auto-pairs', dest: "auto-pairs" }
+      - { repo: 'https://github.com/scrooloose/nerdtree.git', dest: "nerdtree" }
+      - { repo: 'https://github.com/ervandew/supertab.git', dest: "supertab" }
+      - { repo: 'https://github.com/scrooloose/syntastic.git', dest: "syntastic" }
+      - { repo: 'https://github.com/sirver/ultisnips', dest: "ultisnips" }
+      - { repo: 'https://github.com/honza/vim-snippets.git', dest: "vim-snippets" }
+      - { repo: 'https://github.com/vim-airline/vim-airline.git', dest: "vim-airline" }

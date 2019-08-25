@@ -50,6 +50,7 @@ map p <Nop>
 nnoremap tn :tabnext<CR>
 nnoremap tp :tabprev<CR>
 nnoremap tc :tabedit<CR>:NERDTreeToggle<CR>
+nnoremap <tab> :NERDTreeToggle<CR>:NERDTreeRefreshRoot<CR>
 " Disable Scrolling and Clicking
 imap <LeftMouse> <nop>
 imap <ScrollWheelUp> <nop>

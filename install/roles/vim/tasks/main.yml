@@ -1,0 +1,19 @@
+---
+
+- name: Configure vim with generic/dotfile
+  include_role:
+    name: generic
+    tasks_from: dotfile
+  vars:
+    package_redhat: "vim"
+    package_debian: "vim"
+    config_dir: "{{ ansible_env.HOME }}/"
+    config_src: "{{ playbook_dir }}/roles/vim/files/vim"
+    config_dest: "{{ ansible_env.HOME }}/.vim"
+
+- name: Clone vim Plugins
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ playbook_dir }}/roles/setup/files/.vim/bundle/{{ item.dest }}"
+  with_items: "{{ vim_plugins }}"
+

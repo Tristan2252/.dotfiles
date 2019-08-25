@@ -1,0 +1,13 @@
+---
+
+- name: Configure git with generic/dotfile
+  include_role:
+    name: generic
+    tasks_from: dotfile
+  vars:
+    package_redhat: "git"
+    package_debian: "git"
+    config_dir: "{{ ansible_env.HOME }}/"
+    config_src: "{{ playbook_dir }}/roles/git/files/gitconfig"
+    config_dest: "{{ ansible_env.HOME }}/.gitconfig"
+

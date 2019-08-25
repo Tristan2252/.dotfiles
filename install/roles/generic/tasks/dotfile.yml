@@ -1,0 +1,50 @@
+---
+
+- name: RedHat - Install {{ package_redhat }}
+  yum:
+    name: "{{ package_redhat }}"
+    state: present
+  when: 
+    - ansible_os_family == "RedHat"
+    - package_redhat != false
+  become: true
+
+- name: Debian - Install {{ package_debian }}
+  apt:
+    name: "{{ package_debian }}"
+    state: present
+  when: 
+    - ansible_os_family == "Debian"
+    - package_debian != false
+  become: true
+
+- name: Checking Existing config
+  stat: 
+    path: "{{ config_dest }}"
+  register: file
+
+- name: Remove Old config
+  file: 
+    path: "{{ config_dest }}"
+    state: absent 
+    force: yes
+  when: 
+    - file.stat.exists == true
+    - file.stat.islnk == false
+
+- name: Create config dir
+  file:
+    dest: "{{ config_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Linking config
+  file:
+    src: "{{ config_src }}"
+    dest: "{{ config_dest }}"
+    state: link
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  when: 
+    - file.stat.exists == false

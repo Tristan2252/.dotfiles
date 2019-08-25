@@ -1,0 +1,56 @@
+---
+
+- name: Check that the i3 conf exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.config/i3/config"
+  register: stat_result
+
+- assert:
+    that: 
+      - stat_result.stat.exists
+    msg: ".config/i3/config not found, install and setup i3 first"
+
+- include_tasks: debian/debian.yml
+  when: ansible_os_family == "Debian"
+
+- include_tasks: rhel/rhel.yml
+  when: ansible_os_family == "RedHat"
+
+- name: Clone i3-Gaps From Git
+  git:
+    repo: 'https://www.github.com/Airblader/i3'
+    dest: "/tmp/i3gaps"
+  register: repo
+
+- name: Config i3-Gaps Install
+  shell: "{{ item }}"
+  args:
+    warn: false
+    chdir: "/tmp/i3gaps"
+  with_items:
+    - autoreconf --force --install
+    - rm -rf build/
+    - mkdir -p build
+  when: repo.changed
+  become: true
+  ignore_errors: true
+
+- name: Build i3-Gaps and Install
+  shell: "{{ item }}"
+  args:
+    chdir: "/tmp/i3gaps/build"
+  with_items:
+    - ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+    - make
+    - make install
+  when: repo.changed
+  become: true
+  ignore_errors: true
+
+- name: Set Gap Settings
+  blockinfile:
+    dest: "{{ i3_config_file }}"
+    state: present
+    insertbefore: BOF
+    block: "{{ gaps_settings }}"
+    marker: "################# {mark} i3 GAPS SETTINGS #################"

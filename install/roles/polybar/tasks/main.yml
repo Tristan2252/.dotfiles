@@ -1,0 +1,50 @@
+---
+ - name: Install Polybar Dependencies
+   yum:
+           name: '{{ item }}'
+   with_items:
+     - libX11-xcb.x86_64
+     - libxcb.x86_64
+     - libxcb-devel.x86_64
+     - libxcb-doc.noarch
+     - xcb-proto.noarch
+     - xcb-util.x86_64
+     - cmake
+   become: True
+
+ - name: Clone Polybar From Git
+   git:
+     repo: 'https://github.com/jaagr/polybar.git'
+     dest: "/tmp/polybar"
+ 
+ - name: Setup Polybar build
+   shell: "{{ item }}"
+   args:
+     chdir: "/tmp/polybar"
+   with_items:
+     - mkdir -p build
+   become: true
+   ignore_errors: true
+ 
+ - name: Build and Install Polybar
+   shell: "{{ item }}"
+   args:
+     chdir: "/tmp/polybar/build"
+   with_items:
+     - cmake ..
+     - make -j$(nproc)
+     - make install
+   become: true
+   ignore_errors: true
+
+- name: Configure polybar with generic/dotfile
+  include_role:
+    name: generic
+    tasks_from: dotfile
+  vars:
+    package_redhat: false
+    package_debian: false
+    config_dir: "{{ ansible_env.HOME }}/.config/polybar"
+    config_src: "{{ playbook_dir }}/roles/polybar/files/config"
+    config_dest: "{{ config_dir }}/config"
+

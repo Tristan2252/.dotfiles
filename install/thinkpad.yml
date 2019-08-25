@@ -1,0 +1,20 @@
+---
+
+- hosts: 127.0.0.1
+  connection: local
+  vars:
+    - gaps_settings: |
+        for_window [class="^.*"] border pixel 2
+        gaps inner 5
+        gaps outer 5
+    - i3_config_file: "~/.config/i3/config"
+  roles:
+    - bash_linux
+    - git
+    - i3
+    - i3gaps
+    - rofi
+    - gtk
+    - vim
+    - compton
+    - latex

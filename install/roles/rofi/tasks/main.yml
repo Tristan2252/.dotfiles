@@ -1,0 +1,27 @@
+---
+
+- name: Configure git with generic/dotfile
+  include_role:
+    name: generic
+    tasks_from: dotfile
+  vars:
+    package_redhat: "rofi"
+    package_debian: "rofi"
+    config_dir: "{{ ansible_env.HOME }}/.config"
+    config_src: "{{ playbook_dir }}/roles/rofi/files/rofi"
+    config_dest: "{{ config_dir }}/rofi"
+
+- name: Remove default launcher keybind
+  lineinfile:
+    dest: "{{ i3_config_file }}"
+    state: absent
+    regex: 'bindsym \$mod\+d exec dmenu_run'
+
+- name: Set Rofi Keybind
+  lineinfile:
+    dest: "{{ i3_config_file }}"
+    state: present
+    regex: 'bindsym \$mod\+p.*'
+    line: "bindsym $mod+p exec rofi -show drun -location 0 -width 40 -sidebar-mode"
+
+

@@ -72,7 +72,7 @@ font-3 = siji:pixelsize=5;1
 
 modules-left = i3 arrow-right
 modules-center = 
-modules-right = pulseaudio memory cpu arrow-a wlan arrowthin-a battery arrowthin-a temperature arrowthin-a date
+modules-right = pulseaudio memory cpu arrow-a wlan arrowthin-a battery arrowthin-a temperature arrowthin-a date 
 
 tray-position = right
 tray-padding = 2

@@ -6,7 +6,7 @@ gaps outer 5
 
 ##################### VARS ########################
 set $sinknum 0
-set $wallpaper ~/Pictures/Wallpapers/unsplash-Clandio.jpg
+set $wallpaper ~/Pictures/Wallpapers/toa-heftiba-oH-ty8pv8II-unsplash.jpg
 set $active_bg #222222
 set $active_fg #222222
 set $inactive_bg #222222

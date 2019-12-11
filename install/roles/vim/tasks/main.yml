@@ -14,6 +14,5 @@
 - name: Clone vim Plugins
   git:
     repo: "{{ item.repo }}"
-    dest: "{{ playbook_dir }}/roles/setup/files/.vim/bundle/{{ item.dest }}"
+    dest: "{{ playbook_dir }}/roles/vim/files/vim/bundle/{{ item.dest }}"
   with_items: "{{ vim_plugins }}"
-

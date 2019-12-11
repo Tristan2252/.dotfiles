@@ -8,7 +8,7 @@ configuration {
 * {
     font: "SF Pro Text Light 8";
     padding: 5px 10px;
-    background-color: #24211A;
+    background-color: #24272E;
     color: #6A6A6A;
 }
 

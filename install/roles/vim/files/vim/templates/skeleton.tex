@@ -17,11 +17,15 @@
 \usepackage{graphicx}         % allow for adding pictures: use \includegraphics[]{}
 \usepackage{float}            % allow for floating objects: use begin{figure}[H]
 \usepackage{amsmath}          % nice formatting for equations use begin{gather*}
-%\usepackage{cancel}           % allow for cancel signs in math use \cancel{}
 \usepackage{amssymb}          % fancy symbols
 \usepackage{enumitem}         % better enumerate
 \usepackage{fancyhdr}         % header and footer package
-\usepackage{currfile}
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                Linter ignore errors                    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% chktex-file 36   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                Set margins manually                    %
@@ -51,6 +55,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %  \renewcommand{\thepage}{Page \arabic{page}}
+%  \renewcommand{\thesection}{\Roman{section}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                  Custom Commands                       %
@@ -62,8 +67,8 @@
 %               Autofill Document Info                   %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\yourtitle}{  }
-\newcommand{\yoursubject}{  }
+\newcommand{\yourtitle}{}
+\newcommand{\yoursubject}{}
 \newcommand{\yourauthor}{Tristan Vigil}
 \newcommand{\yoursemester}{Fall \the\year}
 \newcommand{\yourinstitution}{New Mexico Tech}
@@ -75,7 +80,7 @@
 \lhead{\yourinstitution}
 \chead{\yoursubject}
 \rhead{\yoursemester}
-\lfoot{\currfilebase}
+\lfoot{\yourtitle}
 \cfoot{}
 \rfoot{Page \thepage}
 

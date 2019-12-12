@@ -23,6 +23,11 @@
     path: "{{ config_dest }}"
   register: file
 
+- name: Checking Existing config dir
+  stat: 
+    path: "{{ config_dir }}"
+  register: dir
+
 - name: Remove Old config
   file: 
     path: "{{ config_dest }}"

@@ -8,8 +8,8 @@
     package_redhat: "rofi"
     package_debian: "rofi"
     config_dir: "{{ ansible_env.HOME }}/.config"
-    config_src: "{{ playbook_dir }}/roles/rofi/files/rofi"
-    config_dest: "{{ config_dir }}/rofi"
+    config_src: "{{ playbook_dir }}/roles/rofi/files/config.rasi"
+    config_dest: "{{ config_dir }}/rofi/config.rasi"
 
 - name: Remove default launcher keybind
   lineinfile:

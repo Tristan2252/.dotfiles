@@ -1,41 +1,42 @@
 ---
- - name: Install Polybar Dependencies
-   yum:
-           name: '{{ item }}'
-   with_items:
-     - libX11-xcb.x86_64
-     - libxcb.x86_64
-     - libxcb-devel.x86_64
-     - libxcb-doc.noarch
-     - xcb-proto.noarch
-     - xcb-util.x86_64
-     - cmake
-   become: True
 
- - name: Clone Polybar From Git
-   git:
-     repo: 'https://github.com/jaagr/polybar.git'
-     dest: "/tmp/polybar"
- 
- - name: Setup Polybar build
-   shell: "{{ item }}"
-   args:
-     chdir: "/tmp/polybar"
-   with_items:
-     - mkdir -p build
-   become: true
-   ignore_errors: true
- 
- - name: Build and Install Polybar
-   shell: "{{ item }}"
-   args:
-     chdir: "/tmp/polybar/build"
-   with_items:
-     - cmake ..
-     - make -j$(nproc)
-     - make install
-   become: true
-   ignore_errors: true
+- name: Install Polybar Dependencies
+  yum:
+          name: '{{ item }}'
+  with_items:
+    - g++
+    - libX11-xcb.x86_64
+    - libxcb.x86_64
+    - libxcb-devel.x86_64
+    - libxcb-doc.noarch
+    - xcb-proto.noarch
+    - xcb-util.x86_64
+    - wireless-tools-devel
+    - cmake
+  become: True
+
+- name: Clone Polybar From Git
+  git:
+    repo: 'https://github.com/jaagr/polybar.git'
+    dest: "/tmp/polybar"
+
+- name: Setup Polybar build
+  file: 
+    path: /tmp/polybar/build
+    state: directory
+  become: true
+
+- name: Build and Install Polybar
+  shell: "{{ item }}"
+  args:
+    chdir: /tmp/polybar/build
+    # creates: bin/polybar  TODO: add this functionality (make install doesnt work with bin/polybar)
+  with_items:
+    - cmake ..
+    - make -j$(nproc)
+    - make install
+  become: true
+  ignore_errors: true
 
 - name: Configure polybar with generic/dotfile
   include_role:

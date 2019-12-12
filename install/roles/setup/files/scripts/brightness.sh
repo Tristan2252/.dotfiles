@@ -2,8 +2,8 @@
 # Use this script to adjust the brightness level of intel backlight.
 # The percentage is then calculated and reported to dunst
 
-MAX=851
-OFFSET=10
+MAX=24242
+OFFSET=1212
 CUR_VAL=$(< /sys/class/backlight/intel_backlight/brightness)
 
 notify() {
@@ -26,7 +26,7 @@ elif [ $1 = "+" ]; then
     SET_VAL=$(($CUR_VAL + $OFFSET))
 
     if [ $SET_VAL -le $MAX ]; then
-        notify
+        #notify
         echo $SET_VAL | sudo tee /sys/class/backlight/intel_backlight/brightness # be sure to add command to sudo file
     fi
 
@@ -35,7 +35,7 @@ elif [ $1 = "-" ]; then
     
     # do nothing if value is below 0
     if [ $SET_VAL -ge 0 ]; then 
-        notify
+        #notify
         echo $SET_VAL | sudo tee /sys/class/backlight/intel_backlight/brightness # be sure to add command to sudo file
     fi
 

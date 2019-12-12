@@ -1,5 +1,18 @@
 ---
 
+- name: RedHat Os vars
+  set_fact:
+    open_gl_pkgs:
+      - mesa-dri-drivers 
+      - mesa-libGL
+  when: ansible_os_family == "RedHat"
+
+- name: Install OpenGL
+  package:
+    name: '{{ open_gl_pkgs }}'
+    state: present
+  become: true
+
 - name: Configure compton with generic/dotfile
   include_role:
     name: generic

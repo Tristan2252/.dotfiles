@@ -1,0 +1,13 @@
+---
+
+- name: Clone Vimix GTK Theme
+  git:
+    repo: 'https://github.com/vinceliuice/vimix-gtk-themes.git'
+    dest: "/tmp/vimix-gtk-theme"
+
+- name: Run Vimix Installer
+  command: "/tmp/vimix-gtk-theme/Install"
+  args:
+    creates: /usr/share/themes/vimix
+  become: true
+

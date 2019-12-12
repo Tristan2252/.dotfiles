@@ -1,0 +1,16 @@
+---
+
+- name: Install Intel x11 driver
+  package:
+    name: xorg-x11-drv-intel
+    state: present
+  become: true
+
+- name: Install Intel micocode driver
+  package:
+    name: 
+      - linux-firmware 
+      - microcode_ctl
+    state: present
+  become: true
+

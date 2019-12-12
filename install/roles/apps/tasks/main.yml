@@ -1,0 +1,45 @@
+---
+
+- name: Set RedHat Package Names
+  set_fact: 
+    apps_pdf_readers:
+      - zathura
+      - zathura-pdf-mupdf
+      - evince
+    apps_file_managers:
+      - nautilus
+      - nautilus-extensions
+      - nautilus-search-tool
+      - evince-nautilus
+    apps_pdf_tools: 
+      - pandoc
+  when: ansible_os_family == "RedHat"
+
+- name: Install PDF reader apps
+  package:
+    name: "{{ apps_pdf_readers }}"
+    state: present
+  when: apps.pdf is defined
+  become: true
+
+- name: Install PDF tools
+  package:
+    name: "{{ apps_pdf_tools }}"
+    state: present
+  when: apps.pdf_tools is defined
+  become: true
+
+- name: Install File Manager apps
+  package:
+    name: "{{ apps_file_managers }}"
+    state: present
+  when: apps.file_manager is defined
+  become: true
+
+- name: Install Browsers
+  package:
+    name: "{{ apps.browser }}"
+    state: present
+  when: apps.browser is defined
+  become: true
+

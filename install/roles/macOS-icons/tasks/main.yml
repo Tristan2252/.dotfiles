@@ -1,0 +1,11 @@
+---
+
+- name: Linking Icons
+  file:
+    src: "{{ playbook_dir }}/roles/macOS-icons/files/macOS"
+    dest: /usr/share/icons/macOS
+    state: link
+    owner: root
+    group: root
+  become: true
+

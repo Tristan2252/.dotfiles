@@ -2,17 +2,16 @@
 
 - name: Install Polybar Dependencies
   yum:
-          name: '{{ item }}'
-  with_items:
-    - g++
-    - libX11-xcb.x86_64
-    - libxcb.x86_64
-    - libxcb-devel.x86_64
-    - libxcb-doc.noarch
-    - xcb-proto.noarch
-    - xcb-util.x86_64
-    - wireless-tools-devel
-    - cmake
+    name:
+      - g++
+      - libX11-xcb.x86_64
+      - libxcb.x86_64
+      - libxcb-devel.x86_64
+      - libxcb-doc.noarch
+      - xcb-proto.noarch
+      - xcb-util.x86_64
+      - wireless-tools-devel
+      - cmake
   become: True
 
 - name: Clone Polybar From Git
@@ -26,17 +25,28 @@
     state: directory
   become: true
 
-- name: Build and Install Polybar
-  shell: "{{ item }}"
+- name: Build Polybar
+  shell: |-
+    cmake \
+    -DENABLE_ALSA:BOOL="OFF"        \
+    -DENABLE_PULSEAUDIO:BOOL="ON"   \
+    -DENABLE_I3:BOOL="ON"           \
+    -DENABLE_MPD:BOOL="OFF"         \
+    -DENABLE_NETWORK:BOOL="ON"      \
+    -DENABLE_CURL:BOOL="ON"         \
+    -DBUILD_IPC_MSG:BOOL="ON"       \
+    .. && make -j$(nproc)
   args:
     chdir: /tmp/polybar/build
-    # creates: bin/polybar  TODO: add this functionality (make install doesnt work with bin/polybar)
-  with_items:
-    - cmake ..
-    - make -j$(nproc)
-    - make install
+    creates: bin/polybar
   become: true
-  ignore_errors: true
+
+- name: Install Polybar
+  shell:  make install
+  args:
+    chdir: /tmp/polybar/build
+    creates: /usr/local/bin/polybar
+  become: true
 
 - name: Configure polybar with generic/dotfile
   include_role:

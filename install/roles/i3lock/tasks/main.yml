@@ -1,0 +1,57 @@
+---
+
+- name: Install dependencies
+  package:
+    name: 
+      - pam-devel
+      - ImageMagick
+    state: present
+  become: true
+
+- name: Clone i3lock From Git
+  git:
+    repo: 'https://github.com/Lixxia/i3lock'
+    dest: "/tmp/i3lock"
+
+- name: Setup i3lock build
+  shell: "{{ item }}"
+  args:
+    chdir: /tmp/i3lock
+    creates: /tmp/i3lock/build
+  with_items:
+    - autoreconf -fi
+    - mkdir -p build
+  become: true
+
+- name: i3lock build and install
+  shell: "{{ item }}"
+  args:
+    chdir: /tmp/i3lock/build
+    creates: /tmp/i3lock/build/i3lock
+  with_items:
+    - ../configure
+    - make
+    - make install
+  become: true
+
+- name: Create Lock Service
+  copy: src={{ playbook_dir }}/roles/setup/files/configs/lock.service dest=/etc/systemd/system/lock.service 
+  become: true
+  register: service
+
+- name: Reload SystemD
+  command: "{{ item }}"
+  with_items:
+          - systemctl daemon-reload
+          - systemctl enable lock.service
+  become: true
+  when: service.changed
+
+- name: Setup lock script root Script Permissions
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    insertafter: EOF
+    line: 'tristan ALL=(ALL) NOPASSWD: /bin/systemctl start lock'
+  become: true
+

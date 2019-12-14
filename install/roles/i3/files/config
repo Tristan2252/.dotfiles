@@ -6,11 +6,11 @@ gaps outer 5
 
 ##################### VARS ########################
 set $sinknum 0
-set $wallpaper ~/Pictures/Wallpapers/toa-heftiba-oH-ty8pv8II-unsplash.jpg
-set $active_bg #222222
-set $active_fg #222222
-set $inactive_bg #222222
-set $inactive_fg #222222
+set $wallpaper ~/Pictures/Wallpapers/martin-balle-ArKDu9JOUho-unsplash.jpg
+set $active_bg #000000
+set $active_fg #000000
+set $inactive_bg #000000
+set $inactive_fg #000000
 set $bar_bg #00000000
 set $bar_fg #B6B6B6
 set $i3_text #00000000

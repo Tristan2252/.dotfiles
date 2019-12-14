@@ -18,10 +18,12 @@
     - bash_linux
     - git
     - i3
+    - i3lock
     - i3gaps
     - rofi
     - vimix
     - gtk
+    - macOS-icons
     - vim
     - compton
     - polybar

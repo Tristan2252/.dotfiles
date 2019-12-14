@@ -15,3 +15,11 @@
     config_src: "{{ playbook_dir }}/roles/i3/files/config"
     config_dest: "{{ i3_config_file }}"
 
+
+- name: Setup brightness script root Script Permissions
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    insertafter: EOF
+    line: 'tristan ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/class/backlight/intel_backlight/brightness'
+  become: true

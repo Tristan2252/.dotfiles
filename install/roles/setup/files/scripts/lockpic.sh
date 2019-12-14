@@ -1,6 +1,6 @@
 #! /bin/bash
 
-SCREEN_SIZE=1366x768
+SCREEN_SIZE=1920x1080
 ALBUM=/home/tristan/Pictures/Wallpapers
 OVERLAYS=/home/tristan/.dotfiles/files
 RAND_PIC=$(ls $ALBUM/ | sort --random-sort | head -1)

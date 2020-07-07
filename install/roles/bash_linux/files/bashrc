@@ -102,7 +102,8 @@ export LESS_TERMCAP_ue=$(printf '\E[0m')           # end underline
 export LESS_TERMCAP_us=$(printf '\E[04;38;5;146m') # begin underline
 
 
-source ~/.termline/termline.sh
+#source ~/.termline/termline.sh
+source ~/.termline2/termline_mac.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -118,4 +119,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# bash Vi mode
+# set -o vi
 

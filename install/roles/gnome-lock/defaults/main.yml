@@ -1,0 +1,10 @@
+---
+#dialog_background_color: "0,0,0,0.8"
+dialog_shadow_color: "0,0,0,0.7"
+dialog_background_color: "255,255,255,1.0"
+dialog_font_color: "#000000"
+#width: "380"
+#height: "260"
+
+width: "400"
+height: "280"

@@ -1,0 +1,65 @@
+---
+
+
+- name: get the username
+  become: false
+  local_action: command whoami
+  register: username
+
+- name: Random lockscreen wallpaper
+  cron:
+    name: "Random lockscreen wallpaper"
+    minute: 5
+    job: "{{ playbook_dir }}/roles/gnome-lock/files/lockpic-gnome.sh"
+    user: "{{ username.stdout }}"
+  become: true
+
+- name: Create disable-user-list key
+  template:
+    src: gnome-shell.css
+    dest: "{{ playbook_dir }}/roles/gnome-lock/files/theme/gnome-shell.css"
+  become: true
+
+- name: Generate user dialog overlay
+  command: |
+    convert 
+    -size 450x350 xc:transparent 
+    -fill "rgba({{ dialog_shadow_color }})" 
+    -draw "roundrectangle 20,180 400,300 18,18" shadow.png
+  args:
+    chdir: "{{ playbook_dir }}/roles/gnome-lock/files/theme"
+
+- name: Generate user dialog overlay
+  command: |
+    convert 
+    -size "{{ width }}"x"{{ height }}" xc:transparent 
+    -fill "rgba({{ dialog_background_color }})" 
+    -draw "rectangle 0,0 "{{ width }}","{{ height }}"" overlay_fg.png
+  args:
+    chdir: "{{ playbook_dir }}/roles/gnome-lock/files/theme"
+    # -draw "roundrectangle 0,0, "{{ width }}","{{ height }}" 18,18" overlay.png
+
+- name: Build login theme
+  shell: "{{ item }}"
+  args:
+    chdir: "{{ playbook_dir }}/roles/gnome-lock/files/theme"
+  with_items:
+    - ./build.sh
+
+- name: Create disable-user-list key
+  copy:
+    src: gdm.profile
+    dest: /etc/dconf/profile/gdm
+  become: true
+
+- name: Create disable-user-list keyfile
+  copy:
+    src: 00-login-screen
+    dest: /etc/dconf/db/gdm.d/00-login-screen
+  register: conf
+  become: true
+
+- name: Reload dconf Database
+  command: dconf update
+  when: conf.changed
+  become: true

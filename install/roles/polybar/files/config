@@ -20,6 +20,7 @@
 ;background = ${xrdb:color0:#222}
 ;background = #222
 background = #002F343F
+;background = #000000
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -28,14 +29,21 @@ primary = #2EB398
 secondary = #e60053
 alert = #bd2c40
 
-white = $dfdfdf
+white = #dfdfdf
+black = #000000
 gray = #828997
 gray_dark = #24272E
 green = #98C379
 orange = #D19A66
+off_white = #F6F5F5
+black_gray = #131414
 
 foreground-a = ${colors.gray}
 background-a = ${colors.gray_dark}
+foreground-b = ${colors.black}
+background-b = ${colors.gray}
+foreground-c = ${colors.gray}
+background-c = ${colors.black}
 foreground-notify = ${colors.white}
 foreground-alert = ${colors.orange}
 foreground-good = ${colors.green}
@@ -43,9 +51,9 @@ foreground-good = ${colors.green}
 [bar/default]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 12
+height = 13
 ;offset-x = 1%
-offset-y = 1%
+#offset-y = 1%
 radius = 0
 fixed-center = false
 
@@ -64,19 +72,74 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = fixed:pixelsize=6;2
-font-1 = Source Code Pro for Powerline:size=8;2
+font-0 = fixed:pixelsize=8;2
+font-1 = Source Code Pro for Powerline:size=9;2
 #font-2 = unifont:fontformat=truetype:size=9:antialias=false;0
-font-2 = FontAwesome:size=7;2
-font-3 = siji:pixelsize=5;1
+font-2 = FontAwesome:size=8;2
+font-3 = siji:pixelsize=6;1
 
-modules-left = i3 arrow-right
+;modules-left = memory pulseaudio arrow-right
 modules-center = 
-modules-right = pulseaudio memory cpu arrow-a wlan arrowthin-a battery arrowthin-a temperature arrowthin-a date 
+modules-right = arrow-end memory pulseaudio arrow-a wlan arrowthin-a battery arrowthin-a temperature arrowthin-a date 
 
-tray-position = right
+tray-position = left
+tray-maxsize = 8
 tray-padding = 2
-;tray-background = #0063ff
+tray-background = ${colors.background}
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[bar/default-b]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 13
+;offset-x = 1%
+#offset-y = 1%
+radius = 0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 1
+border-color = ${colors.background}
+
+padding-left = 0
+padding-right = 8
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = fixed:pixelsize=8;2
+font-1 = Source Code Pro for Powerline:size=9;2
+#font-2 = unifont:fontformat=truetype:size=9:antialias=false;0
+font-2 = FontAwesome:size=8;2
+font-3 = siji:pixelsize=6;1
+
+;modules-left = memory pulseaudio arrow-right
+modules-center = 
+modules-right = pulseaudio memory cpu
+
+tray-position = left
+tray-maxsize = 8
+tray-padding = 2
+tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -94,7 +157,7 @@ cursor-scroll = ns-resize
 
 [module/arrow-right]
 type = custom/text
-content = ""
+content = "     "
 content-foreground = ${colors.background-a}
 content-background = ${colors.background}
 
@@ -106,9 +169,15 @@ content-background = ${colors.background}
 
 [module/arrow-a]
 type = custom/text
-content = "   "
+content = ""
 content-foreground = ${colors.background-a}
-content-background = ${colors.background}
+content-background = ${colors.background-b}
+
+[module/arrow-end]
+type = custom/text
+content = "   "
+content-foreground = ${colors.background-b}
+content-bacground = ${colors.background}
 
 [module/arrowthin-a]
 type = custom/text
@@ -117,11 +186,11 @@ content-foreground = ${colors.foreground-a}
 content-background = ${colors.background-a}
 content-padding = 2
 
-[module/arrowthin]
+[module/arrowthin-b]
 type = custom/text
 content = ""
-content-foreground = ${colors.foreground}
-content-background = ${colors.background}
+content-foreground = ${colors.foreground-a}
+content-background = ${colors.background-a}
 content-padding = 2
 
 [module/xwindow]
@@ -203,6 +272,7 @@ interval = 2
 format = <ramp-load>
 #format-prefix = "  "
 format-prefix-foreground = ${colors.foreground}
+format-background = ${colors.background-a}
 ;format-overline = ${colors.primary}
 label = %percentage:2%%
 
@@ -222,23 +292,24 @@ ramp-load-7-foreground = ${colors.foreground-alert}
 [module/memory]
 type = internal/memory
 interval = 2
+format-background = ${colors.background-b}
 #format-prefix = " "
 #format-prefix-foreground = ${colors.foreground}
 ;format-overline = ${colors.primary}
 #label-percent = %percentage_used%%
 #label-percent-background = #555555
-format = <ramp-used>
-ramp-used-0 = " "
-ramp-used-1 = " "
-ramp-used-2 = " "
-ramp-used-3 = " "
-ramp-used-4 = "    "
-ramp-used-4-foreground = ${colors.foreground}
-ramp-used-5 = "    "
-ramp-used-5-foreground = ${colors.foreground}
-ramp-used-6 = "    "
+format = <ramp-used>  
+ramp-used-0 = ""
+ramp-used-1 = ""
+ramp-used-2 = ""
+ramp-used-3 = ""
+ramp-used-4 = "     "
+ramp-used-4-foreground = ${colors.foreground-b}
+ramp-used-5 = "     "
+ramp-used-5-foreground = ${colors.foreground-b}
+ramp-used-6 = "     "
 ramp-used-6-foreground = ${colors.alert}
-ramp-used-7 = "    "
+ramp-used-7 = "     "
 ramp-used-7-foreground = ${colors.alert}
 
 [module/wlan]
@@ -303,20 +374,24 @@ label = %date% %time%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <bar-volume> <label-volume>  
-label-volume = ""
-label-volume-foreground = ${root.foreground}
+format-volume-foreground = ${colors.foreground-b}
+format-volume-background = ${colors.background-b}
+format-volume = <label-volume> <bar-volume> VOL <label-volume>
 
-label-muted = " "
+label-volume = "  "
+label-volume-foreground = ${colors.foreground-b}
+
+label-muted = ""
 label-muted-foreground = ${colors.background}
+format-muted-background = ${colors.background-b}
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-0 = ${colors.foreground-b}
+bar-volume-foreground-1 = ${colors.foreground-b}
+bar-volume-foreground-2 = ${colors.foreground-b}
+bar-volume-foreground-3 = ${colors.foreground-b}
+bar-volume-foreground-4 = ${colors.foreground-b}
+bar-volume-foreground-5 = ${colors.foreground-b}
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
 bar-volume-indicator = |
@@ -325,7 +400,8 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-indicator-foreground = ${colors.foreground-b}
+bar-volume-empty-foreground = ${colors.foreground-b}
 
 [module/alsa]
 type = internal/alsa
@@ -412,6 +488,7 @@ format-warn =  <label-warn>
 
 label = "%temperature-c%  "
 label-warn = %temperature-c%
+label-warn-background = ${colors.background-a}
 label-warn-foreground = ${colors.foreground-alert}
 
 ramp-0 = 
@@ -457,7 +534,7 @@ screenchange-reload = true
 ;pseudo-transparency = false
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 0
+margin-bottom = 0
 
 ; vim:ft=dosini

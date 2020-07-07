@@ -14,18 +14,16 @@
         gaps outer 5
     - i3_config_file: "~/.config/i3/config"
   roles:
-    - apps
-    - bash_linux
-    - git
-    - i3
-    - i3lock
-    - i3gaps
-    - rofi
-    - vimix
-    - gtk
-    - macOS-icons
-    - vim
-    - compton
-    - polybar
-    - latex
-    - drivers
+    - role: apps
+    - role: bash_linux
+    - role: git
+    - role: rofi
+    - role: vimix
+      tags: vimix
+    - role: gtk
+    - role: vim
+    - role: polybar
+    - role: latex
+      #- role: gnome-keybind
+    - role: gnome-lock
+      tags: gnome-lock

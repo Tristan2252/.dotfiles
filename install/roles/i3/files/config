@@ -225,7 +225,7 @@ exec --no-startup-id feh --bg-fill $wallpaper
 # start compton
 #exec --no-startup-id compton
 
-exec --no-startup-id polybar default -q 
+#exec --no-startup-id polybar default -q 
 
 # mouse settings
 # Disable right clock by extending left button

@@ -4,14 +4,20 @@
   yum:
     name:
       - g++
+      - cairo-devel
+      - libcurl-devel
+      - pulseaudio-libs-devel
       - libX11-xcb.x86_64
       - libxcb.x86_64
       - libxcb-devel.x86_64
-      - libxcb-doc.noarch
-      - xcb-proto.noarch
-      - xcb-util.x86_64
+      - xcb-proto
+      - xcb-util-devel
+      - xcb-util-wm-devel
+      - xcb-util-image-devel
       - wireless-tools-devel
+      - jsoncpp-devel
       - cmake
+      - make
   become: True
 
 - name: Clone Polybar From Git
@@ -30,7 +36,7 @@
     cmake \
     -DENABLE_ALSA:BOOL="OFF"        \
     -DENABLE_PULSEAUDIO:BOOL="ON"   \
-    -DENABLE_I3:BOOL="ON"           \
+    -DENABLE_I3:BOOL="OFF"          \
     -DENABLE_MPD:BOOL="OFF"         \
     -DENABLE_NETWORK:BOOL="ON"      \
     -DENABLE_CURL:BOOL="ON"         \

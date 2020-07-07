@@ -1,0 +1,19 @@
+---
+
+- name: Disable switch applications
+  dconf:
+    key: "org/gnome/desktop/wm/keybindings/switch-applications"
+    value: "[]"
+    state: present
+
+- name: Set alt tab to switch windows
+  dconf:
+    key: "org/gnome/desktop/wm/keybindings/switch-windows"
+    value: "['<Alt>Tab']"
+    state: present
+
+- name: Set alt tab accross workspaces
+  dconf:
+    key: "org/gnome/shell/window-switcher/current-workspace-only"
+    value: "false"
+    state: present

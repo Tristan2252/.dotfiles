@@ -35,6 +35,8 @@ colorscheme monokai
 "hi Normal guibg=NONE ctermbg=NONE
 " search highlight color
 hi MatchParen cterm=underline ctermfg=208 ctermbg=none
+" bad spelling color
+hi SpellBad cterm=bold
 
 " ###########################################################
 " #                       KAY BINDS                         #
